@@ -55,3 +55,4 @@ Stride3DMarketPlace.Client/appsettings.Development.json
 Stride3DMarketPlace.Admin/Data/Migrations/
 Stride3DMarketPlace.Admin/obj/
 Stride3DMarketPlace.Client/obj/
+Stride3DMarketPlace.Data/obj/
