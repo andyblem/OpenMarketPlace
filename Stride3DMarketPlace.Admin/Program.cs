@@ -30,14 +30,11 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
     .AddUserManager<ApplicationUserManager<ApplicationUser>>()
     .AddDefaultTokenProviders();
 
-//builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddAutoMapper(typeof(Program))
     .AddMediatR(typeof(Program))
     .AddControllersWithViews()
     .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Program>())
     .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-//builder.Services.AddMediatR(typeof(Program));
-
 
 var app = builder.Build();
 

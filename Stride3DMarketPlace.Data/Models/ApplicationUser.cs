@@ -9,5 +9,9 @@ namespace Stride3DMarketPlace.Database.Models
 {
     public class ApplicationUser : IdentityUser
     {
+        public bool IsAdmin { get; set; }
+        public bool IsPublisher { get; set; }
+
+        public string ProfilePhoto { get; set; }
     }
 }

@@ -9,11 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stride3DMarketPlace.Admin", "Stride3DMarketPlace.Admin\Stride3DMarketPlace.Admin.csproj", "{A6999291-4119-4459-8691-284AC07CB4FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stride3DMarketPlace.Admin", "Stride3DMarketPlace.Admin\Stride3DMarketPlace.Admin.csproj", "{A6999291-4119-4459-8691-284AC07CB4FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stride3DMarketPlace.Client", "Stride3DMarketPlace.Client\Stride3DMarketPlace.Client.csproj", "{953B3AB4-5CEF-41EE-AB35-BBD24222A205}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stride3DMarketPlace.Database", "Stride3DMarketPlace.Data\Stride3DMarketPlace.Database.csproj", "{F9C716BB-4A9B-4A65-BB92-5B0DCA4882CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stride3DMarketPlace.Database", "Stride3DMarketPlace.Data\Stride3DMarketPlace.Database.csproj", "{F9C716BB-4A9B-4A65-BB92-5B0DCA4882CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stride3DMarketPlace.Publisher", "Stride3DMarketPlace.Publisher\Stride3DMarketPlace.Publisher.csproj", "{682FEDCF-21E0-42FB-B3C2-13CD91DD0FFC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stride3DMarketPlace.Customer", "Stride3DMarketPlace.Customer\Stride3DMarketPlace.Customer.csproj", "{E0269B17-C657-4554-9F73-A3081E6B8A4F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +27,18 @@ Global
 		{A6999291-4119-4459-8691-284AC07CB4FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6999291-4119-4459-8691-284AC07CB4FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6999291-4119-4459-8691-284AC07CB4FB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{953B3AB4-5CEF-41EE-AB35-BBD24222A205}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{953B3AB4-5CEF-41EE-AB35-BBD24222A205}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{953B3AB4-5CEF-41EE-AB35-BBD24222A205}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{953B3AB4-5CEF-41EE-AB35-BBD24222A205}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F9C716BB-4A9B-4A65-BB92-5B0DCA4882CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F9C716BB-4A9B-4A65-BB92-5B0DCA4882CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9C716BB-4A9B-4A65-BB92-5B0DCA4882CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9C716BB-4A9B-4A65-BB92-5B0DCA4882CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{682FEDCF-21E0-42FB-B3C2-13CD91DD0FFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{682FEDCF-21E0-42FB-B3C2-13CD91DD0FFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{682FEDCF-21E0-42FB-B3C2-13CD91DD0FFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{682FEDCF-21E0-42FB-B3C2-13CD91DD0FFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0269B17-C657-4554-9F73-A3081E6B8A4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0269B17-C657-4554-9F73-A3081E6B8A4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0269B17-C657-4554-9F73-A3081E6B8A4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0269B17-C657-4554-9F73-A3081E6B8A4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
