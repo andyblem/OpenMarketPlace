@@ -1,0 +1,60 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.asset-icon-card {
+
+}
+
+.asset-icon-card .asset-icon-img {
+}
+
+.asset-icon-card .asset-title{
+
+}
+
+.asset-icon-card .asset-publisher {
+}
+
+.asset-icon-card .asset-type {
+}
+
+.asset-icon-card .asset-rating {
+}
+
+.line-1 {
+    border-bottom: 3px solid #dee2e6;
+}
+
+.section {
+    padding: 30px 0px 30px;
+}
+
+.section-content {
+    padding: 30px 0px 30px;
+}
+
+.section-content > .row {
+    padding: 15px 0 15px;
+}
+
+.section-heading {
+    font-weight: 700;
+    padding-bottom: 5px;
+}
+

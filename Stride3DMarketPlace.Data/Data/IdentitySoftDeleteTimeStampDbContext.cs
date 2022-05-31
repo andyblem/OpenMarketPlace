@@ -10,7 +10,8 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Stride3DMarketPlace.Database.Data
 {
-    public class IdentitySoftDeleteTimeStampDbContext<TUser> : IdentityDbContext<TUser> where TUser : IdentityUser
+    public class IdentitySoftDeleteTimeStampDbContext<TUser> : IdentityDbContext<TUser> 
+        where TUser : IdentityUser
     {
         public IdentitySoftDeleteTimeStampDbContext(DbContextOptions options)
           : base(options)

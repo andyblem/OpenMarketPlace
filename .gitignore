@@ -62,3 +62,7 @@ Stride3DMarketPlace.Publisher/bin/
 Stride3DMarketPlace.Publisher/obj/
 Stride3DMarketPlace.Publisher/appsettings.Development.json
 Stride3DMarketPlace.Publisher/appsettings.json
+Stride3DMarketplace.Store/bin/
+Stride3DMarketplace.Store/obj/
+Stride3DMarketplace.Store/appsettings.Development.json
+Stride3DMarketplace.Store/appsettings.json

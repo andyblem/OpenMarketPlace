@@ -14,7 +14,6 @@ namespace Stride3DMarketPlace.Database.Data
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
-        {
-        }
+        { }
     }
 }
