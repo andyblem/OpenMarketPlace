@@ -1,0 +1,90 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+    ViewData["BodyClass"] = "login-page";
+}
+
+<div class="login-box">
+
+  <div class="login-logo">
+    <a asp-controller="Home" asp-action="Index">
+        <b>Stride3D</b>
+        <br>
+        Publisher Portal
+    </a>
+  </div>
+
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+        <p class="login-box-msg">Sign in to start your session</p>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <form id="account" method="post">
+
+            <div class="input-group mb-3">
+
+                <input class="form-control" placeholder="Email" asp-for="Input.Email" autocomplete="username" aria-required="true">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-envelope"></span>
+                    </div>
+                </div>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+
+            <div class="input-group mb-3">
+                <input asp-for="Input.Password" class="form-control" placeholder="Password" autocomplete="current-password" aria-required="true">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="icheck-primary">
+                        <input id="remember" asp-for="Input.RememberMe">
+                        <label for="remember">
+                            Remember Me
+                        </label>
+                    </div>
+                </div>
+                <!-- /.col -->
+            </div>
+
+            <div class="mb-3"></div>
+
+            <div class="row">
+                <div class="col-12">
+                    <button id="login-submit" type="submit" class="btn btn-primary btn-block">Sign In</button>
+                </div>
+                <!-- /.col -->
+            </div>
+        </form>
+
+        <div class="mb-3"></div>
+
+        <p class="mb-1">
+            <a id="forgot-password" asp-page="./ForgotPassword">I forgot my password</a>
+        </p>
+        <p class="mb-1">
+            <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="text-center">Register a new membership</a>
+        </p>
+        <p class="mb-0">
+            <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+        </p>
+
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
