@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Stride3DMarketPlace.Database.Models;
+using Stride3DMarketPlace.Persistance.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Stride3DMarketPlace.Database.Managers
+namespace Stride3DMarketPlace.Persistance.Managers
 {
     public class ApplicationUserManager<T> : UserManager<ApplicationUser> where T : ApplicationUser
     {

@@ -1,0 +1,144 @@
+﻿@model Stride3DMarketPlace.Persistance.Models.Asset
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Asset</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Rating" class="control-label"></label>
+                <input asp-for="Rating" class="form-control" />
+                <span asp-validation-for="Rating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Reviews" class="control-label"></label>
+                <input asp-for="Reviews" class="form-control" />
+                <span asp-validation-for="Reviews" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EngineCompatibility" class="control-label"></label>
+                <input asp-for="EngineCompatibility" class="form-control" />
+                <span asp-validation-for="EngineCompatibility" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GitRepository" class="control-label"></label>
+                <input asp-for="GitRepository" class="form-control" />
+                <span asp-validation-for="GitRepository" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LatestVersion" class="control-label"></label>
+                <input asp-for="LatestVersion" class="form-control" />
+                <span asp-validation-for="LatestVersion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="License" class="control-label"></label>
+                <input asp-for="License" class="form-control" />
+                <span asp-validation-for="License" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NugetPackage" class="control-label"></label>
+                <input asp-for="NugetPackage" class="form-control" />
+                <span asp-validation-for="NugetPackage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastUpdatedAt" class="control-label"></label>
+                <input asp-for="LastUpdatedAt" class="form-control" />
+                <span asp-validation-for="LastUpdatedAt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReleasedAt" class="control-label"></label>
+                <input asp-for="ReleasedAt" class="form-control" />
+                <span asp-validation-for="ReleasedAt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AssetReleaseStateId" class="control-label"></label>
+                <select asp-for="AssetReleaseStateId" class="form-control" asp-items="ViewBag.AssetReleaseStateId"></select>
+                <span asp-validation-for="AssetReleaseStateId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AssetTypeId" class="control-label"></label>
+                <select asp-for="AssetTypeId" class="form-control" asp-items="ViewBag.AssetTypeId"></select>
+                <span asp-validation-for="AssetTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AssetResourceId" class="control-label"></label>
+                <select asp-for="AssetResourceId" class="form-control" asp-items="ViewBag.AssetResourceId"></select>
+                <span asp-validation-for="AssetResourceId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatedById" class="control-label"></label>
+                <select asp-for="CreatedById" class="form-control" asp-items="ViewBag.CreatedById"></select>
+                <span asp-validation-for="CreatedById" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PublisherId" class="control-label"></label>
+                <select asp-for="PublisherId" class="form-control" asp-items="ViewBag.PublisherId"></select>
+                <span asp-validation-for="PublisherId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsDeleted" class="control-label"></label>
+                <input asp-for="IsDeleted" class="form-control" />
+                <span asp-validation-for="IsDeleted" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsModified" class="control-label"></label>
+                <input asp-for="IsModified" class="form-control" />
+                <span asp-validation-for="IsModified" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="CreatedAt" class="control-label"></label>
+                <input asp-for="CreatedAt" class="form-control" />
+                <span asp-validation-for="CreatedAt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeletedAt" class="control-label"></label>
+                <input asp-for="DeletedAt" class="form-control" />
+                <span asp-validation-for="DeletedAt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ModifiedAt" class="control-label"></label>
+                <input asp-for="ModifiedAt" class="form-control" />
+                <span asp-validation-for="ModifiedAt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeletedById" class="control-label"></label>
+                <input asp-for="DeletedById" class="form-control" />
+                <span asp-validation-for="DeletedById" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ModifiedById" class="control-label"></label>
+                <input asp-for="ModifiedById" class="form-control" />
+                <span asp-validation-for="ModifiedById" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

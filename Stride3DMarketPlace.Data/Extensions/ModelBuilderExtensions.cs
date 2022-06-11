@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Stride3DMarketPlace.Database.Extensions
+namespace Stride3DMarketPlace.Persistance.Extensions
 {
     public static class ModelBuilderExtensions
     {

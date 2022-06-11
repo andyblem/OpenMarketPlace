@@ -41,6 +41,20 @@ body {
     border-bottom: 3px solid #dee2e6;
 }
 
+/*.section-navbar {
+    margin-bottom: -3px;
+    background: 0 0;
+    border-bottom: 3px solid #dee2e6;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+}
+
+.section-navbar .nav-link.active {
+    color: #495057;
+    background-color: #fff;
+    border-color: #dee2e6 #dee2e6 #fff;
+}*/
+
 .section {
     padding: 30px 0px 30px;
 }

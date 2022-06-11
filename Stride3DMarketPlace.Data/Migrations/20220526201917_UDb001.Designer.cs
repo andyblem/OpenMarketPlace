@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Stride3DMarketPlace.Database.Data;
+using Stride3DMarketPlace.Persistance.Data;
 
 #nullable disable
 
-namespace Stride3DMarketPlace.Database.Migrations
+namespace Stride3DMarketPlace.Persistance.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20220526201917_UDb001")]
@@ -153,7 +153,7 @@ namespace Stride3DMarketPlace.Database.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Stride3DMarketPlace.Database.Models.ApplicationUser", b =>
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
@@ -227,7 +227,7 @@ namespace Stride3DMarketPlace.Database.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("Stride3DMarketPlace.Database.Models.Asset", b =>
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.Asset", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -316,7 +316,7 @@ namespace Stride3DMarketPlace.Database.Migrations
                     b.ToTable("Assets");
                 });
 
-            modelBuilder.Entity("Stride3DMarketPlace.Database.Models.AssetResource", b =>
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.AssetResource", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -362,7 +362,7 @@ namespace Stride3DMarketPlace.Database.Migrations
                     b.ToTable("AssetResources");
                 });
 
-            modelBuilder.Entity("Stride3DMarketPlace.Database.Models.AssetReview", b =>
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.AssetReview", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -419,7 +419,7 @@ namespace Stride3DMarketPlace.Database.Migrations
                     b.ToTable("AssetReviews");
                 });
 
-            modelBuilder.Entity("Stride3DMarketPlace.Database.Models.AssetType", b =>
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.AssetType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -461,7 +461,7 @@ namespace Stride3DMarketPlace.Database.Migrations
                     b.ToTable("AssetTypes");
                 });
 
-            modelBuilder.Entity("Stride3DMarketPlace.Database.Models.Tag", b =>
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.Tag", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -514,7 +514,7 @@ namespace Stride3DMarketPlace.Database.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Stride3DMarketPlace.Database.Models.ApplicationUser", null)
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -523,7 +523,7 @@ namespace Stride3DMarketPlace.Database.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Stride3DMarketPlace.Database.Models.ApplicationUser", null)
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -538,7 +538,7 @@ namespace Stride3DMarketPlace.Database.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Stride3DMarketPlace.Database.Models.ApplicationUser", null)
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -547,28 +547,28 @@ namespace Stride3DMarketPlace.Database.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Stride3DMarketPlace.Database.Models.ApplicationUser", null)
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Stride3DMarketPlace.Database.Models.Asset", b =>
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.Asset", b =>
                 {
-                    b.HasOne("Stride3DMarketPlace.Database.Models.AssetResource", "AssetResource")
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.AssetResource", "AssetResource")
                         .WithMany()
                         .HasForeignKey("AssetResourceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Stride3DMarketPlace.Database.Models.AssetType", "AssetType")
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.AssetType", "AssetType")
                         .WithMany()
                         .HasForeignKey("AssetTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Stride3DMarketPlace.Database.Models.ApplicationUser", "CreatedBy")
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "CreatedBy")
                         .WithMany()
                         .HasForeignKey("CreatedById")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -581,15 +581,15 @@ namespace Stride3DMarketPlace.Database.Migrations
                     b.Navigation("CreatedBy");
                 });
 
-            modelBuilder.Entity("Stride3DMarketPlace.Database.Models.AssetReview", b =>
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.AssetReview", b =>
                 {
-                    b.HasOne("Stride3DMarketPlace.Database.Models.Asset", "Asset")
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.Asset", "Asset")
                         .WithMany("AssetReviews")
                         .HasForeignKey("AssetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Stride3DMarketPlace.Database.Models.ApplicationUser", "Author")
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "Author")
                         .WithMany()
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -600,7 +600,7 @@ namespace Stride3DMarketPlace.Database.Migrations
                     b.Navigation("Author");
                 });
 
-            modelBuilder.Entity("Stride3DMarketPlace.Database.Models.Asset", b =>
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.Asset", b =>
                 {
                     b.Navigation("AssetReviews");
                 });

@@ -2,13 +2,13 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Stride3DMarketPlace.Database.BaseInterfaces;
-using Stride3DMarketPlace.Database.Extensions;
+using Stride3DMarketPlace.Persistance.BaseInterfaces;
+using Stride3DMarketPlace.Persistance.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Stride3DMarketPlace.Database.Data
+namespace Stride3DMarketPlace.Persistance.Data
 {
     public class IdentitySoftDeleteTimeStampDbContext<TUser> : IdentityDbContext<TUser> 
         where TUser : IdentityUser

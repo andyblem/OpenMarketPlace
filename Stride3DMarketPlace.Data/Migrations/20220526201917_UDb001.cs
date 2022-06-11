@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Stride3DMarketPlace.Database.Migrations
+namespace Stride3DMarketPlace.Persistance.Migrations
 {
     public partial class UDb001 : Migration
     {

@@ -1,14 +1,15 @@
-﻿using Stride3DMarketPlace.Database.BaseModels;
+﻿using Stride3DMarketPlace.Persistance.BaseModels;
+using Stride3DMarketPlace.Persistance.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Stride3DMarketPlace.Database.Models
+namespace Stride3DMarketPlace.Persistance.Models
 {
-    public class AssetType : BNamedEntity<int>
+    public class AssetType : BNamedEntity<AssetTypeEnum>
     {
-
+        public List<Asset> Assets { get; set; }
     }
 }

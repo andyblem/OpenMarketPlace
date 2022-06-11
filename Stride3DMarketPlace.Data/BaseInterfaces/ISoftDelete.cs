@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Stride3DMarketPlace.Database.BaseInterfaces
+namespace Stride3DMarketPlace.Persistance.BaseInterfaces
 {
     public interface ISoftDelete
     {

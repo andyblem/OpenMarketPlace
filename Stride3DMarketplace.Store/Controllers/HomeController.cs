@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Stride3DMarketPlace.Store.Models;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Stride3DMarketPlace.Store.CQRS.AssetsCQRS;
+using Stride3DMarketPlace.Store.ViewModels;
+using Stride3DMarketPlace.Store.ViewModels.HomeViewModels;
 using System.Diagnostics;
 
 namespace Stride3DMarketPlace.Store.Controllers
@@ -7,15 +10,31 @@ namespace Stride3DMarketPlace.Store.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IMediator _mediator;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IMediator mediator)
         {
             _logger = logger;
+            _mediator = mediator;
         }
 
-        public IActionResult Index()
+        public async Task<ActionResult<IndexViewModel>> Index()
         {
-            return View();
+            // create view model
+            IndexViewModel indexViewModel = new IndexViewModel();
+
+            // get data
+            indexViewModel.Assets2d = await _mediator.Send(new Get2dAssetsQuery() { Amount = 5 });
+            indexViewModel.Assets3d = await _mediator.Send(new Get3dAssetsQuery() { Amount = 5 });
+            indexViewModel.AudioAssets = await _mediator.Send(new GetAudioAssetsQuery() { Amount = 5 });
+            indexViewModel.NewAssets = await _mediator.Send(new GetNewAssetsQuery() { Amount = 5 });
+            indexViewModel.RecentlyUpdatedAssets = await _mediator.Send(new GetRecentlyUpdatedAssetsQuery() { Amount = 5 });
+            indexViewModel.ScriptsAssets = await _mediator.Send(new GetScriptsAssetsQuery() { Amount = 5 });
+            indexViewModel.StaffPickAssets = await _mediator.Send(new GetStaffPickAssetsQuery() { Amount = 5 });
+            indexViewModel.TemplateAssets = await _mediator.Send(new GetTemplatesAssetsQuery() { Amount = 5 });
+
+            // return result
+            return View(indexViewModel);
         }
 
         public IActionResult Privacy()

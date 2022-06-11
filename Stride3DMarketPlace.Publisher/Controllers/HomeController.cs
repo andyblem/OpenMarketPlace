@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Stride3DMarketPlace.Publisher.Models;
+using Stride3DMarketPlace.Seller.Models;
 using System.Diagnostics;
 
-namespace Stride3DMarketPlace.Publisher.Controllers
+namespace Stride3DMarketPlace.Seller.Controllers
 {
     public class HomeController : Controller
     {

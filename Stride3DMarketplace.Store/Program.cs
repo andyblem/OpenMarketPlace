@@ -2,9 +2,10 @@ using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Stride3DMarketPlace.Database.Data;
-using Stride3DMarketPlace.Database.Managers;
-using Stride3DMarketPlace.Database.Models;
+using Stride3DMarketPlace.Persistance.Data;
+using Stride3DMarketPlace.Persistance.Managers;
+using Stride3DMarketPlace.Persistance.Models;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +16,7 @@ var serverVersion = ServerVersion.AutoDetect(connectionString);
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySql(connectionString,
         serverVersion,
-        x => x.MigrationsAssembly("Stride3DMarketPlace.Database"))
+        x => x.MigrationsAssembly("Stride3DMarketPlace.Persistance"))
     // The following three options help with debugging, but should
     // be changed or removed for production.
     .LogTo(Console.WriteLine, LogLevel.Information)

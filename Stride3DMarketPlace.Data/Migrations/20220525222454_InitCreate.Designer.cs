@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Stride3DMarketPlace.Database.Data;
+using Stride3DMarketPlace.Persistance.Data;
 
 #nullable disable
 
-namespace Stride3DMarketPlace.Database.Migrations
+namespace Stride3DMarketPlace.Persistance.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20220525222454_InitCreate")]

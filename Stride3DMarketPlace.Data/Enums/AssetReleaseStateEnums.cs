@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Stride3DMarketPlace.Database.Enums
+namespace Stride3DMarketPlace.Persistance.Enums
 {
-    public enum AssetReleaseStateEnums
+    public enum AssetReleaseStateEnums : int
     {
-        Release = 0,
+        Released = 0,
         Decapreated = 1,
         Draft = 2
     }

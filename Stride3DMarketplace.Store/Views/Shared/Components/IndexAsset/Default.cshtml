@@ -1,0 +1,26 @@
+﻿@model Stride3DMarketPlace.Store.Dtos.AssetDtos.IndexAssetDto;
+
+<div class="col-md-3">
+    <div class="card asset-icon-card">
+        <img src=@Model.IconImagePath class="asset-icon-img card-img-top" alt="...">
+        <div class="card-body">
+        <div class="">
+            <span class="h5 asset-title card-title">@Model.Name</span>
+            <span class="asset-publisher float-end">@Model.Publisher</span>
+        </div>
+        <div class="">
+            <span class="asset-type">@Model.AssetType</span>
+            <span class="float-end">
+                <span class="asset-rating">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-half"></i>
+                    <i class="bi bi-star"></i>
+                </span> (@Model.Rating)
+                | <i class="bi bi-pencil-square" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Reviews"></i> (@Model.Reviews) 
+            </span>
+        </div>
+        </div>
+    </div>
+</div>
