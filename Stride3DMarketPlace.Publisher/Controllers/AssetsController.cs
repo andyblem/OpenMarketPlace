@@ -2,28 +2,42 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Stride3DMarketPlace.Persistance.Data;
+using Stride3DMarketPlace.Persistance.Enums;
 using Stride3DMarketPlace.Persistance.Models;
+using Stride3DMarketPlace.Seller.CQRS.AssetCQRS;
 
 namespace Stride3DMarketPlace.Seller.Controllers
 {
+    [Authorize]
     public class AssetsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IMediator _mediator;
 
-        public AssetsController(ApplicationDbContext context)
+        public AssetsController(ApplicationDbContext context, IMediator mediator)
         {
             _context = context;
+            _mediator = mediator;
         }
 
         // GET: Assets
         public async Task<IActionResult> Index()
         {
-            var ApplicationDbContext = _context.Assets.Include(a => a.AssetReleaseState).Include(a => a.AssetResource).Include(a => a.AssetType).Include(a => a.CreatedBy).Include(a => a.Publisher);
-            return View(await ApplicationDbContext.ToListAsync());
+            // get data
+            var assets = await _mediator.Send(new GetIndexAssetsQuery()
+            {
+                AssetReleaseStateId = AssetReleaseStateEnums.Released,
+                PublisherId = 1
+            });
+
+            // return results
+            return View(assets);
         }
 
         // GET: Assets/Details/5
