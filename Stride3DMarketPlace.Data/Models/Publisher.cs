@@ -9,6 +9,6 @@ namespace Stride3DMarketPlace.Persistance.Models
 {
     public class Publisher : BNamedEntity<int>
     {
-        public ICollection<Publisher> Publishers { get; set; }
+        public string? ProfilePhoto { get; set; }
     }
 }

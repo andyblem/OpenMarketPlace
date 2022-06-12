@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,9 +10,12 @@ namespace Stride3DMarketPlace.Persistance.Models
 {
     public class ApplicationUser : IdentityUser
     {
-        public bool IsAdmin { get; set; }
-        public bool IsPublisher { get; set; }
+        public bool IsAgreeingToPublisherTermsOfService { get; set; }
 
-        public string ProfilePhoto { get; set; }
+        public string? ProfilePhoto { get; set; }
+
+        public int? PublisherId { get; set; }
+        [ForeignKey("PublisherId")]
+        public virtual Publisher Publisher { get; set; }
     }
 }

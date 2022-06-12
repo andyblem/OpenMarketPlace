@@ -22,44 +22,62 @@
 
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
         
-            <div class="input-group mb-3">
-                <input class="form-control" placeholder="Email" asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true">
-                <div class="input-group-append">
-                    <div class="input-group-text">
-                        <span class="fas fa-envelope"></span>
+            <div>
+                <div class="input-group mb-3">
+                    <input class="form-control" placeholder="Name" asp-for="Input.Name" class="form-control" aria-required="true">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user-alt"></span>
+                        </div>
+                    </div>
+                </div>
+                <span asp-validation-for="Input.Name" class="text-danger"></span>
+            </div>
+
+            <div>
+                <div class="input-group mb-3">
+                    <input class="form-control" placeholder="Email" asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
+                        </div>
                     </div>
                 </div>
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
 
-            <div class="input-group mb-3">
-                <input class="form-control" placeholder="Password" asp-for="Input.Password" autocomplete="new-password" aria-required="true">
-                <div class="input-group-append">
-                <div class="input-group-text">
-                    <span class="fas fa-lock"></span>
-                </div>
+            <div>
+                <div class="input-group mb-3">
+                    <input class="form-control" placeholder="Password" asp-for="Input.Password" autocomplete="new-password" aria-required="true">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
                 </div>
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
 
-            <div class="input-group mb-3">
-                <input class="form-control" placeholder="Retype password" asp-for="Input.ConfirmPassword" autocomplete="new-password" aria-required="true">
-                <div class="input-group-append">
-                    <div class="input-group-text">
-                        <span class="fas fa-lock"></span>
+            <div>
+                <div class="input-group mb-3">
+                    <input class="form-control" placeholder="Retype password" asp-for="Input.ConfirmPassword" autocomplete="new-password" aria-required="true">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
                     </div>
                 </div>
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
 
             <div class="row">
               <div class="col-12">
                 <div class="icheck-primary">
-                  <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+                  <input type="checkbox" id="agreeTerms" asp-for="Input.IsAgreeingToPublisherTermsOfService">
                   <label for="agreeTerms">
                    I agree to the <a asp-controller="Home" asp-action="Privacy">terms</a>
                   </label>
                 </div>
+                <span asp-validation-for="Input.IsAgreeingToPublisherTermsOfService" class="text-danger"></span>
               </div>
               <!-- /.col -->
             </div>

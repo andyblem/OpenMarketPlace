@@ -2,7 +2,33 @@
 @model ConfirmEmailModel
 @{
     ViewData["Title"] = "Confirm email";
+    ViewData["BodyClass"] = "login-page";
 }
 
-<h1>@ViewData["Title"]</h1>
-<partial name="_StatusMessage" model="Model.StatusMessage" />
+<div class="login-box">
+
+  <div class="login-logo">
+     <a asp-controller="Home" asp-action="Index">
+        <b>Stride3D</b>
+        <br>
+        Publisher Portal
+    </a>
+  </div>
+
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">@ViewData["Title"]</p>
+
+        <div class="alert alert-success">
+            <p>
+                <i class="icon fas fa-check"></i> 
+                <partial name="_StatusMessage" model="Model.StatusMessage" />
+            </p>
+        </div>
+
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->

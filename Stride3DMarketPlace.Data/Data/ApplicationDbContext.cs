@@ -70,6 +70,10 @@ namespace Stride3DMarketPlace.Persistance.Data
                                 Name = e.ToString()
                             }));
             }
+
+            modelBuilder.Entity<ApplicationUser>()
+                .Property(a => a.PublisherId)
+                .IsRequired(false);
         }
     }
 }

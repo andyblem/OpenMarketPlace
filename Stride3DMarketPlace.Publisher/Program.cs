@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Stride3DMarketPlace.Persistance.Data;
 using Stride3DMarketPlace.Persistance.Managers;
 using Stride3DMarketPlace.Persistance.Models;
-
+using Stride3DMarketPlace.Persistance.Seeders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,7 +26,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddUserManager<ApplicationUserManager<ApplicationUser>>()
@@ -53,6 +53,8 @@ else
     app.UseHsts();
 }
 
+InitializeDbAsync(app).Wait();
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -67,3 +69,34 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
+
+
+//function to initialize database
+async Task InitializeDbAsync(IApplicationBuilder app)
+{
+    using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+    {
+
+        var context = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+        //checking if the database exist
+        if (context.Database.CanConnect())
+        {
+            // create roles
+            var identityRoles = new List<IdentityRole>()
+            {
+                new IdentityRole()
+                {
+                    Name = "Publisher",
+                    NormalizedName = "Publisher"
+                }
+            };
+
+            // seed roles
+            await IdentityRolesSeeder.SeedRolesAsync(roleManager, identityRoles);
+        }
+
+    }
+
+}

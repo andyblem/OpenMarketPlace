@@ -170,10 +170,7 @@ namespace Stride3DMarketPlace.Persistance.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<bool>("IsAdmin")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<bool>("IsPublisher")
+                    b.Property<bool>("IsAgreeingToPublisherTermsOfService")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -200,8 +197,10 @@ namespace Stride3DMarketPlace.Persistance.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("ProfilePhoto")
-                        .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int?>("PublisherId")
+                        .HasColumnType("int");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("longtext");
@@ -221,6 +220,8 @@ namespace Stride3DMarketPlace.Persistance.Migrations
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex");
+
+                    b.HasIndex("PublisherId");
 
                     b.ToTable("AspNetUsers", (string)null);
                 });
@@ -674,12 +675,10 @@ namespace Stride3DMarketPlace.Persistance.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("PublisherId")
-                        .HasColumnType("int");
+                    b.Property<string>("ProfilePhoto")
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PublisherId");
 
                     b.ToTable("Publishers");
                 });
@@ -772,6 +771,15 @@ namespace Stride3DMarketPlace.Persistance.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.ApplicationUser", b =>
+                {
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.Publisher", "Publisher")
+                        .WithMany()
+                        .HasForeignKey("PublisherId");
+
+                    b.Navigation("Publisher");
                 });
 
             modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.Asset", b =>
@@ -868,13 +876,6 @@ namespace Stride3DMarketPlace.Persistance.Migrations
                     b.Navigation("Tag");
                 });
 
-            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.Publisher", b =>
-                {
-                    b.HasOne("Stride3DMarketPlace.Persistance.Models.Publisher", null)
-                        .WithMany("Publishers")
-                        .HasForeignKey("PublisherId");
-                });
-
             modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.Asset", b =>
                 {
                     b.Navigation("AssetRatings");
@@ -892,11 +893,6 @@ namespace Stride3DMarketPlace.Persistance.Migrations
             modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.AssetType", b =>
                 {
                     b.Navigation("Assets");
-                });
-
-            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.Publisher", b =>
-                {
-                    b.Navigation("Publishers");
                 });
 #pragma warning restore 612, 618
         }
