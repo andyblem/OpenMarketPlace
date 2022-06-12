@@ -1,18 +1,22 @@
-html {
-  font-size: 14px;
+.nav-user-photo {
+    margin: -4px 8px 0 0;
+    border-radius: 100%;
+    border: 2px solid #FFF;
+    max-width: 35px;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+.user-info {
+    max-width: 100px;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left;
+    vertical-align: top;
+    line-height: 15px;
+    top: 1px;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  margin-bottom: 60px;
+.user-info small {
+    display: block;
 }

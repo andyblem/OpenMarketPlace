@@ -117,6 +117,7 @@ namespace Stride3DMarketPlace.Seller.Areas.Identity.Pages.Account
                         var newPublisher = new Publisher()
                         {
                             Name = Input.Name,
+                            CreatedById = newUser.Id
                         };
                         _dbContext.Add(newPublisher);
                         await _dbContext.SaveChangesAsync();
@@ -163,6 +164,7 @@ namespace Stride3DMarketPlace.Seller.Areas.Identity.Pages.Account
                         var newPublisher = new Publisher()
                         {
                             Name = Input.Name,
+                            CreatedById = existingUser.Id
                         };
                         _dbContext.Add(newPublisher);
                         await _dbContext.SaveChangesAsync();
