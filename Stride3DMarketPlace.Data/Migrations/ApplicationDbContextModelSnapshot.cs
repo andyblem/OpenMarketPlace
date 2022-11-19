@@ -170,7 +170,7 @@ namespace Stride3DMarketPlace.Persistance.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<bool>("IsAgreeingToPublisherTermsOfService")
+                    b.Property<bool?>("IsAgreeingToPublisherTermsOfService")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -232,39 +232,49 @@ namespace Stride3DMarketPlace.Persistance.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int?>("AssetCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("AssetDraftId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("AssetDraftReleaseStateId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("AssetReleaseStateId")
                         .HasColumnType("int");
 
                     b.Property<int?>("AssetResourceId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int?>("AssetTypeId")
                         .HasColumnType("int");
 
+                    b.Property<string>("BannerImage")
+                        .HasColumnType("longtext");
+
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("CreatedById")
-                        .IsRequired()
                         .HasColumnType("varchar(255)");
 
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("DeletedById")
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("EngineCompatibility")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("GitRepository")
-                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("IconImage")
                         .HasColumnType("longtext");
 
                     b.Property<bool?>("IsDeleted")
@@ -277,29 +287,24 @@ namespace Stride3DMarketPlace.Persistance.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("LatestVersion")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("License")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ModifiedById")
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("NugetPackage")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<int?>("PublisherId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int>("Rating")
@@ -313,6 +318,12 @@ namespace Stride3DMarketPlace.Persistance.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AssetCategoryId");
+
+                    b.HasIndex("AssetDraftId");
+
+                    b.HasIndex("AssetDraftReleaseStateId");
+
                     b.HasIndex("AssetReleaseStateId");
 
                     b.HasIndex("AssetResourceId");
@@ -321,32 +332,32 @@ namespace Stride3DMarketPlace.Persistance.Migrations
 
                     b.HasIndex("CreatedById");
 
+                    b.HasIndex("DeletedById");
+
+                    b.HasIndex("ModifiedById");
+
                     b.HasIndex("PublisherId");
 
                     b.ToTable("Assets");
                 });
 
-            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.AssetRating", b =>
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.AssetCategory", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int?>("AssetId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("CreatedById")
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("DeletedById")
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<bool?>("IsDeleted")
                         .HasColumnType("tinyint(1)");
@@ -358,18 +369,322 @@ namespace Stride3DMarketPlace.Persistance.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ModifiedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Name")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("Rate")
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("DeletedById");
+
+                    b.HasIndex("ModifiedById");
+
+                    b.ToTable("AssetsCategories");
+                });
+
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.AssetDraft", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("RatedById")
-                        .IsRequired()
+                    b.Property<int?>("AssetDraftStateId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("AssetTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("BannerImage")
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("CreatedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("DeletedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("EngineCompatibility")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("GitRepository")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("IconImage")
+                        .HasColumnType("longtext");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool?>("IsModified")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime?>("LastUpdatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("LatestVersion")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("License")
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("ModifiedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("NugetPackage")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ReleasedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("Reviews")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AssetDraftStateId");
+
+                    b.HasIndex("AssetTypeId");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("DeletedById");
+
+                    b.HasIndex("ModifiedById");
+
+                    b.ToTable("AssetDrafts");
+                });
+
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.AssetDraftReleaseState", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("CreatedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("DeletedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool?>("IsModified")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("ModifiedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("DeletedById");
+
+                    b.HasIndex("ModifiedById");
+
+                    b.ToTable("AssetDraftReleaseStates");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 0,
+                            Name = "Available"
+                        },
+                        new
+                        {
+                            Id = 1,
+                            Name = "UnAvailaible"
+                        });
+                });
+
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.AssetDraftState", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("CreatedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("DeletedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool?>("IsModified")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("ModifiedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("DeletedById");
+
+                    b.HasIndex("ModifiedById");
+
+                    b.ToTable("AssetDraftStates");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 0,
+                            Name = "Draft"
+                        },
+                        new
+                        {
+                            Id = 1,
+                            Name = "DraftReleased"
+                        });
+                });
+
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.AssetMediaLink", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Asset")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("AssetId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("CreatedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("DeletedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool?>("IsModified")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("MediaLink")
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("ModifiedById")
                         .HasColumnType("varchar(255)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AssetId");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("DeletedById");
+
+                    b.HasIndex("ModifiedById");
+
+                    b.ToTable("AssetMediaLink");
+                });
+
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.AssetRating", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("AssetId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("CreatedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("DeletedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool?>("IsModified")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("ModifiedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int?>("Rate")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RatedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AssetId");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("DeletedById");
+
+                    b.HasIndex("ModifiedById");
 
                     b.HasIndex("RatedById");
 
@@ -385,13 +700,13 @@ namespace Stride3DMarketPlace.Persistance.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("CreatedById")
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("DeletedById")
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<bool?>("IsDeleted")
                         .HasColumnType("tinyint(1)");
@@ -403,13 +718,18 @@ namespace Stride3DMarketPlace.Persistance.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ModifiedById")
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("DeletedById");
+
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("AssetReleaseStates");
 
@@ -427,7 +747,7 @@ namespace Stride3DMarketPlace.Persistance.Migrations
                         new
                         {
                             Id = 2,
-                            Name = "Draft"
+                            Name = "InitDraft"
                         });
                 });
 
@@ -438,23 +758,21 @@ namespace Stride3DMarketPlace.Persistance.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("BannerImage")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("CreatedById")
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("DeletedById")
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("IconImage")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<bool?>("IsDeleted")
@@ -467,9 +785,15 @@ namespace Stride3DMarketPlace.Persistance.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ModifiedById")
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("DeletedById");
+
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("AssetResources");
                 });
@@ -487,23 +811,21 @@ namespace Stride3DMarketPlace.Persistance.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("AuthorId")
-                        .IsRequired()
                         .HasColumnType("varchar(255)");
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("CreatedById")
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("DeletedById")
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<bool?>("IsDeleted")
@@ -516,13 +838,19 @@ namespace Stride3DMarketPlace.Persistance.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ModifiedById")
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AssetId");
 
                     b.HasIndex("AuthorId");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("DeletedById");
+
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("AssetReviews");
                 });
@@ -533,20 +861,20 @@ namespace Stride3DMarketPlace.Persistance.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("AssetId")
+                    b.Property<int?>("AssetId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("CreatedById")
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("DeletedById")
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<bool?>("IsDeleted")
                         .HasColumnType("tinyint(1)");
@@ -558,18 +886,23 @@ namespace Stride3DMarketPlace.Persistance.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ModifiedById")
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("TagId")
+                    b.Property<int?>("TagId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AssetId");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("DeletedById");
+
+                    b.HasIndex("ModifiedById");
 
                     b.HasIndex("TagId");
 
@@ -585,13 +918,13 @@ namespace Stride3DMarketPlace.Persistance.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("CreatedById")
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("DeletedById")
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<bool?>("IsDeleted")
                         .HasColumnType("tinyint(1)");
@@ -603,13 +936,18 @@ namespace Stride3DMarketPlace.Persistance.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ModifiedById")
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("DeletedById");
+
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("AssetTypes");
 
@@ -641,7 +979,7 @@ namespace Stride3DMarketPlace.Persistance.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.Publisher", b =>
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.EngineVersion", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -651,13 +989,13 @@ namespace Stride3DMarketPlace.Persistance.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("CreatedById")
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("DeletedById")
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<bool?>("IsDeleted")
                         .HasColumnType("tinyint(1)");
@@ -669,16 +1007,65 @@ namespace Stride3DMarketPlace.Persistance.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ModifiedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Version")
                         .HasColumnType("longtext");
 
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("DeletedById");
+
+                    b.HasIndex("ModifiedById");
+
+                    b.ToTable("EngineVersions");
+                });
+
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.Publisher", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("CreatedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("DeletedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool?>("IsModified")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("ModifiedById")
+                        .HasColumnType("varchar(255)");
+
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("ProfilePhoto")
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("DeletedById");
+
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("Publishers");
                 });
@@ -693,13 +1080,13 @@ namespace Stride3DMarketPlace.Persistance.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("CreatedById")
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("DeletedById")
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<bool?>("IsDeleted")
                         .HasColumnType("tinyint(1)");
@@ -711,13 +1098,18 @@ namespace Stride3DMarketPlace.Persistance.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ModifiedById")
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("DeletedById");
+
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("Tags");
                 });
@@ -776,7 +1168,7 @@ namespace Stride3DMarketPlace.Persistance.Migrations
             modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.ApplicationUser", b =>
                 {
                     b.HasOne("Stride3DMarketPlace.Persistance.Models.Publisher", "Publisher")
-                        .WithMany()
+                        .WithMany("ApplicationUsers")
                         .HasForeignKey("PublisherId");
 
                     b.Navigation("Publisher");
@@ -784,15 +1176,25 @@ namespace Stride3DMarketPlace.Persistance.Migrations
 
             modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.Asset", b =>
                 {
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.AssetCategory", "AssetCategory")
+                        .WithMany()
+                        .HasForeignKey("AssetCategoryId");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.AssetDraft", "AssetDraft")
+                        .WithMany()
+                        .HasForeignKey("AssetDraftId");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.AssetDraftReleaseState", "AssetDraftReleaseState")
+                        .WithMany("Asset")
+                        .HasForeignKey("AssetDraftReleaseStateId");
+
                     b.HasOne("Stride3DMarketPlace.Persistance.Models.AssetReleaseState", "AssetReleaseState")
                         .WithMany("Assets")
                         .HasForeignKey("AssetReleaseStateId");
 
                     b.HasOne("Stride3DMarketPlace.Persistance.Models.AssetResource", "AssetResource")
                         .WithMany()
-                        .HasForeignKey("AssetResourceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AssetResourceId");
 
                     b.HasOne("Stride3DMarketPlace.Persistance.Models.AssetType", "AssetType")
                         .WithMany("Assets")
@@ -800,15 +1202,25 @@ namespace Stride3DMarketPlace.Persistance.Migrations
 
                     b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "CreatedBy")
                         .WithMany()
-                        .HasForeignKey("CreatedById")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedById");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "DeletedBy")
+                        .WithMany()
+                        .HasForeignKey("DeletedById");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedById");
 
                     b.HasOne("Stride3DMarketPlace.Persistance.Models.Publisher", "Publisher")
                         .WithMany()
-                        .HasForeignKey("PublisherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PublisherId");
+
+                    b.Navigation("AssetCategory");
+
+                    b.Navigation("AssetDraft");
+
+                    b.Navigation("AssetDraftReleaseState");
 
                     b.Navigation("AssetReleaseState");
 
@@ -818,26 +1230,207 @@ namespace Stride3DMarketPlace.Persistance.Migrations
 
                     b.Navigation("CreatedBy");
 
+                    b.Navigation("DeletedBy");
+
+                    b.Navigation("ModifiedBy");
+
                     b.Navigation("Publisher");
+                });
+
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.AssetCategory", b =>
+                {
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "DeletedBy")
+                        .WithMany()
+                        .HasForeignKey("DeletedById");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedById");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("DeletedBy");
+
+                    b.Navigation("ModifiedBy");
+                });
+
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.AssetDraft", b =>
+                {
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.AssetDraftState", "AssetDraftState")
+                        .WithMany("AssetDrafts")
+                        .HasForeignKey("AssetDraftStateId");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.AssetType", "AssetType")
+                        .WithMany()
+                        .HasForeignKey("AssetTypeId");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "DeletedBy")
+                        .WithMany()
+                        .HasForeignKey("DeletedById");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedById");
+
+                    b.Navigation("AssetDraftState");
+
+                    b.Navigation("AssetType");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("DeletedBy");
+
+                    b.Navigation("ModifiedBy");
+                });
+
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.AssetDraftReleaseState", b =>
+                {
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "DeletedBy")
+                        .WithMany()
+                        .HasForeignKey("DeletedById");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedById");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("DeletedBy");
+
+                    b.Navigation("ModifiedBy");
+                });
+
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.AssetDraftState", b =>
+                {
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "DeletedBy")
+                        .WithMany()
+                        .HasForeignKey("DeletedById");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedById");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("DeletedBy");
+
+                    b.Navigation("ModifiedBy");
+                });
+
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.AssetMediaLink", b =>
+                {
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.Asset", null)
+                        .WithMany("AssetMediaLinks")
+                        .HasForeignKey("AssetId");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "DeletedBy")
+                        .WithMany()
+                        .HasForeignKey("DeletedById");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedById");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("DeletedBy");
+
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.AssetRating", b =>
                 {
                     b.HasOne("Stride3DMarketPlace.Persistance.Models.Asset", "Asset")
                         .WithMany("AssetRatings")
-                        .HasForeignKey("AssetId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AssetId");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "DeletedBy")
+                        .WithMany()
+                        .HasForeignKey("DeletedById");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedById");
 
                     b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "RatedBy")
                         .WithMany()
-                        .HasForeignKey("RatedById")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RatedById");
 
                     b.Navigation("Asset");
 
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("DeletedBy");
+
+                    b.Navigation("ModifiedBy");
+
                     b.Navigation("RatedBy");
+                });
+
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.AssetReleaseState", b =>
+                {
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "DeletedBy")
+                        .WithMany()
+                        .HasForeignKey("DeletedById");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedById");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("DeletedBy");
+
+                    b.Navigation("ModifiedBy");
+                });
+
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.AssetResource", b =>
+                {
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "DeletedBy")
+                        .WithMany()
+                        .HasForeignKey("DeletedById");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedById");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("DeletedBy");
+
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.AssetReview", b =>
@@ -848,41 +1441,167 @@ namespace Stride3DMarketPlace.Persistance.Migrations
 
                     b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "Author")
                         .WithMany()
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AuthorId");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "DeletedBy")
+                        .WithMany()
+                        .HasForeignKey("DeletedById");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedById");
 
                     b.Navigation("Asset");
 
                     b.Navigation("Author");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("DeletedBy");
+
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.AssetTag", b =>
                 {
                     b.HasOne("Stride3DMarketPlace.Persistance.Models.Asset", "Asset")
                         .WithMany("AssetTags")
-                        .HasForeignKey("AssetId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AssetId");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "DeletedBy")
+                        .WithMany()
+                        .HasForeignKey("DeletedById");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedById");
 
                     b.HasOne("Stride3DMarketPlace.Persistance.Models.Tag", "Tag")
                         .WithMany()
-                        .HasForeignKey("TagId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TagId");
 
                     b.Navigation("Asset");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("DeletedBy");
+
+                    b.Navigation("ModifiedBy");
 
                     b.Navigation("Tag");
                 });
 
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.AssetType", b =>
+                {
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "DeletedBy")
+                        .WithMany()
+                        .HasForeignKey("DeletedById");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedById");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("DeletedBy");
+
+                    b.Navigation("ModifiedBy");
+                });
+
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.EngineVersion", b =>
+                {
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "DeletedBy")
+                        .WithMany()
+                        .HasForeignKey("DeletedById");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedById");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("DeletedBy");
+
+                    b.Navigation("ModifiedBy");
+                });
+
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.Publisher", b =>
+                {
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "DeletedBy")
+                        .WithMany()
+                        .HasForeignKey("DeletedById");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedById");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("DeletedBy");
+
+                    b.Navigation("ModifiedBy");
+                });
+
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.Tag", b =>
+                {
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "DeletedBy")
+                        .WithMany()
+                        .HasForeignKey("DeletedById");
+
+                    b.HasOne("Stride3DMarketPlace.Persistance.Models.ApplicationUser", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedById");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("DeletedBy");
+
+                    b.Navigation("ModifiedBy");
+                });
+
             modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.Asset", b =>
                 {
+                    b.Navigation("AssetMediaLinks");
+
                     b.Navigation("AssetRatings");
 
                     b.Navigation("AssetReviews");
 
                     b.Navigation("AssetTags");
+                });
+
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.AssetDraftReleaseState", b =>
+                {
+                    b.Navigation("Asset");
+                });
+
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.AssetDraftState", b =>
+                {
+                    b.Navigation("AssetDrafts");
                 });
 
             modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.AssetReleaseState", b =>
@@ -893,6 +1612,11 @@ namespace Stride3DMarketPlace.Persistance.Migrations
             modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.AssetType", b =>
                 {
                     b.Navigation("Assets");
+                });
+
+            modelBuilder.Entity("Stride3DMarketPlace.Persistance.Models.Publisher", b =>
+                {
+                    b.Navigation("ApplicationUsers");
                 });
 #pragma warning restore 612, 618
         }

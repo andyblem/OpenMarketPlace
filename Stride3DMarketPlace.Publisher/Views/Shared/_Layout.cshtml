@@ -1,282 +1,497 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <head>
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <title>@ViewData["Title"] - Stride3DMarketPlace.Publisher</title>
+        <title>@ViewData["Title"] - Stride3D Publisher Portal</title>
     
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Stride3DMarketPlace.Publisher.styles.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="~/lib/fontawesome-free/css/all.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="~/css/adminlte.min.css">
-
-    <!--render css-->
-    @await RenderSectionAsync("Styles", required: false)
+        <!-- Google Font: Source Sans Pro -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     
-</head>
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+        <!-- Font Awesome Icons -->
+        <link rel="stylesheet" href="~/lib/fontawesome-free/css/all.min.css">
+    
+        <!-- Theme style -->
+        <link rel="stylesheet" href="~/css/adminlte.min.css">
 
-    <div class="wrapper">
+        <!-- Select2 -->
+        <link rel="stylesheet" href="~/lib/select2/css/select2.min.css">
+        <link rel="stylesheet" href="~/lib/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 
-        <!-- Preloader -->
-        <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__wobble" src="~/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-        </div>
+        <!--render css-->
+        @await RenderSectionAsync("Styles", required: false)
+    
+    </head>
 
-        <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-dark">
-            <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
-            </ul>
+    <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 
-            <!-- Right navbar links -->
-            <ul class="navbar-nav ml-auto">
-                <!-- Navbar Search -->
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                        <i class="fas fa-search"></i>
-                    </a>
-                    <div class="navbar-search-block">
-                        <form class="form-inline">
-                            <div class="input-group input-group-sm">
-                                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                                <div class="input-group-append">
-                                    <button class="btn btn-navbar" type="submit">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                    <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                                        <i class="fas fa-times"></i>
-                                    </button>
+        <div class="wrapper">
+
+            <!-- Preloader -->
+            <div class="preloader flex-column justify-content-center align-items-center">
+                <img class="animation__wobble" src="~/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+            </div>
+
+            <!-- Navbar -->
+            <nav class="main-header navbar navbar-expand navbar-dark">
+                <!-- Left navbar links -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                    </li>
+                </ul>
+
+                <!-- Right navbar links -->
+                <ul class="navbar-nav ml-auto">
+                    <!-- Navbar Search -->
+                    <li class="nav-item">
+                        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+                            <i class="fas fa-search"></i>
+                        </a>
+                        <div class="navbar-search-block">
+                            <form class="form-inline">
+                                <div class="input-group input-group-sm">
+                                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-navbar" type="submit">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                        <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+
+                    <!-- Messages Dropdown Menu -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" data-toggle="dropdown" href="#">
+                            <i class="far fa-comments"></i>
+                            <span class="badge badge-danger navbar-badge">3</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                            <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                                <img src="~/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                                <div class="media-body">
+                                <h3 class="dropdown-item-title">
+                                    Brad Diesel
+                                    <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                                </h3>
+                                <p class="text-sm">Call me whenever you can...</p>
+                                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                </li>
-
-                <!-- Messages Dropdown Menu -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-comments"></i>
-                        <span class="badge badge-danger navbar-badge">3</span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <a href="#" class="dropdown-item">
-                        <!-- Message Start -->
-                        <div class="media">
-                            <img src="~/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-                            <div class="media-body">
-                            <h3 class="dropdown-item-title">
-                                Brad Diesel
-                                <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                            </h3>
-                            <p class="text-sm">Call me whenever you can...</p>
-                            <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                            <!-- Message End -->
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                                <img src="~/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                                <div class="media-body">
+                                <h3 class="dropdown-item-title">
+                                    John Pierce
+                                    <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                                </h3>
+                                <p class="text-sm">I got your message bro</p>
+                                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                </div>
                             </div>
-                        </div>
-                        <!-- Message End -->
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                        <!-- Message Start -->
-                        <div class="media">
-                            <img src="~/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-                            <div class="media-body">
-                            <h3 class="dropdown-item-title">
-                                John Pierce
-                                <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                            </h3>
-                            <p class="text-sm">I got your message bro</p>
-                            <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                            <!-- Message End -->
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                                <img src="~/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                                <div class="media-body">
+                                <h3 class="dropdown-item-title">
+                                    Nora Silvester
+                                    <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                                </h3>
+                                <p class="text-sm">The subject goes here</p>
+                                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                </div>
                             </div>
+                            <!-- Message End -->
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
                         </div>
-                        <!-- Message End -->
+                    </li>
+
+                    <!-- Notifications Dropdown Menu -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" data-toggle="dropdown" href="#">
+                            <i class="far fa-bell"></i>
+                            <span class="badge badge-warning navbar-badge">15</span>
                         </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                        <!-- Message Start -->
-                        <div class="media">
-                            <img src="~/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-                            <div class="media-body">
-                            <h3 class="dropdown-item-title">
-                                Nora Silvester
-                                <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                            </h3>
-                            <p class="text-sm">The subject goes here</p>
-                            <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                            </div>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                            <span class="dropdown-header">15 Notifications</span>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">
+                            <i class="fas fa-envelope mr-2"></i> 4 new messages
+                            <span class="float-right text-muted text-sm">3 mins</span>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">
+                            <i class="fas fa-users mr-2"></i> 8 friend requests
+                            <span class="float-right text-muted text-sm">12 hours</span>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">
+                            <i class="fas fa-file mr-2"></i> 3 new reports
+                            <span class="float-right text-muted text-sm">2 days</span>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                         </div>
-                        <!-- Message End -->
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                            <i class="fas fa-expand-arrows-alt"></i>
                         </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+                            <i class="fas fa-th-large"></i>
+                        </a>
+                    </li>
+
+                    <!--login partial-->
+                    <partial name="_LoginPartial" />
+                </ul>
+            </nav>
+
+            <!-- /.navbar -->
+
+             <!-- Main Sidebar Container -->
+            <aside class="main-sidebar sidebar-dark-primary elevation-4">
+                <!-- Brand Logo -->
+                <a class="brand-link" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                    <span class="brand-text font-weight-light">Publisher Portal</span>
+                </a>
+
+                <!-- Sidebar -->
+                <div class="sidebar">
+
+                    <!-- Sidebar user panel (optional) -->
+                    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                        <nav class="mt-2">
+                            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        
+                                <li class="nav-item">
+                                    <a href="!#" class="nav-link" data-toggle="modal" data-target="#create-asset-modal">
+                                        <i class="nav-icon fas fa-plus-circle"></i>
+                                        <p>Create Asset</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
-                </li>
 
-                <!-- Notifications Dropdown Menu -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-bell"></i>
-                        <span class="badge badge-warning navbar-badge">15</span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-header">15 Notifications</span>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                        <i class="fas fa-envelope mr-2"></i> 4 new messages
-                        <span class="float-right text-muted text-sm">3 mins</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                        <i class="fas fa-users mr-2"></i> 8 friend requests
-                        <span class="float-right text-muted text-sm">12 hours</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                        <i class="fas fa-file mr-2"></i> 3 new reports
-                        <span class="float-right text-muted text-sm">2 days</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-                    </div>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                        <i class="fas fa-expand-arrows-alt"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                        <i class="fas fa-th-large"></i>
-                    </a>
-                </li>
-
-                <!--login partial-->
-                <partial name="_LoginPartial" />
-            </ul>
-        </nav>
-
-        <!-- /.navbar -->
-
-         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <!-- Brand Logo -->
-            <a class="brand-link" asp-area="" asp-controller="Home" asp-action="Index">
-                <img src="~/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">Publisher Portal</span>
-            </a>
-
-            <!-- Sidebar -->
-            <div class="sidebar">
-
-                <!-- Sidebar user panel (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <!-- Sidebar Menu -->
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        
+
+                            <!-- Add icons to the links using the .nav-icon class
+                                with font-awesome or any other icon font library -->
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Assets" asp-action="Create">
-                                    <i class="nav-icon fas fa-plus-circle"></i>
-                                    <p>Create Asset</p>
+                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>Dashboard</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Assets" asp-action="Index">
+                                    <i class="nav-icon fas fa-box"></i>
+                                    <p>Assets</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+                                    <i class="nav-icon fas fa-user-alt"></i>
+                                    <p>Profile</p>
                                 </a>
                             </li>
                         </ul>
                     </nav>
+                    <!-- /.sidebar-menu -->
                 </div>
+            <!-- /.sidebar -->
+            </aside>
 
-                <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
 
-                        <!-- Add icons to the links using the .nav-icon class
-                            with font-awesome or any other icon font library -->
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>Dashboard</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Assets" asp-action="Index">
-                                <i class="nav-icon fas fa-box"></i>
-                                <p>Assets</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
-                                <i class="nav-icon fas fa-user-alt"></i>
-                                <p>Profile</p>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <!-- /.sidebar-menu -->
-            </div>
-        <!-- /.sidebar -->
-        </aside>
-
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <div class="content-header">
-              <div class="container-fluid">
-                <div class="row mb-2">
-                  <div class="col-sm-6">
-                    <h1 class="m-0">Dashboard v2</h1>
-                  </div><!-- /.col -->
-                  <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                      <li class="breadcrumb-item"><a href="#">Home</a></li>
-                      <li class="breadcrumb-item active">Dashboard v2</li>
-                    </ol>
-                  </div><!-- /.col -->
-                </div><!-- /.row -->
-              </div><!-- /.container-fluid -->
-            </div>
-            <!-- /.content-header -->
-
-            <!-- Main content -->
-            <section class="content">
-              <div class="container-fluid">
-                    @RenderBody()
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                  <div class="container-fluid">
+                    <div class="row mb-2">
+                      <div class="col-sm-6">
+                        <h1 class="m-0">@ViewData["PageHeader"]</h1>
+                      </div><!-- /.col -->
+                      <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                          <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                          <li class="breadcrumb-item active">@ViewData["PageHeader"]</li>
+                        </ol>
+                      </div><!-- /.col -->
+                    </div><!-- /.row -->
+                  </div><!-- /.container-fluid -->
                 </div>
-            </section>
+                <!-- /.content-header -->
+
+                <!-- Main content -->
+                <section class="content">
+                  <div class="container-fluid">
+                        @RenderBody()
+                    </div>
+
+                    <!--create asset modal-->
+                    <div class="modal fade" id="create-asset-modal">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+
+                            <form class="form-horizontal" action="/Assets/Create" id="create-asset-form" method="post">
+
+                                <div class="modal-header">
+                                  <h4 class="modal-title">Create Asset</h4>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+
+                                <div class="modal-body">
+
+                                    <!--errors-->
+                                    <div class="text-danger validation-summary-valid" id="create-asset-validation-summary" data-valmsg-summary="true">
+                                        <ul>
+                                            <li style="display:none"></li>
+                                        </ul>
+                                    </div>
+
+                                    <!--asset name-->
+                                    <div class="form-group" id="create-asset-name-form-group">
+                                        <label for="Name" class="control-label"></label>
+                                        <input class="form-control" name="Name" placeholder="Name">
+                                    </div>
+
+                                    <!--asset type-->
+                                    <div class="form-group" id="create-asset-category-form-group">
+                                        <label for="AssetCategoryId" class="control-label"></label>
+                                        <select class="form-control select2bs4" id="create-asset-category-id" name="AssetCategoryId" style="width: 100%;"></select>
+                                    </div>
+
+                                    <!--hidden fields-->
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="CreatedById" />
+                                    <input type="hidden" name="PublisherId" />
+
+                                </div>
+
+                                <div class="modal-footer justify-content-between">
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                  <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+
+                            </form>
+                          </div>
+                          <!-- /.modal-content -->
+
+                        </div>
+                    <!-- /.modal-dialog -->
+                    </div>
+
+                </section>
+            </div>
+            <!-- /.content-wrapper -->
+
+            <!-- Control Sidebar -->
+            <aside class="control-sidebar control-sidebar-dark">
+                <!-- Control sidebar content goes here -->
+            </aside>
+            <!-- /.control-sidebar -->
+
+            <!-- Main Footer -->
+            <footer class="main-footer">
+                <div class="container">
+                    &copy; 2022 - Stride3DMarketPlace.Publisher - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                </div>
+            </footer>
+
         </div>
-        <!-- /.content-wrapper -->
 
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-        </aside>
-        <!-- /.control-sidebar -->
-
-        <!-- Main Footer -->
-        <footer class="main-footer">
-            <div class="container">
-                &copy; 2022 - Stride3DMarketPlace.Publisher - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            </div>
-        </footer>
-
-    </div>
-
-    <script src="~/lib/jquery/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/lib/jquery/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
     
-    <!-- AdminLTE App -->
-    <script src="~/js/adminlte.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="~/js/adminlte.min.js"></script>
+    
+        <!-- AdminLTE for demo purposes -->
+        <script src="~/js/demo.js"></script>
 
-    <!--render scripts section-->
-    @await RenderSectionAsync("Scripts", required: false)
+        <!-- Select2 -->
+        <script src="~/lib/select2/js/select2.full.min.js"></script>
 
-</body>
+        <!-- jquery-validation -->
+        <script src="~/lib/jquery-validation/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation/additional-methods.min.js"></script>
+
+        <!--render scripts section-->
+        @await RenderSectionAsync("Scripts", required: false)
+
+        <script>
+
+            $(function () {
+
+                //Initialize Select2 Elements
+                $('#create-asset-category-id').select2({
+                    allowClear: true,
+                    placeholder: 'Select a category',
+                    theme: 'bootstrap4'
+                });
+
+                // add options
+                var data = @Html.Raw(Json.Serialize(ViewBag.AssetCategories));
+                var select = $('#create-asset-category-id');
+                $.each(data, function(index, item) {
+
+                    var newOption = new Option(item.text, item.value, false, false);
+                    select.append(newOption).trigger('change');
+                });
+
+                $('#create-asset-category-id').val(null).trigger('change');
+
+                $('#create-asset-form').validate({
+                    ignore: [],
+                    rules: {
+                      Name: {
+                        required: true
+                      },
+                      AssetCategoryId: {
+                        number: true,
+                        required: true,
+                      },
+                    },
+                    messages: {
+                      Name: {
+                        required: "Please enter a name",
+                      },
+                      AssetCategoryId: {
+                        number: "Please enter a valid category",
+                        required: "Please select a category",
+                      }
+                    },
+                    errorElement: 'span',
+                    errorPlacement: function (error, element) {
+                      error.addClass('invalid-feedback');
+                      element.closest('.form-group').append(error);
+                    },
+                    highlight: function (element, errorClass, validClass) {
+                      $(element).addClass('is-invalid');
+                    },
+                    unhighlight: function (element, errorClass, validClass) {
+                      $(element).removeClass('is-invalid');
+                    },
+                    submitHandler: function(form) {
+                        $.ajax({
+                            url: form.action,
+                            type: form.method,
+                            data: $(form).serialize(),
+                            success: function(response) {
+                                
+                                // redirect to edit page
+                                window.location = "/Assets/Edit/" + response.id;
+                            },
+                            error: function(response) {
+
+                                // get list to hold errors
+                                var validationSummaryList = $('#create-asset-validation-summary > ul');
+
+                                // show errors
+                                $.each(response.responseJSON.CreatedById, function(key, value) {
+
+                                    validationSummaryList.append('<li>' + value + '</li>');
+                                });
+                                $.each(response.responseJSON.PublisherId, function(key, value) {
+
+                                    validationSummaryList.append('<li>' + value + '</li>');
+                                });
+
+                                // show input field errors
+                                if (response.responseJSON.Name !== undefined) {
+
+                                    //get elememts
+                                    var assetCategoryFormGroup = $('#create-asset-name-form-group');
+                                    var nameField = $('#create-asset-name-form-group > input');
+
+                                    // set css
+                                    nameField.addClass('is-invalid');
+
+                                    $.each(response.responseJSON.Name, function(key, value) {
+
+                                        assetCategoryFormGroup.append('<span id="Name-error" class="error invalid-feedback">' + value + '</span>');
+                                    });
+                                }
+                                if (response.responseJSON.AssetCategoryId !== undefined) {
+
+                                    var assetCategoryFormGroup = $('#create-asset-category-form-group');
+                                    var nameField = $('#create-asset-category-form-group > select');
+
+                                    // set css
+                                    nameField.addClass('is-invalid');
+
+                                    $.each(response.responseJSON.AssetCategoryId, function(key, value) {
+
+                                        assetCategoryFormGroup.append('<span id="AssetCategoryId-error" class="error invalid-feedback">' + value + '</span>');
+                                    });
+                                }
+                            }
+                        })
+                    }
+                  });
+
+                $('#create-asset-modal').on('hidden.bs.modal', function() {
+                    
+                    // clear the modal and form
+
+                    // clear validation summary
+                    var validationSummaryList = $('#create-asset-validation-summary > ul').remove();
+
+                    // clear name form group
+                    $('#create-asset-name-form-group > input').removeClass("is-invalid");
+                    var errorMsgs = $('#create-asset-name-form-group').children('.invalid-feedback');
+                    $.each(errorMsgs, function(key, value) {
+                        value.remove();
+                    });
+
+                    // clear select field
+                    $('#create-asset-category-form-group > select').removeClass('is-invalid');
+                    var errorMsgs = $('#create-asset-category-form-group').find('.invalid-feedback');
+                    $.each(errorMsgs, function(key, value) {
+                        value.remove();
+                    });
+
+                    // clear the form
+                    $('#create-asset-form').trigger("reset");
+                    $("#create-asset-category-id").val(null).trigger('change');
+                });
+            });
+
+        </script>
+
+    </body>
 </html>

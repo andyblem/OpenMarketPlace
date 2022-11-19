@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace Stride3DMarketPlace.Persistance.Models
 {
-    public class Publisher : BNamedEntity<int>
+    public class Publisher : BNamedEntity<int, ApplicationUser>
     {
         public string? ProfilePhoto { get; set; }
+
+        public ICollection<ApplicationUser>? ApplicationUsers { get; set; }
     }
 }

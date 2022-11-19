@@ -1,27 +1,20 @@
 ﻿using Stride3DMarketPlace.Persistance.Enums;
+using Stride3DMarketPlace.Persistance.Models;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Stride3DMarketPlace.Seller.Dtos.AssetDtos
 {
     public class CreateAssetDto
     {
-        // basic details
-        public string Description { get; set; }
-        public string GitRepository { get; set; }
-        public string LatestVersion { get; set; }
-        public string License { get; set; }
-        public string Name { get; set; }
-        public string NugetPackage { get; set; }
+        [DisplayName("Asset Category")]
+        public int? AssetCategoryId { get; set; }
 
-        // resource details
-        public string BannerImage { get; set; }
-        public string IconImage { get; set; }
+        [DisplayName("Asset Name")]
+        public string? Name { get; set; }
 
 
-        // special details
-        public AssetReleaseStateEnums? AssetReleaseStateId { get; set; }
-        public AssetTypeEnum? AssetTypeId { get; set; }
-
-        public string CreatedById { get; set; }
         public int? PublisherId { get; set; }
+        public string? CreatedById { get; set; }
     }
 }

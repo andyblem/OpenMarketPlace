@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 
 namespace Stride3DMarketPlace.Persistance.Models
 {
-    public class AssetReview : BEntity<int>
+    public class AssetReview : BEntity<int, ApplicationUser>
     {
         public int? AssetRating { get; set; }
 
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
 
         public int? AssetId { get; set; }
         [ForeignKey("AssetId")]
-        public Asset Asset { get; set; }
+        public Asset? Asset { get; set; }
 
-        public string AuthorId { get; set; }
+        public string? AuthorId { get; set; }
         [ForeignKey("AuthorId")]
-        public ApplicationUser Author { get; set; }
+        public virtual ApplicationUser? Author { get; set; }
     }
 }

@@ -1,138 +1,411 @@
-﻿@model Stride3DMarketPlace.Persistance.Models.Asset
+﻿@model Stride3DMarketPlace.Seller.Dtos.AssetDtos.EditAssetDto;
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["PageHeader"] = "Edit Asset";
+    ViewData["Title"] = "Edit-Create";
 }
 
-<h1>Edit</h1>
+@section Styles{
 
-<h4>Asset</h4>
-<hr />
+    <!-- BS Stepper -->
+    <link rel="stylesheet" href="~/lib/bs-stepper/css/bs-stepper.min.css">
+    
+    <!-- dropzonejs -->
+    <link rel="stylesheet" href="~/lib/dropzone/min/dropzone.min.css">
+
+    <!-- summernote -->
+    <link rel="stylesheet" href="~/lib/summernote/summernote-bs4.min.css">
+
+    <!-- Select2 -->
+    <link rel="stylesheet" href="~/lib/select2/css/select2.min.css">
+    <link rel="stylesheet" href="~/lib/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+}
+
+
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Rating" class="control-label"></label>
-                <input asp-for="Rating" class="form-control" />
-                <span asp-validation-for="Rating" class="text-danger"></span>
+
+    <!-- left column -->
+    <div class="col-12">
+
+        <!-- general form elements -->
+        <div class="card card-default">
+
+            <div class="card-header">
+                <h3 class="card-title">Asset Details</h3>
+                <div class="card-tools">
+                    <span class="badge rounded-pill bg-primary">Draft</span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Reviews" class="control-label"></label>
-                <input asp-for="Reviews" class="form-control" />
-                <span asp-validation-for="Reviews" class="text-danger"></span>
+            <!-- /.card-header -->
+
+            <div class="card-body">
+
+                <div class="bs-stepper">
+                        
+                    <!-- stepper header-->
+                    <div class="bs-stepper-header" role="tablist">
+
+                        <!-- description -->
+                        <div class="step" data-target="#description-part">
+                            <button type="button" class="step-trigger" role="tab" aria-controls="description-part"  id="description-part-trigger">
+                                <span class="bs-stepper-circle">1</span>
+                                <span class="bs-stepper-label">Description</span>
+                            </button>
+                        </div>
+
+                        <div class="line"></div>
+
+                        <!-- release details -->
+                        <div class="step" data-target="#release-details-part">
+                            <button type="button" class="step-trigger" role="tab" aria-controls="release-details-part" id="release-details-part-trigger">
+                                <span class="bs-stepper-circle">2</span>
+                                <span class="bs-stepper-label">Release Details</span>
+                            </button>
+                        </div>
+
+                        <div class="line"></div>
+
+                        <!-- download-details -->
+                        <div class="step" data-target="#download-details-part">
+                            <button type="button" class="step-trigger" role="tab" aria-controls="download-details-part" id="download-details-part-trigger">
+                                <span class="bs-stepper-circle">3</span>
+                                <span class="bs-stepper-label">Download Details</span>
+                            </button>
+                        </div>
+
+                        <div class="line"></div>
+
+                        <!-- media part-->
+                        <div class="step" data-target="#media-part">
+                            <button type="button" class="step-trigger" role="tab" aria-controls="media-part" id="media-part-trigger">
+                            <span class="bs-stepper-circle">4</span>
+                            <span class="bs-stepper-label">Media</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- stepper content -->
+                    <div class="bs-stepper-content">
+                            
+                        <!-- form start -->
+                        <form class="form-horizontal" asp-action="Create">
+
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <!-- description content here -->
+                            <div id="description-part" class="content" role="tabpanel" aria-labelledby="description-trigger">
+
+                                <!--basic details row-->
+                                <div class="row form-input-section">
+
+                                    <div class="col-md-4">
+
+                                        <h4>
+                                            <strong>
+                                                Basic Details
+                                            </strong>
+                                        </h4>
+                                        <p class="text-muted">
+                                            Choose the name for your asset. Consider a short and precious
+                                            name that is easier for the customer to remember and find.
+                                        </p>
+                                    </div>
+
+                                    <div class="col-md-8 pl-5">
+
+                                        <div class="form-group">
+                                            <label asp-for="Name" class="control-label"></label>
+                                            <input asp-for="Name" class="form-control" placeholder="Name">
+                                            <span asp-validation-for="Name" class="text-danger"></span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label asp-for="AssetTypeId" class="control-label"></label>
+                                            <select asp-for="AssetTypeId" class="form-control select2bs4" asp-items="ViewBag.AssetTypeId" style="width: 100%;"></select>
+                                            <span asp-validation-for="AssetTypeId" class="text-danger"></span>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <!--description details row-->
+                                <div class="row form-input-section">
+
+                                    <div class="col-md-4">
+
+                                        <h4>
+                                            <strong>
+                                                Description Details
+                                            </strong>
+                                        </h4>
+                                        <p class="text-muted">
+                                            Describe your asset. Try to include as much detail as possible 
+                                            to help persuade users to purchase your product, and to answer 
+                                            any questions they might have.
+                                        </p>
+                                    </div>
+
+                                    <div class="col-md-8 pl-5">
+
+                                        <div class="form-group">
+                                            <label asp-for="Description" class="control-label"></label>
+                                            <textarea id="descriptionEditor" asp-for="Description" class="form-control">
+                                                Place <em>some</em> <u>text</u> <strong>here</strong>
+                                            </textarea>
+                                            <span asp-validation-for="Description" class="text-danger"></span>
+                                        </div>
+
+  
+                                    </div>
+                                </div>
+
+                                <!--keywords details-->
+                                <div class="row form-input-section">
+
+                                    <div class="col-md-4">
+
+                                        <h4>
+                                            <strong>
+                                                Keywords
+                                            </strong>
+                                        </h4>
+                                        <p class="text-muted">
+                                            Choose several keywords to help users find your asset using different 
+                                            search parameters
+                                        </p>
+                                    </div>
+
+                                    <div class="col-md-8 pl-5">
+
+                                        <div class="form-group">
+                                            <label asp-for="Keywords" class="control-label"></label>
+                                            <select asp-for="Keywords" 
+                                                asp-items="ViewBag.Keywords" 
+                                                class="select2bs4" 
+                                                data-placeholder="Select Keywords" 
+                                                multiple="multiple" 
+                                                style="width: 100%;">
+                                            </select>
+                                            <span asp-validation-for="Keywords" class="text-danger"></span>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- release-notes content here -->
+                            <div id="release-details-part" class="content" role="tabpanel" aria-labelledby="release-details-part-trigger">
+                            
+                                <div class="row form-input-section">
+                                    <div class="col-md-4">
+                                        <h4>
+                                            <strong>
+                                                Compatibility Details
+                                            </strong>
+                                        </h4>
+                                        <p class="text-muted">
+                                            Specify the version of Stride3d this version of the
+                                            asset is designed to work with. 
+                                        </p>
+                                    </div>
+                                    <div class="col-md-8 pl-5">
+
+                                        <div class="form-group">
+                                            <label asp-for="EngineCompatibility" class="control-label"></label>
+                                            <select asp-for="EngineCompatibility" 
+                                                asp-items="ViewBag.EngineVersions" 
+                                                class="select2bs4" 
+                                                data-placeholder="Select Compatible Engine Versions" 
+                                                multiple="multiple" 
+                                                style="width: 100%;">
+                                            </select>
+                                            <span asp-validation-for="EngineCompatibility" class="text-danger"></span>
+                                        </div>
+                                    
+                                        <div class="form-group">
+                                            <label asp-for="LatestVersion" class="control-label"></label>
+                                            <input asp-for="LatestVersion" class="form-control" data-inputmask='"mask": "9 . 9 . 9"' data-mask/>
+                                            <span class="text-muted">Use versioning etc</span>
+                                            <span asp-validation-for="LatestVersion" class="text-danger"></span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="row form-input-section">
+                                    <div class="col-md-4">
+                                        <h4>
+                                            <strong>
+                                                Licensing Details
+                                            </strong>
+                                        </h4>
+                                        <p class="text-muted">
+                                            Specify the license for this asset
+                                        </p>
+                                    </div>
+                                    <div class="col-md-8 pl-5">
+
+                                        <div class="form-group">
+                                            <label asp-for="License" class="control-label"></label>
+                                            <input asp-for="License" class="form-control" />
+                                            <span asp-validation-for="License" class="text-danger"></span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                
+                                <div class="row form-input-section">
+
+                                    <div class="col-md-4">
+
+                                        <h4>
+                                            <strong>
+                                                Release Notes
+                                            </strong>
+                                        </h4>
+                                        <p class="text-muted">
+                                            Describe your asset. Try to include as much detail as possible 
+                                            to help persuade users to purchase your product, and to answer 
+                                            any questions they might have.
+                                        </p>
+                                    </div>
+
+                                    <div class="col-md-8 pl-5">
+
+                                        <div class="form-group">
+                                            <label asp-for="ReleaseNotes" class="control-label"></label>
+                                            <textarea id="releaseNotesEditor" asp-for="ReleaseNotes" class="form-control">
+                                                Place <em>some</em> <u>text</u> <strong>here</strong>
+                                            </textarea>
+                                            <span asp-validation-for="ReleaseNotes" class="text-danger"></span>
+                                        </div>
+
+  
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- download-details content here -->
+                            <div id="download-details-part" class="content" role="tabpanel" aria-labelledby="download-details-part-trigger">
+                            
+                                <div class="row form-input-section">
+                                    <div class="col-md-4">
+                                         <h4>
+                                            <strong>
+                                                Download Details
+                                            </strong>
+                                        </h4>
+                                        <p class="text-muted">
+                                            Specify the various locations the user can download this
+                                            asset from
+                                        </p>
+                                    </div>
+                                    <div class="col-md-8">
+                                    
+                                        <div class="form-group">
+                                            <label asp-for="GitRepository" class="control-label"></label>
+                                            <input asp-for="GitRepository" class="form-control" />
+                                            <span asp-validation-for="GitRepository" class="text-danger"></span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label asp-for="NugetPackage" class="control-label"></label>
+                                            <input asp-for="NugetPackage" class="form-control" />
+                                            <span asp-validation-for="NugetPackage" class="text-danger"></span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- media content here -->
+                            <div id="media-part" class="content" role="tabpanel" aria-labelledby="media-part-trigger">
+                            
+                                <div class="row form-input-section">
+                                    <div class="col-md-4">
+                                         <h4>
+                                            <strong>
+                                                Icon Image
+                                            </strong>
+                                        </h4>
+                                        <p class="text-muted">
+                                            The icon image gets shown when displaying many assets at once
+                                        </p>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="my-dropzone"></div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-input-section">
+                                    <div class="col-md-4">
+                                         <h4>
+                                            <strong>
+                                                Banner Image
+                                            </strong>
+                                        </h4>
+                                        <p class="text-muted">
+                                            The icon image gets shown at your asset details page
+                                        </p>
+                                    </div>
+                                    <div class="col-md-8">
+
+                                    </div>
+                                </div>
+
+                                <div class="row form-input-section">
+                                    <div class="col-md-4">
+                                         <h4>
+                                            <strong>
+                                                Screenshots
+                                            </strong>
+                                        </h4>
+                                        <p class="text-muted">
+                                            Showcase the ability
+                                        </p>
+                                    </div>
+                                    <div class="col-md-8">
+
+                                    </div>
+                                </div>
+
+                                <div class="row form-input-section">
+                                    <div class="col-md-4">
+                                         <h4>
+                                            <strong>
+                                                Video Demos
+                                            </strong>
+                                        </h4>
+                                        <p class="text-muted">
+                                            Share video demos of your asset
+                                        </p>
+                                    </div>
+                                    <div class="col-md-8">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+                    
             </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+                <button class="btn btn-warning mr-2">Save</button>
+                <button class="btn btn-primary">Publish</button>
             </div>
-            <div class="form-group">
-                <label asp-for="EngineCompatibility" class="control-label"></label>
-                <input asp-for="EngineCompatibility" class="form-control" />
-                <span asp-validation-for="EngineCompatibility" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="GitRepository" class="control-label"></label>
-                <input asp-for="GitRepository" class="form-control" />
-                <span asp-validation-for="GitRepository" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LatestVersion" class="control-label"></label>
-                <input asp-for="LatestVersion" class="form-control" />
-                <span asp-validation-for="LatestVersion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="License" class="control-label"></label>
-                <input asp-for="License" class="form-control" />
-                <span asp-validation-for="License" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NugetPackage" class="control-label"></label>
-                <input asp-for="NugetPackage" class="form-control" />
-                <span asp-validation-for="NugetPackage" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LastUpdatedAt" class="control-label"></label>
-                <input asp-for="LastUpdatedAt" class="form-control" />
-                <span asp-validation-for="LastUpdatedAt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ReleasedAt" class="control-label"></label>
-                <input asp-for="ReleasedAt" class="form-control" />
-                <span asp-validation-for="ReleasedAt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AssetReleaseStateId" class="control-label"></label>
-                <select asp-for="AssetReleaseStateId" class="form-control" asp-items="ViewBag.AssetReleaseStateId"></select>
-                <span asp-validation-for="AssetReleaseStateId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AssetTypeId" class="control-label"></label>
-                <select asp-for="AssetTypeId" class="form-control" asp-items="ViewBag.AssetTypeId"></select>
-                <span asp-validation-for="AssetTypeId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AssetResourceId" class="control-label"></label>
-                <select asp-for="AssetResourceId" class="form-control" asp-items="ViewBag.AssetResourceId"></select>
-                <span asp-validation-for="AssetResourceId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreatedById" class="control-label"></label>
-                <select asp-for="CreatedById" class="form-control" asp-items="ViewBag.CreatedById"></select>
-                <span asp-validation-for="CreatedById" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PublisherId" class="control-label"></label>
-                <select asp-for="PublisherId" class="form-control" asp-items="ViewBag.PublisherId"></select>
-                <span asp-validation-for="PublisherId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IsDeleted" class="control-label"></label>
-                <input asp-for="IsDeleted" class="form-control" />
-                <span asp-validation-for="IsDeleted" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IsModified" class="control-label"></label>
-                <input asp-for="IsModified" class="form-control" />
-                <span asp-validation-for="IsModified" class="text-danger"></span>
-            </div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="CreatedAt" class="control-label"></label>
-                <input asp-for="CreatedAt" class="form-control" />
-                <span asp-validation-for="CreatedAt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DeletedAt" class="control-label"></label>
-                <input asp-for="DeletedAt" class="form-control" />
-                <span asp-validation-for="DeletedAt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ModifiedAt" class="control-label"></label>
-                <input asp-for="ModifiedAt" class="form-control" />
-                <span asp-validation-for="ModifiedAt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DeletedById" class="control-label"></label>
-                <input asp-for="DeletedById" class="form-control" />
-                <span asp-validation-for="DeletedById" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ModifiedById" class="control-label"></label>
-                <input asp-for="ModifiedById" class="form-control" />
-                <span asp-validation-for="ModifiedById" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+
+        </div>
+        <!-- /.card -->
+
     </div>
+    <!--/.col -->
+
 </div>
 
 <div>
@@ -141,4 +414,71 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <!-- BS-Stepper -->
+    <script src="~/lib/bs-stepper/js/bs-stepper.min.js"></script>
+    
+    <!-- Summernote -->
+    <script src="~/lib/summernote/summernote-bs4.min.js"></script>
+
+    <!-- dropzonejs -->
+    <script src="~/lib/dropzone/min/dropzone.min.js"></script>
+
+    <!-- InputMask -->
+    <script src="~/lib/moment/moment.min.js"></script>
+    <script src="~/lib/inputmask/jquery.inputmask.min.js"></script>
+
+    <!-- Select2 -->
+    <script src="~/lib/select2/js/select2.full.min.js"></script>
+
+    <script>
+        $(function() {
+
+            // BS-Stepper Init
+            var stepper = new Stepper($('.bs-stepper')[0],{
+                linear: false,
+                animation: true
+            });
+
+
+            // Editor
+            $('#descriptionEditor').summernote({
+                height: 500,
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']],
+                    ['insert', ['link']],
+                ]
+            });
+
+            $('#releaseNotesEditor').summernote({
+                height: 500,
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']],
+                    ['insert', ['link']],
+                ]
+            });
+
+
+            // Dropzone has been added as a global variable.
+            const dropzone = new Dropzone("div.my-dropzone", { url: "/file/post" });
+
+
+            // Input Mask
+            $('[data-mask]').inputmask();
+
+
+            //Initialize Select2 Elements
+            $('.select2').select2();
+
+
+            //Initialize Select2 Elements
+            $('.select2bs4').select2({
+                theme: 'bootstrap4'
+            });
+        });
+    </script>
 }

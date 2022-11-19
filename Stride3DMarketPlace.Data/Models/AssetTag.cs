@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace Stride3DMarketPlace.Persistance.Models
 {
-    public class AssetTag : BNamedEntity<int>
+    public class AssetTag : BNamedEntity<int, ApplicationUser>
     {
-        public int AssetId { get; set; }
+        public int? AssetId { get; set; }
         [ForeignKey("AssetId")]
-        public Asset Asset { get; set; }
+        public Asset? Asset { get; set; }
 
-        public int TagId { get; set; }
+        public int? TagId { get; set; }
         [ForeignKey("TagId")]
-        public Tag Tag { get; set; }
+        public Tag? Tag { get; set; }
     }
 }

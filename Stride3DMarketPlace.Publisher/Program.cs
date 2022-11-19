@@ -6,31 +6,37 @@ using Stride3DMarketPlace.Persistance.Data;
 using Stride3DMarketPlace.Persistance.Managers;
 using Stride3DMarketPlace.Persistance.Models;
 using Stride3DMarketPlace.Persistance.Seeders;
+using Stride3DMarketPlace.Seller.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
-    ?? throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
 var serverVersion = ServerVersion.AutoDetect(connectionString);
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseMySql(connectionString,
-        serverVersion,
-        x => x.MigrationsAssembly("Stride3DMarketPlace.Persistance"))
-    // The following three options help with debugging, but should
-    // be changed or removed for production.
-    .LogTo(Console.WriteLine, LogLevel.Information)
-    .EnableSensitiveDataLogging()
-    .EnableDetailedErrors());
+builder.Services.AddDbContext<SellerDbContext>(options =>
+    options.UseMySql(connectionString, serverVersion)
+        .LogTo(Console.WriteLine, LogLevel.Information)
+        .EnableSensitiveDataLogging()
+        .EnableDetailedErrors());
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddEntityFrameworkStores<SellerDbContext>()
     .AddUserManager<ApplicationUserManager<ApplicationUser>>()
     .AddDefaultTokenProviders();
+
+builder.Services.Configure<IdentityOptions>(options =>
+    {
+        // Default Password settings.
+        options.Password.RequireDigit = true;
+        options.Password.RequireLowercase = true;
+        options.Password.RequireNonAlphanumeric = true;
+        options.Password.RequireUppercase = true;
+        options.Password.RequiredLength = 8;
+    });
 
 builder.Services.AddAutoMapper(typeof(Program))
     .AddMediatR(typeof(Program))
@@ -77,7 +83,7 @@ async Task InitializeDbAsync(IApplicationBuilder app)
     using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
     {
 
-        var context = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        var context = serviceScope.ServiceProvider.GetRequiredService<SellerDbContext>();
         var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
         //checking if the database exist

@@ -10,6 +10,6 @@ namespace Stride3DMarketPlace.Persistance.Enums
     {
         Released = 0,
         Decapreated = 1,
-        Draft = 2
+        InitDraft = 2
     }
 }

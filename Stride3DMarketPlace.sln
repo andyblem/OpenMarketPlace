@@ -17,8 +17,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stride3DMarketPlace.Seller"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stride3DMarketPlace.Store", "Stride3DMarketplace.Store\Stride3DMarketPlace.Store.csproj", "{152CE744-7E07-4B4B-80F1-770F4170A98C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scaffolding", "Scaffolding\Scaffolding.csproj", "{A5C22DDF-2B9E-45A1-981B-C7F58237F27B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{9F972AB6-1B11-4B5C-9817-B1CC31094D09}"
 EndProject
 Global
@@ -43,10 +41,6 @@ Global
 		{152CE744-7E07-4B4B-80F1-770F4170A98C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{152CE744-7E07-4B4B-80F1-770F4170A98C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{152CE744-7E07-4B4B-80F1-770F4170A98C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A5C22DDF-2B9E-45A1-981B-C7F58237F27B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A5C22DDF-2B9E-45A1-981B-C7F58237F27B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A5C22DDF-2B9E-45A1-981B-C7F58237F27B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A5C22DDF-2B9E-45A1-981B-C7F58237F27B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

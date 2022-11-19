@@ -1,8 +1,8 @@
 ﻿
 namespace Stride3DMarketPlace.Persistance.BaseModels
 {
-    public class BNamedEntity<T> : BEntity<T>
+    public class BNamedEntity<T1, T2> : BEntity<T1, T2>
     {
-        public string Name { get; set; }
+        public string? Name { get; set; }
     }
 }

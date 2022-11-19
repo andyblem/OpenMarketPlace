@@ -10,12 +10,12 @@ namespace Stride3DMarketPlace.Persistance.Models
 {
     public class ApplicationUser : IdentityUser
     {
-        public bool IsAgreeingToPublisherTermsOfService { get; set; }
+        public bool? IsAgreeingToPublisherTermsOfService { get; set; }
 
         public string? ProfilePhoto { get; set; }
 
         public int? PublisherId { get; set; }
         [ForeignKey("PublisherId")]
-        public virtual Publisher Publisher { get; set; }
+        public Publisher? Publisher { get; set; }
     }
 }

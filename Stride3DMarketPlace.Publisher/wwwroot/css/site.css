@@ -20,3 +20,9 @@
 .user-info small {
     display: block;
 }
+
+.form-input-section {
+    border-bottom: 1px solid #666;
+    margin-bottom: 15px;
+    padding-bottom: 4.8rem;
+}

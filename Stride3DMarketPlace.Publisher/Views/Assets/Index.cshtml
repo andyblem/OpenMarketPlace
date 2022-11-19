@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<Stride3DMarketPlace.Seller.Dtos.AssetDtos.IndexAssetDto>
 
 @{
+    ViewData["PageHeader"] = "Assets";
     ViewData["Title"] = "Assets Overview";
 }
 
@@ -13,7 +14,7 @@
                 <h3 class="card-title">Assets Overview</h3>
 
                 <div class="card-tools">
-                     <a class="btn btn-sm btn-danger" asp-action="Create">Create Asset</a>
+                     <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#create-asset-modal">Create Asset</a>
                 </div>
             </div>
             <!-- /.card-header -->

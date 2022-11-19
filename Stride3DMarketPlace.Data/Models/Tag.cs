@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Stride3DMarketPlace.Persistance.Models
 {
-    public class Tag : BNamedEntity<int>
+    public class Tag : BNamedEntity<int, ApplicationUser>
     {
     }
 }

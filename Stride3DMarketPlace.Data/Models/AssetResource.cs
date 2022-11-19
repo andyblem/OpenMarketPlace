@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Stride3DMarketPlace.Persistance.Models
 {
-    public class AssetResource : BEntity<int>
+    public class AssetResource : BEntity<int, ApplicationUser>
     {
-        public string BannerImage { get; set; }
-        public string IconImage { get; set; }
+        public string? BannerImage { get; set; }
+        public string? IconImage { get; set; }
     }
 }

@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace Stride3DMarketPlace.Persistance.Models
 {
-    public class AssetReleaseState : BNamedEntity<AssetReleaseStateEnums>
+    public class AssetReleaseState : BNamedEntity<AssetReleaseStateEnums, ApplicationUser>
     {
-        public List<Asset> Assets { get; set; }
+        public List<Asset>? Assets { get; set; }
     }
 }
