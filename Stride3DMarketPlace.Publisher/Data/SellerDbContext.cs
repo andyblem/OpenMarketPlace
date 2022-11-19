@@ -9,6 +9,8 @@ namespace Stride3DMarketPlace.Seller.Data
     {
         public DbSet<Asset>? Assets { get; set; }
         public DbSet<AssetCategory>? AssetsCategories { get; set; }
+        public DbSet<AssetResource>? AssetResources { get; set; }
+        public DbSet<AssetType>? AssetTypes { get; set; }
         public DbSet<Publisher>? Publishers { get; set; }
 
 

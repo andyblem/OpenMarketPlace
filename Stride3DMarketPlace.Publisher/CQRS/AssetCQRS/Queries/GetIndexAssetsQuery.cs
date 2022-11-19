@@ -9,7 +9,7 @@ namespace Stride3DMarketPlace.Seller.CQRS.AssetCQRS.Queries
 {
     public class GetIndexAssetsQuery : IRequest<IEnumerable<IndexAssetDto>>
     {
-        public int PublisherId { get; set; }
+        public int? PublisherId { get; set; }
 
         public AssetReleaseStateEnums? AssetReleaseStateId { get; set; }
     }
@@ -26,17 +26,18 @@ namespace Stride3DMarketPlace.Seller.CQRS.AssetCQRS.Queries
         public async Task<IEnumerable<IndexAssetDto>> Handle(GetIndexAssetsQuery request, CancellationToken cancellationToken)
         {
             // dynamic queryable
-            var getAssetsQuery = _dbContext.Assets.AsQueryable();
+            var getAssetsQuery = _dbContext.Assets
+                .Where(a => a.PublisherId == request.PublisherId)
+                .AsQueryable();
 
             // add conditions
             if (request.AssetReleaseStateId == null)
             {
-                getAssetsQuery = getAssetsQuery.Where(a => a.PublisherId == request.PublisherId);
+                getAssetsQuery = getAssetsQuery.Where(a => a.AssetReleaseStateId == AssetReleaseStateEnums.Released);
             }
             else
             {
-                getAssetsQuery = getAssetsQuery.Where(a => a.PublisherId == request.PublisherId
-                    && a.AssetReleaseStateId == request.AssetReleaseStateId);
+                getAssetsQuery = getAssetsQuery.Where(a => a.AssetReleaseStateId == request.AssetReleaseStateId);
             }
 
             // get data

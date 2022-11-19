@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Stride3DMarketPlace.Seller.CQRS.AssetCategoryCQRS.Queries;
-using Stride3DMarketPlace.Seller.Models;
 using System.Diagnostics;
 
 namespace Stride3DMarketPlace.Seller.Controllers
@@ -37,10 +36,19 @@ namespace Stride3DMarketPlace.Seller.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult Error(int statusCode)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            // set view-bag and cache error message
+            ViewBag.ErrorMessage = TempData["ErrorMessage"];
+            TempData["ErrorMessage"] = ViewBag.ErrorMessage;
+
+            // set other data
+            ViewBag.RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
+            ViewBag.ShowRequestId = !string.IsNullOrEmpty(ViewBag.RequestId);
+            ViewBag.StatusCode = statusCode;
+
+            // return view
+            return View();
         }
     }
 }
