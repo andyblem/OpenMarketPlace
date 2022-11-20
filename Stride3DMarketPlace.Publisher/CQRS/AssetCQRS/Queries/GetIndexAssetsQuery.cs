@@ -31,11 +31,7 @@ namespace Stride3DMarketPlace.Seller.CQRS.AssetCQRS.Queries
                 .AsQueryable();
 
             // add conditions
-            if (request.AssetReleaseStateId == null)
-            {
-                getAssetsQuery = getAssetsQuery.Where(a => a.AssetReleaseStateId == AssetReleaseStateEnums.Released);
-            }
-            else
+            if (request.AssetReleaseStateId != null)
             {
                 getAssetsQuery = getAssetsQuery.Where(a => a.AssetReleaseStateId == request.AssetReleaseStateId);
             }

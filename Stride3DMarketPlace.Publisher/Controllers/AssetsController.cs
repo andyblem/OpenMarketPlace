@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Stride3DMarketPlace.Persistance.Enums;
 using Stride3DMarketPlace.Persistance.Models;
+using Stride3DMarketPlace.Seller.CQRS.AssetCategoryCQRS.Queries;
 using Stride3DMarketPlace.Seller.CQRS.AssetCQRS.Commands;
 using Stride3DMarketPlace.Seller.CQRS.AssetCQRS.Queries;
 using Stride3DMarketPlace.Seller.CQRS.PublisherCQRS.Queries;
@@ -37,12 +39,20 @@ namespace Stride3DMarketPlace.Seller.Controllers
                 var applicationUser = await _userManager.GetUserAsync(User);
                 var publisherId = applicationUser.PublisherId;
 
-                // get data
+                // get assets data
                 var assets = await _mediator.Send(new GetIndexAssetsQuery()
                 {
                     AssetReleaseStateId = assetReleaseStateId,
                     PublisherId = publisherId
                 });
+
+
+                // get some other data
+                var assetCategories = await _mediator.Send(new GetAssetCategoriesSelectItemsQuery());
+
+                // init view data
+                ViewData["AssetCategories"] = new SelectList(assetCategories, "Id", "Name");
+
 
                 // return results
                 return View(assets);

@@ -26,3 +26,13 @@
     margin-bottom: 15px;
     padding-bottom: 4.8rem;
 }
+
+.card-tools a{
+    margin-left: 10px;
+}
+
+.btn-tertiary {
+    background-color: transparent !important;
+    border: .1rem solid #666 !important;
+    color: #fff !important;
+}
