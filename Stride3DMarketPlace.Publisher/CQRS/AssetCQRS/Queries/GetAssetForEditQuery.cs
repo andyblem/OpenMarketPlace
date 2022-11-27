@@ -1,10 +1,9 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Stride3DMarketPlace.Persistance.Data;
-using Stride3DMarketPlace.Seller.Data;
-using Stride3DMarketPlace.Seller.Dtos.AssetDtos;
+using Stride3dMarketplace.Persistance.Data;
+using Stride3dMarketplace.Publisher.Dtos.AssetDtos;
 
-namespace Stride3DMarketPlace.Seller.CQRS.AssetCQRS.Queries
+namespace Stride3dMarketplace.Publisher.CQRS.AssetCQRS.Queries
 {
     public class GetAssetForEditQuery : IRequest<EditAssetDto>
     {
@@ -13,9 +12,9 @@ namespace Stride3DMarketPlace.Seller.CQRS.AssetCQRS.Queries
 
     public class GetAssetForEditQueryHandler : IRequestHandler<GetAssetForEditQuery, EditAssetDto>
     {
-        private readonly SellerDbContext _dbContext;
+        private readonly ApplicationDbContext _dbContext;
 
-        public GetAssetForEditQueryHandler(SellerDbContext dbContext)
+        public GetAssetForEditQueryHandler(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -30,19 +29,19 @@ namespace Stride3DMarketPlace.Seller.CQRS.AssetCQRS.Queries
                     Id = a.Id,
 
                     Description = a.Description,
-                    GitRepository = a.GitRepository,
+                    //GitRepository = a.GitRepository,
                     License = a.License,
                     Name = a.Name,
-                    NugetPackage = a.NugetPackage,
+                    //NugetPackage = a.NugetPackage,
 
                     EngineCompatibility = a.EngineCompatibility,
-                    LatestVersion = a.LatestVersion,
+                    LatestVersion = a.Version,
                     //ReleaseNotes = a.ReleaseNotes,
 
                     BannerImage = a.BannerImage,
                     IconImage = a.IconImage,
 
-                    AssetReleaseStateId = a.AssetReleaseStateId,
+                    AssetReleaseStateId = a.AssetStatusId,
 
                     CreatedById = a.CreatedById,
                     PublisherId = a.PublisherId,

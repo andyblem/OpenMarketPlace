@@ -1,4 +1,4 @@
-namespace Stride3DMarketPlace.Admin.Models
+namespace Stride3DMarketplace.Admin.Models
 {
     public class ErrorViewModel
     {

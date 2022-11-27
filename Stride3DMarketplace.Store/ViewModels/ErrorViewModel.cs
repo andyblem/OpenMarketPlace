@@ -1,4 +1,4 @@
-namespace Stride3DMarketPlace.Store.ViewModels
+namespace Stride3dMarketplace.Store.ViewModels
 {
     public class ErrorViewModel
     {

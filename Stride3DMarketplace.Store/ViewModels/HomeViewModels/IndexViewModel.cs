@@ -1,6 +1,6 @@
-﻿using Stride3DMarketPlace.Store.Dtos.AssetDtos;
+﻿using Stride3dMarketplace.Store.Dtos.AssetDtos;
 
-namespace Stride3DMarketPlace.Store.ViewModels.HomeViewModels
+namespace Stride3dMarketplace.Store.ViewModels.HomeViewModels
 {
     public class IndexViewModel
     {

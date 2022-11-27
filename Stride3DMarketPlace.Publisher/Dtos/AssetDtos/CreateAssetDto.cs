@@ -1,9 +1,9 @@
-﻿using Stride3DMarketPlace.Persistance.Enums;
-using Stride3DMarketPlace.Persistance.Models;
+﻿using Stride3dMarketplace.Persistance.Enums;
+using Stride3dMarketplace.Persistance.Models;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Stride3DMarketPlace.Seller.Dtos.AssetDtos
+namespace Stride3dMarketplace.Publisher.Dtos.AssetDtos
 {
     public class CreateAssetDto
     {

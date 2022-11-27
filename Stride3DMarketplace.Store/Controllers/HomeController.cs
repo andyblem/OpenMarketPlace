@@ -1,11 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Stride3DMarketPlace.Store.CQRS.AssetsCQRS;
-using Stride3DMarketPlace.Store.ViewModels;
-using Stride3DMarketPlace.Store.ViewModels.HomeViewModels;
+using Stride3dMarketplace.Store.CQRS.AssetsCQRS;
+using Stride3dMarketplace.Store.ViewModels;
+using Stride3dMarketplace.Store.ViewModels.HomeViewModels;
 using System.Diagnostics;
 
-namespace Stride3DMarketPlace.Store.Controllers
+namespace Stride3dMarketplace.Store.Controllers
 {
     public class HomeController : Controller
     {

@@ -1,10 +1,10 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Stride3DMarketPlace.Persistance.Data;
-using Stride3DMarketPlace.Persistance.Enums;
-using Stride3DMarketPlace.Store.Dtos.AssetDtos;
+using Stride3dMarketplace.Persistance.Data;
+using Stride3dMarketplace.Persistance.Enums;
+using Stride3dMarketplace.Store.Dtos.AssetDtos;
 
-namespace Stride3DMarketPlace.Store.CQRS.AssetsCQRS
+namespace Stride3dMarketplace.Store.CQRS.AssetsCQRS
 {
     public class Get2dAssetsQuery : IRequest<IEnumerable<IndexAssetDto>>
     {
@@ -24,8 +24,8 @@ namespace Stride3DMarketPlace.Store.CQRS.AssetsCQRS
         {
             // get data
             var assets2d = await _dbContext.Assets
-                .Where(a => a.AssetReleaseStateId == AssetReleaseStateEnums.Released
-                    && a.AssetTypeId == AssetTypeEnum.TwoD)
+                .Where(a => a.AssetStatusId == AssetStatusEnums.Published)
+                    //&& a.AssetTypeId == AssetTypeEnum.TwoD)
                 .Take(request.Amount)
                 .Select(a => new IndexAssetDto()
                 {
@@ -33,8 +33,8 @@ namespace Stride3DMarketPlace.Store.CQRS.AssetsCQRS
                     Rating = a.Rating,
                     Reviews = a.Reviews,
 
-                    AssetType = a.AssetType.Name,
-                    IconImagePath = a.AssetResource.IconImage,
+                    //AssetType = a.AssetType.Name,
+                    //IconImagePath = a.AssetResource.IconImage,
                     Name = a.Name,
                     Publisher = a.Publisher.Name
                 })

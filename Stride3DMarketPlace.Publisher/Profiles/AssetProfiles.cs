@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Stride3DMarketPlace.Persistance.Models;
-using Stride3DMarketPlace.Seller.Dtos.AssetDtos;
+using Stride3dMarketplace.Persistance.Models;
+using Stride3dMarketplace.Publisher.Dtos.AssetDtos;
 
-namespace Stride3DMarketPlace.Seller.Profiles
+namespace Stride3dMarketplace.Publisher.Profiles
 {
     public class AssetProfiles : Profile
     {

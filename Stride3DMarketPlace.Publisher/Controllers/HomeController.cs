@@ -2,10 +2,10 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Stride3DMarketPlace.Seller.CQRS.AssetCategoryCQRS.Queries;
+using Stride3dMarketplace.Publisher.CQRS.AssetCategoryCQRS.Queries;
 using System.Diagnostics;
 
-namespace Stride3DMarketPlace.Seller.Controllers
+namespace Stride3dMarketplace.Publisher.Controllers
 {
     [Authorize]
     public class HomeController : Controller

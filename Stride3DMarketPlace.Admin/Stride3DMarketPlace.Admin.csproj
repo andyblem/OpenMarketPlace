@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Stride3DMarketPlace.Data\Stride3DMarketPlace.Persistance.csproj" />
+    <ProjectReference Include="..\Stride3DMarketPlace.Data\Stride3DMarketplace.Persistance.csproj" />
   </ItemGroup>
 
 </Project>

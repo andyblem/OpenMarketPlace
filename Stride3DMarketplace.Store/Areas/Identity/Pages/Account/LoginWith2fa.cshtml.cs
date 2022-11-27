@@ -13,9 +13,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using Stride3DMarketPlace.Persistance.Models;
+using Stride3dMarketplace.Persistance.Models;
 
-namespace Stride3DMarketPlace.Store.Areas.Identity.Pages.Account
+namespace Stride3dMarketplace.Store.Areas.Identity.Pages.Account
 {
     public class LoginWith2faModel : PageModel
     {

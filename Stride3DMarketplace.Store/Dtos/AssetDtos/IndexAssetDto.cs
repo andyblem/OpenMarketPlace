@@ -1,4 +1,4 @@
-﻿namespace Stride3DMarketPlace.Store.Dtos.AssetDtos
+﻿namespace Stride3dMarketplace.Store.Dtos.AssetDtos
 {
     public class IndexAssetDto
     {

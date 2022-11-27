@@ -1,10 +1,9 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Stride3DMarketPlace.Persistance.Data;
-using Stride3DMarketPlace.Persistance.Dtos;
-using Stride3DMarketPlace.Seller.Data;
+using Stride3dMarketplace.Persistance.Data;
+using Stride3dMarketplace.Persistance.Dtos;
 
-namespace Stride3DMarketPlace.Seller.CQRS.AssetCategoryCQRS.Queries
+namespace Stride3dMarketplace.Publisher.CQRS.AssetCategoryCQRS.Queries
 {
     public class GetAssetCategoriesSelectItemsQuery : IRequest<IEnumerable<SelectItemDto<int>>>
     {
@@ -12,9 +11,9 @@ namespace Stride3DMarketPlace.Seller.CQRS.AssetCategoryCQRS.Queries
 
     public class GetAssetCategoriesSelectItemsQueryHandler : IRequestHandler<GetAssetCategoriesSelectItemsQuery, IEnumerable<SelectItemDto<int>>>
     {
-        private readonly SellerDbContext _dbContext;
+        private readonly ApplicationDbContext _dbContext;
 
-        public GetAssetCategoriesSelectItemsQueryHandler(SellerDbContext context)
+        public GetAssetCategoriesSelectItemsQueryHandler(ApplicationDbContext context)
         {
             _dbContext = context;
         }

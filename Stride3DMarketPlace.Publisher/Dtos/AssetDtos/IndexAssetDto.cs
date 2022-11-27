@@ -1,7 +1,8 @@
-﻿using Stride3DMarketPlace.Persistance.Enums;
+﻿using Stride3dMarketplace.Persistance.Enums;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
-namespace Stride3DMarketPlace.Seller.Dtos.AssetDtos
+namespace Stride3dMarketplace.Publisher.Dtos.AssetDtos
 {
     public class IndexAssetDto
     {
@@ -12,29 +13,36 @@ namespace Stride3DMarketPlace.Seller.Dtos.AssetDtos
 
 
         [DisplayName("Type")]
-        public string AssetType { get; set; }
+        public string AssetCategory { get; set; }
 
         public string IconImagePath { get; set; }
 
         [DisplayName("Version")]
-        public string LatestVersion { get; set; }
+        public string Version { get; set; }
 
+        [DisplayName("Package name")]
         public string Name { get; set; }
 
 
-        [DisplayName("Created At")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayName("Created")]
         public DateTime? CreatedAt { get; set; }
 
 
-        [DisplayName("Modified At")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayName("Modified")]
         public DateTime? ModifiedAt { get; set; }
 
 
-        [DisplayName("Released At")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayName("Released")]
         public DateTime? ReleasedAt { get; set; }
 
 
-        [DisplayName("State")]
-        public AssetReleaseStateEnums? AssetReleaseStateId { get; set; }
+        [DisplayName("Status")]
+        public AssetStatusEnums? AssetStatus { get; set; }
     }
 }

@@ -13,10 +13,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-using Stride3DMarketPlace.Persistance.Data;
-using Stride3DMarketPlace.Persistance.Models;
+using Stride3dMarketplace.Persistance.Data;
+using Stride3dMarketplace.Persistance.Models;
 
-namespace Stride3DMarketPlace.Seller.Areas.Identity.Pages.Account
+namespace Stride3dMarketplace.Publisher.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class RegisterModel : PageModel
@@ -114,7 +114,7 @@ namespace Stride3DMarketPlace.Seller.Areas.Identity.Pages.Account
                         await _userManager.AddToRoleAsync(newUser, "Publisher");
 
                         // create and save publisher
-                        var newPublisher = new Publisher()
+                        var newPublisher = new Persistance.Models.Publisher()
                         {
                             Name = Input.Name,
                             CreatedById = newUser.Id
@@ -161,7 +161,7 @@ namespace Stride3DMarketPlace.Seller.Areas.Identity.Pages.Account
                         await _userManager.AddToRoleAsync(existingUser, "Publisher");
 
                         // create and save publisher
-                        var newPublisher = new Publisher()
+                        var newPublisher = new Persistance.Models.Publisher()
                         {
                             Name = Input.Name,
                             CreatedById = existingUser.Id

@@ -2,9 +2,9 @@ using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Stride3DMarketPlace.Persistance.Data;
-using Stride3DMarketPlace.Persistance.Managers;
-using Stride3DMarketPlace.Persistance.Models;
+using Stride3DMarketplace.Persistance.Data;
+using Stride3DMarketplace.Persistance.Managers;
+using Stride3DMarketplace.Persistance.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

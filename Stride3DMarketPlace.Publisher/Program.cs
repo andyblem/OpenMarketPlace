@@ -2,29 +2,32 @@ using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Stride3DMarketPlace.Persistance.Data;
-using Stride3DMarketPlace.Persistance.Managers;
-using Stride3DMarketPlace.Persistance.Models;
-using Stride3DMarketPlace.Persistance.Seeders;
-using Stride3DMarketPlace.Seller.Data;
+using Stride3dMarketplace.Persistance.Data;
+using Stride3dMarketplace.Persistance.Managers;
+using Stride3dMarketplace.Persistance.Models;
+using Stride3dMarketplace.Persistance.Seeders;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 var serverVersion = ServerVersion.AutoDetect(connectionString);
 
-builder.Services.AddDbContext<SellerDbContext>(options =>
-    options.UseMySql(connectionString, serverVersion)
-        .LogTo(Console.WriteLine, LogLevel.Information)
-        .EnableSensitiveDataLogging()
-        .EnableDetailedErrors());
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseMySql(connectionString,
+        serverVersion,
+        x => x.MigrationsAssembly("Stride3dMarketplace.Persistance"))
+    // The following three options help with debugging, but should
+    // be changed or removed for production.
+    .LogTo(Console.WriteLine, LogLevel.Information)
+    .EnableSensitiveDataLogging()
+    .EnableDetailedErrors());
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<SellerDbContext>()
+    .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddUserManager<ApplicationUserManager<ApplicationUser>>()
     .AddDefaultTokenProviders();
 
@@ -85,7 +88,7 @@ async Task InitializeDbAsync(IApplicationBuilder app)
     using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
     {
 
-        var context = serviceScope.ServiceProvider.GetRequiredService<SellerDbContext>();
+        var context = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
         var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
         //checking if the database exist

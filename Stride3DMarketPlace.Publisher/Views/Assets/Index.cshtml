@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Stride3DMarketPlace.Seller.Dtos.AssetDtos.IndexAssetDto>
+﻿@using Stride3dMarketplace.Persistance.Enums;
+
+@model IEnumerable<Stride3dMarketplace.Publisher.Dtos.AssetDtos.IndexAssetDto>
 
 @{
     ViewData["PageHeader"] = "Assets";
@@ -61,7 +63,7 @@
                             <div class="col-3">
                                 <div class="form-group" id="asset-category-form-group">
                                     <label for="AssetCategoryId" class="control-label">Asset Category</label>
-                                    <select class="form-control form-control-lg select2bs4" id="asset-category-id" name="AssetCategoryId" style="width: 100%;">
+                                    <select class="form-control form-control-sm select2bs4" id="asset-category-id" name="AssetCategoryId" style="width: 100%;">
                                     </select>
                                 </div>
                             </div>
@@ -70,17 +72,17 @@
 
                                 <div class="form-group" id="asset-release-state-form-group">
                                     <label for="AssetReleaseStateId" class="control-label">Asset State</label>
-                                    <select class="form-control select2bs4" id="asset-release-state-id" name="AssetReleaseStateId" style="width: 100%;">
+                                    <select class="form-control form-control-sm select2bs4" id="asset-release-state-id" name="AssetReleaseStateId" style="width: 100%;">
                                     </select>
                                 </div>
                             </div>
                         </div>
 
                         <div class="row mt-1 justify-content-end">
-                            <button class="btn btn-danger mr-1" type="submit">
+                            <button class="btn btn-danger btn-sm mr-5" type="submit">
                                 Apply Filters
                             </button>
-                            <button class="btn btn-default" type="reset">
+                            <button class="btn btn-default btn-sm" type="reset">
                                 Reset
                             </button>
                         </div>
@@ -96,19 +98,13 @@
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.IconImagePath)
-                            </th>
-                            <th>
                                 @Html.DisplayNameFor(model => model.Name)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.AssetType)
+                                @Html.DisplayNameFor(model => model.AssetStatus)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.AssetReleaseStateId)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.LatestVersion)
+                                @Html.DisplayNameFor(model => model.Version)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.CreatedAt)
@@ -119,6 +115,8 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.ReleasedAt)
                             </th>
+                            <th>
+                            </th>
                             <th></th>
                         </tr>
                     </thead>
@@ -126,34 +124,73 @@
                     <tbody>
                         @foreach (var item in Model) {
                                 <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.IconImagePath)
+                                    <td class="align-middle">
+                                        <div class="package-info-box">
+                                            <span class="package-info-box-icon">
+                                                <i class="fas fa-image"></i>
+                                            </span>
+
+                                            <div class="info-box-content">
+                                                <span class="package-info-box-content-heading">
+                                                    @Html.DisplayFor(modelItem => item.Name)
+                                                </span>
+                                                <span class="package-info-box-content-subheading">
+                                                    @Html.DisplayFor(modelItem => item.AssetCategory) 
+                                                </span>
+                                            </div>
+                                            <!-- /.info-box-content -->
+                                        </div>
                                     </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Name)
+
+                                    <td class ="align-middle">
+                                        @if(item.AssetStatus == AssetStatusEnums.Published){
+
+                                            <span class="badge bg-success">Published</span>
+                                        }
+                                        else if (item.AssetStatus == AssetStatusEnums.Decapreated)
+                                        {
+                                            <span class="badge bg-danger">Decapreciated</span>
+
+                                        }
+                                        else if (item.AssetStatus == AssetStatusEnums.Draft)
+                                        {
+                                            <span class="badge bg-primary">Draft</span>
+                                        }
                                     </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.AssetType)
+
+                                    <td class="align-middle">
+                                        @Html.DisplayFor(modelItem => item.Version)
                                     </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.AssetReleaseStateId)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.LatestVersion)
-                                    </td>
-                                    <td>
+
+                                    <td class="align-middle">
                                         @Html.DisplayFor(modelItem => item.CreatedAt)
                                     </td>
-                                    <td>
+
+                                    <td class="align-middle">
                                         @Html.DisplayFor(modelItem => item.ModifiedAt)
                                     </td>
-                                    <td>
+
+                                    <td class="align-middle">
                                         @Html.DisplayFor(modelItem => item.ReleasedAt)
                                     </td>
-                                    <td>
-                                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+
+                                    <td class="align-middle">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="false">
+                                                <span class="sr-only">Action</span>
+                                            </button>
+                                            <div class="dropdown-menu" role="menu" style="">
+                                                <a class="dropdown-item" asp-action="Edit" asp-route-id="@item.Id">
+                                                    <span class="far fa-edit mr-2"></span>
+                                                    Edit
+                                                </a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="#">
+                                                    <span class="fas fa-store mr-2"></span>
+                                                    View in store
+                                                </a>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                         }
@@ -169,6 +206,63 @@
 
 </div>
 
+@section Styles {
+
+    <style>
+        .package-info-box {
+            border-radius: 0.25rem;
+            display: -ms-flexbox;
+            display: flex;
+            margin-bottom: 1rem;
+            min-height: 80px;
+            padding: 0.5rem;
+            position: relative;
+            width: 100%;
+        }
+
+        .package-info-box-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            line-height: 1.8;
+            flex: 1;
+            padding: 0 10px;
+            overflow: hidden;
+        }
+
+        .package-info-box-content-heading {
+            display: block;
+            margin-top: 0.25rem;
+            font-weight: 700;
+        }
+
+        .package-info-box-content-subheading {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .package-info-box-icon {
+
+            background-size: 100%;
+            background-color: #e0e0e0;
+
+            border-radius: 0.25rem;
+            align-items: center;
+            display: -ms-flexbox;
+            display: flex;
+            font-size: 1.875rem;
+            justify-content: center;
+            text-align: center;
+            height: 70px;
+            width: 70px;
+            min-width: 70px;
+            margin-right: 15px;
+        }
+
+    </style>
+}
 
 @section Scripts{
     <script>

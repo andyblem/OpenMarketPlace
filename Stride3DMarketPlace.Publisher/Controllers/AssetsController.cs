@@ -3,16 +3,16 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Stride3DMarketPlace.Persistance.Enums;
-using Stride3DMarketPlace.Persistance.Models;
-using Stride3DMarketPlace.Seller.CQRS.AssetCategoryCQRS.Queries;
-using Stride3DMarketPlace.Seller.CQRS.AssetCQRS.Commands;
-using Stride3DMarketPlace.Seller.CQRS.AssetCQRS.Queries;
-using Stride3DMarketPlace.Seller.CQRS.PublisherCQRS.Queries;
-using Stride3DMarketPlace.Seller.Dtos.AssetDtos;
+using Stride3dMarketplace.Persistance.Enums;
+using Stride3dMarketplace.Persistance.Models;
+using Stride3dMarketplace.Publisher.CQRS.AssetCategoryCQRS.Queries;
+using Stride3dMarketplace.Publisher.CQRS.AssetCQRS.Commands;
+using Stride3dMarketplace.Publisher.CQRS.AssetCQRS.Queries;
+using Stride3dMarketplace.Publisher.CQRS.PublisherCQRS.Queries;
+using Stride3dMarketplace.Publisher.Dtos.AssetDtos;
 using System.Security.Claims;
 
-namespace Stride3DMarketPlace.Seller.Controllers
+namespace Stride3dMarketplace.Publisher.Controllers
 {
     [Authorize]
     public class AssetsController : Controller
@@ -29,7 +29,7 @@ namespace Stride3DMarketPlace.Seller.Controllers
         }
 
         // GET: Assets
-        public async Task<IActionResult> Index(AssetReleaseStateEnums? assetReleaseStateId)
+        public async Task<IActionResult> Index(AssetStatusEnums? assetReleaseStateId)
         {
             // get logged in user publisher-id
             var isInPublisherRole = User.IsInRole("Publisher");

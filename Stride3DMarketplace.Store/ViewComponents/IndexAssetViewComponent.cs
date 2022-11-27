@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Stride3DMarketPlace.Store.Dtos.AssetDtos;
+using Stride3dMarketplace.Store.Dtos.AssetDtos;
 
-namespace Stride3DMarketPlace.Store.ViewComponents
+namespace Stride3dMarketplace.Store.ViewComponents
 {
     public class IndexAssetViewComponent : ViewComponent
     {

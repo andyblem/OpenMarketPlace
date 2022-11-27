@@ -1,24 +1,23 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Stride3DMarketPlace.Persistance.Data;
-using Stride3DMarketPlace.Persistance.Enums;
-using Stride3DMarketPlace.Seller.Data;
-using Stride3DMarketPlace.Seller.Dtos.AssetDtos;
+using Stride3dMarketplace.Persistance.Data;
+using Stride3dMarketplace.Persistance.Enums;
+using Stride3dMarketplace.Publisher.Dtos.AssetDtos;
 
-namespace Stride3DMarketPlace.Seller.CQRS.AssetCQRS.Queries
+namespace Stride3dMarketplace.Publisher.CQRS.AssetCQRS.Queries
 {
     public class GetIndexAssetsQuery : IRequest<IEnumerable<IndexAssetDto>>
     {
         public int? PublisherId { get; set; }
 
-        public AssetReleaseStateEnums? AssetReleaseStateId { get; set; }
+        public AssetStatusEnums? AssetReleaseStateId { get; set; }
     }
 
     public class GetIndexAssetsQueryHandler : IRequestHandler<GetIndexAssetsQuery, IEnumerable<IndexAssetDto>>
     {
-        private readonly SellerDbContext _dbContext;
+        private readonly ApplicationDbContext _dbContext;
 
-        public GetIndexAssetsQueryHandler(SellerDbContext dbContext)
+        public GetIndexAssetsQueryHandler(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -33,7 +32,7 @@ namespace Stride3DMarketPlace.Seller.CQRS.AssetCQRS.Queries
             // add conditions
             if (request.AssetReleaseStateId != null)
             {
-                getAssetsQuery = getAssetsQuery.Where(a => a.AssetReleaseStateId == request.AssetReleaseStateId);
+                getAssetsQuery = getAssetsQuery.Where(a => a.AssetStatusId == request.AssetReleaseStateId);
             }
 
             // get data
@@ -43,9 +42,10 @@ namespace Stride3DMarketPlace.Seller.CQRS.AssetCQRS.Queries
                     Id = a.Id,
                     Rating = a.Rating,
 
-                    AssetType = a.AssetType.Name,
-                    IconImagePath = a.AssetResource.IconImage,
-                    LatestVersion = a.LatestVersion,
+                    AssetCategory = a.AssetCategory.Name,
+                    AssetStatus = a.AssetStatusId,
+                    IconImagePath = a.IconImage,
+                    Version = a.Version != null ? a.Version : "0.0.0",
                     Name = a.Name,
 
                     CreatedAt = a.CreatedAt,

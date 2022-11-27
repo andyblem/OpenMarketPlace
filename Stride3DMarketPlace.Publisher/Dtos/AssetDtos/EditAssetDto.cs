@@ -1,7 +1,7 @@
-﻿using Stride3DMarketPlace.Persistance.Enums;
+﻿using Stride3dMarketplace.Persistance.Enums;
 using System.ComponentModel;
 
-namespace Stride3DMarketPlace.Seller.Dtos.AssetDtos
+namespace Stride3dMarketplace.Publisher.Dtos.AssetDtos
 {
     public class EditAssetDto
     {
@@ -43,7 +43,7 @@ namespace Stride3DMarketPlace.Seller.Dtos.AssetDtos
 
 
         // special details
-        public AssetReleaseStateEnums? AssetReleaseStateId { get; set; }
+        public AssetStatusEnums? AssetReleaseStateId { get; set; }
 
         [DisplayName("Asset Type")]
         public AssetTypeEnum? AssetTypeId { get; set; }

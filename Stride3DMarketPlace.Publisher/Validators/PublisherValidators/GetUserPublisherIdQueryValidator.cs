@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using Stride3DMarketPlace.Seller.CQRS.PublisherCQRS.Queries;
+using Stride3dMarketplace.Publisher.CQRS.PublisherCQRS.Queries;
 
-namespace Stride3DMarketPlace.Seller.Validators.PublisherValidators
+namespace Stride3dMarketplace.Publisher.Validators.PublisherValidators
 {
     public class GetUserPublisherIdQueryValidator : AbstractValidator<GetUserPublisherIdQuery>
     {

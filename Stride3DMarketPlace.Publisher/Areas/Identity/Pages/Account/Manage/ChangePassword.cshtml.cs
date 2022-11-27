@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using Stride3DMarketPlace.Persistance.Models;
-namespace Stride3DMarketPlace.Seller.Areas.Identity.Pages.Account.Manage
+using Stride3dMarketplace.Persistance.Models;
+namespace Stride3dMarketplace.Publisher.Areas.Identity.Pages.Account.Manage
 {
     public class ChangePasswordModel : PageModel
     {

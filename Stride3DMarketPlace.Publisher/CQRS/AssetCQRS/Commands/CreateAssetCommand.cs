@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using MediatR;
-using Stride3DMarketPlace.Persistance.Data;
-using Stride3DMarketPlace.Persistance.Enums;
-using Stride3DMarketPlace.Persistance.Models;
-using Stride3DMarketPlace.Seller.Data;
-using Stride3DMarketPlace.Seller.Dtos.AssetDtos;
+using Stride3dMarketplace.Persistance.Data;
+using Stride3dMarketplace.Persistance.Enums;
+using Stride3dMarketplace.Persistance.Models;
+using Stride3dMarketplace.Publisher.Dtos.AssetDtos;
 
-namespace Stride3DMarketPlace.Seller.CQRS.AssetCQRS.Commands
+namespace Stride3dMarketplace.Publisher.CQRS.AssetCQRS.Commands
 {
     public class CreateAssetCommand : IRequest<Asset>
     {
@@ -16,10 +15,10 @@ namespace Stride3DMarketPlace.Seller.CQRS.AssetCQRS.Commands
 
     public class CreateAssetCommandHandler : IRequestHandler<CreateAssetCommand, Asset>
     {
-        private readonly SellerDbContext _dbContext;
+        private readonly ApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
 
-        public CreateAssetCommandHandler(SellerDbContext dbContext, IMapper mapper)
+        public CreateAssetCommandHandler(ApplicationDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
             _mapper = mapper;
@@ -30,13 +29,13 @@ namespace Stride3DMarketPlace.Seller.CQRS.AssetCQRS.Commands
             // map dto to model
             var asset = _mapper.Map<Asset>(request.Asset);
 
-            ////// add extra data
-            ////asset.AssetReleaseStateId = AssetReleaseStateEnums.InitDraft;
-            ////asset.AssetDraftReleaseStateId = AssetDraftReleaseStateEnums.Available;
-            ////asset.AssetDraft = new AssetDraft()
-            ////{
-            ////    LatestVersion = "1.0.0"
-            ////};
+            // add extra data
+            asset.AssetStatusId = AssetStatusEnums.Draft;
+            asset.AssetDraft = new AssetDraft()
+            {
+                AssetDraftStatusId = AssetDraftStatusEnums.Draft,
+                Version = "1.0.0"
+            };
 
             // add to db
             _dbContext.Add(asset);

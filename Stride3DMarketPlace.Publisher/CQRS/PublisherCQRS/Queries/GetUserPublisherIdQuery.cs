@@ -1,9 +1,8 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Stride3DMarketPlace.Persistance.Data;
-using Stride3DMarketPlace.Seller.Data;
+using Stride3dMarketplace.Persistance.Data;
 
-namespace Stride3DMarketPlace.Seller.CQRS.PublisherCQRS.Queries
+namespace Stride3dMarketplace.Publisher.CQRS.PublisherCQRS.Queries
 {
     public class GetUserPublisherIdQuery : IRequest<int?>
     {
@@ -12,9 +11,9 @@ namespace Stride3DMarketPlace.Seller.CQRS.PublisherCQRS.Queries
 
     public class GetUserPublisherIdQueryHandler : IRequestHandler<GetUserPublisherIdQuery, int?>
     {
-        private readonly SellerDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public GetUserPublisherIdQueryHandler(SellerDbContext context)
+        public GetUserPublisherIdQueryHandler(ApplicationDbContext context)
         {
             _context = context;
         }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Stride3DMarketPlace.Seller.Areas.Identity.Pages.Account.Manage
+namespace Stride3dMarketplace.Publisher.Areas.Identity.Pages.Account.Manage
 {
     public static class ManageNavPages
     {

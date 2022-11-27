@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using Stride3DMarketPlace.Seller.CQRS.AssetCQRS.Queries;
+using Stride3dMarketplace.Publisher.CQRS.AssetCQRS.Queries;
 
-namespace Stride3DMarketPlace.Seller.Validators.AssetValidators
+namespace Stride3dMarketplace.Publisher.Validators.AssetValidators
 {
     public class GetAssetForEditQueryValidator : AbstractValidator<GetAssetForEditQuery>
     {

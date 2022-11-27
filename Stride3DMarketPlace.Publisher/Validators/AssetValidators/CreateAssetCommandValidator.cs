@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using Stride3DMarketPlace.Seller.CQRS.AssetCQRS.Commands;
+using Stride3dMarketplace.Publisher.CQRS.AssetCQRS.Commands;
 
-namespace Stride3DMarketPlace.Seller.Validators.AssetValidators
+namespace Stride3dMarketplace.Publisher.Validators.AssetValidators
 {
     public class CreateAssetCommandValidator : AbstractValidator<CreateAssetCommand>
     {

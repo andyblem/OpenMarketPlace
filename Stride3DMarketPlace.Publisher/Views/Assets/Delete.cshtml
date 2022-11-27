@@ -1,4 +1,4 @@
-﻿@model Stride3DMarketPlace.Persistance.Models.Asset
+﻿@model Stride3dMarketplace.Persistance.Models.Asset
 
 @{
     ViewData["Title"] = "Delete";
@@ -10,7 +10,7 @@
 <div>
     <h4>Asset</h4>
     <hr />
-    <dl class="row">
+    @*<dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Rating)
         </dt>
@@ -42,10 +42,10 @@
             @Html.DisplayFor(model => model.GitRepository)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LatestVersion)
+            @Html.DisplayNameFor(model => model.Version)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LatestVersion)
+            @Html.DisplayFor(model => model.Version)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.License)
@@ -72,10 +72,10 @@
             @Html.DisplayFor(model => model.ReleasedAt)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AssetReleaseState)
+            @Html.DisplayNameFor(model => model.AssetStatus)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AssetReleaseState.Name)
+            @Html.DisplayFor(model => model.AssetStatus.Name)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.AssetType)
@@ -149,7 +149,7 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ModifiedById)
         </dd>
-    </dl>
+    </dl>*@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
