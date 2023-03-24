@@ -1,0 +1,59 @@
+.nav-user-photo {
+    margin: -4px 8px 0 0;
+    border-radius: 100%;
+    border: 2px solid #FFF;
+    max-width: 35px;
+}
+
+.user-info {
+    max-width: 100px;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left;
+    vertical-align: top;
+    line-height: 15px;
+    top: 1px;
+}
+
+.user-info small {
+    display: block;
+}
+
+.form-input-section {
+    border-bottom: 1px solid #666;
+    margin-bottom: 15px;
+    padding-bottom: 4.8rem;
+}
+
+.card-tools a{
+    margin-left: 10px;
+}
+
+.btn-tertiary {
+    background-color: transparent !important;
+    border: .1rem solid #666 !important;
+    color: #fff !important;
+}
+
+
+.tagsinput {
+    border-radius: 3px;
+}
+
+div.tagsinput span.tag {
+    border: 1px solid #a5d24a;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    display: block;
+    float: left;
+    padding: 5px;
+    text-decoration: none;
+    background: #cde69c;
+    color: #638421;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-family: helvetica;
+    font-size: 13px;
+}

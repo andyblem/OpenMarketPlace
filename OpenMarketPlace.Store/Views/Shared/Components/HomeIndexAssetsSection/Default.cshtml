@@ -1,0 +1,28 @@
+﻿@model Stride3dMarketplace.Store.Dtos.AssetDtos.IndexAssetsSectionDto;
+
+<section class="section">
+    <div class="section-heading">
+        <div class="section-header">
+            <span class="h2">@Model.Name</span>
+            <a hre="#" class="float-end">
+                See More
+            </a>
+        </div>
+        <div class="line-1"></div>
+    </div>
+    <div class="section-content">
+        <div class="row">
+
+            <!--create assets-->
+            @foreach(var asset in Model.Assets)
+            {
+                await Component.InvokeAsync("IndexAsset",
+                    new
+                    {
+                        asset = asset
+                    });
+            }
+
+        </div>
+    </div>
+</section>

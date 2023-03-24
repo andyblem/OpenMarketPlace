@@ -1,0 +1,14 @@
+C:\Users\andyb\Projects\Personal\Web\Stride3DMarketplace\Stride3DMarketPlace.Data\obj\Debug\net6.0\Stride3DMarketPlace.Database.csproj.AssemblyReference.cache
+C:\Users\andyb\Projects\Personal\Web\Stride3DMarketplace\Stride3DMarketPlace.Data\obj\Debug\net6.0\Stride3DMarketPlace.Database.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\andyb\Projects\Personal\Web\Stride3DMarketplace\Stride3DMarketPlace.Data\obj\Debug\net6.0\Stride3DMarketPlace.Database.AssemblyInfoInputs.cache
+C:\Users\andyb\Projects\Personal\Web\Stride3DMarketplace\Stride3DMarketPlace.Data\obj\Debug\net6.0\Stride3DMarketPlace.Database.AssemblyInfo.cs
+C:\Users\andyb\Projects\Personal\Web\Stride3DMarketplace\Stride3DMarketPlace.Data\obj\Debug\net6.0\Stride3DMarketPlace.Database.csproj.CoreCompileInputs.cache
+C:\Users\andyb\Projects\Personal\Web\Stride3DMarketplace\Stride3DMarketPlace.Data\bin\Debug\net6.0\Stride3DMarketPlace.Database.deps.json
+C:\Users\andyb\Projects\Personal\Web\Stride3DMarketplace\Stride3DMarketPlace.Data\bin\Debug\net6.0\Stride3DMarketPlace.Database.runtimeconfig.json
+C:\Users\andyb\Projects\Personal\Web\Stride3DMarketplace\Stride3DMarketPlace.Data\bin\Debug\net6.0\Stride3DMarketPlace.Database.dll
+C:\Users\andyb\Projects\Personal\Web\Stride3DMarketplace\Stride3DMarketPlace.Data\bin\Debug\net6.0\Stride3DMarketPlace.Database.pdb
+C:\Users\andyb\Projects\Personal\Web\Stride3DMarketplace\Stride3DMarketPlace.Data\obj\Debug\net6.0\Stride3DMarketPlace.Database.dll
+C:\Users\andyb\Projects\Personal\Web\Stride3DMarketplace\Stride3DMarketPlace.Data\obj\Debug\net6.0\refint\Stride3DMarketPlace.Database.dll
+C:\Users\andyb\Projects\Personal\Web\Stride3DMarketplace\Stride3DMarketPlace.Data\obj\Debug\net6.0\Stride3DMarketPlace.Database.pdb
+C:\Users\andyb\Projects\Personal\Web\Stride3DMarketplace\Stride3DMarketPlace.Data\obj\Debug\net6.0\Stride3DMarketPlace.Database.genruntimeconfig.cache
+C:\Users\andyb\Projects\Personal\Web\Stride3DMarketplace\Stride3DMarketPlace.Data\obj\Debug\net6.0\ref\Stride3DMarketPlace.Database.dll
