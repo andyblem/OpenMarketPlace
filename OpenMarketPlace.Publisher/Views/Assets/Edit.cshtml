@@ -1,0 +1,1218 @@
+﻿@model OpenMarketPlace.Publisher.Dtos.AssetDtos.EditAssetDto;
+
+@{
+    ViewData["PageHeader"] = "Edit Asset";
+    ViewData["Title"] = "Asset Details";
+}
+
+@section Styles{
+
+    <!-- BS Stepper -->
+    <link rel="stylesheet" href="~/lib/bs-stepper/css/bs-stepper.min.css">
+    
+     <!-- DataTables -->
+    <link rel="stylesheet" href="~/lib/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/lib/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/lib/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+
+    <!-- dropzonejs -->
+    <link rel="stylesheet" href="~/lib/dropzone/min/dropzone.min.css">
+
+    <!-- summernote -->
+    <link rel="stylesheet" href="~/lib/summernote/summernote-bs4.min.css">
+
+    <!-- Select2 -->
+    <link rel="stylesheet" href="~/lib/select2/css/select2.min.css">
+    <link rel="stylesheet" href="~/lib/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+
+    <!--ToastR-->
+    <link rel="stylesheet" href="~/lib/toastr/toastr.min.css" />
+}
+
+
+<div class="row">
+
+    <!-- left column -->
+    <div class="col-12">
+
+        <!-- general form elements -->
+        <div class="card card-default">
+
+            <div class="card-header">
+                <h3 class="card-title">Asset Details</h3>
+                <div class="card-tools">
+                    <span class="badge rounded-pill bg-primary">Draft</span>
+                </div>
+            </div>
+            <!-- /.card-header -->
+
+            <div class="card-body">
+
+                <div class="bs-stepper">
+                        
+                    <!-- stepper header-->
+                    <div class="bs-stepper-header" role="tablist">
+
+                        <!-- description -->
+                        <div class="step" data-target="#description-part">
+                            <button type="button" class="step-trigger" role="tab" aria-controls="description-part"  id="description-part-trigger">
+                                <span class="bs-stepper-circle">1</span>
+                                <span class="bs-stepper-label">Description</span>
+                            </button>
+                        </div>
+
+                        <div class="line"></div>
+
+                        <!-- release details -->
+                        <div class="step" data-target="#release-details-part">
+                            <button type="button" class="step-trigger" role="tab" aria-controls="release-details-part" id="release-details-part-trigger">
+                                <span class="bs-stepper-circle">2</span>
+                                <span class="bs-stepper-label">Release Details</span>
+                            </button>
+                        </div>
+
+                        <div class="line"></div>
+
+                        <!-- download-details -->
+                        <div class="step" data-target="#download-details-part">
+                            <button type="button" class="step-trigger" role="tab" aria-controls="download-details-part" id="download-details-part-trigger">
+                                <span class="bs-stepper-circle">3</span>
+                                <span class="bs-stepper-label">Download Details</span>
+                            </button>
+                        </div>
+
+                        <div class="line"></div>
+
+                        <!-- media part-->
+                        <div class="step" data-target="#media-part">
+                            <button type="button" class="step-trigger" role="tab" aria-controls="media-part" id="media-part-trigger">
+                            <span class="bs-stepper-circle">4</span>
+                            <span class="bs-stepper-label">Media</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- stepper content -->
+                    <div class="bs-stepper-content">
+
+                        <!-- description content here -->
+                        <div id="description-part" class="content" role="tabpanel" aria-labelledby="description-trigger">
+
+                            <!-- description form start -->
+                            <form class="form-horizontal" id="edit-asset-description-form" asp-action="UpdateDescriptionDetails" method="post">
+
+                                <div id="edit-asset-description-validation-summary" asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                <!--basic details row-->
+                                <div class="row form-input-section">
+
+                                    <div class="col-md-4">
+
+                                        <h4>
+                                            <strong>
+                                                Basic Details
+                                            </strong>
+                                        </h4>
+                                        <p class="text-muted">
+                                            Choose the name for your asset. Consider a short and precious
+                                            name that is easier for the customer to remember and find.
+                                        </p>
+                                    </div>
+
+                                    <div class="col-md-8 pl-5">
+
+                                        <div class="form-group" id="edit-asset-name-form-group">
+                                            <label asp-for="Name" class="control-label"></label>
+                                            <input asp-for="Name" class="form-control" placeholder="Name">
+                                            <span asp-validation-for="Name" class="text-danger"></span>
+                                        </div>
+
+                                        <div class="form-group" id="edit-asset-category-form-group">
+                                            <label asp-for="AssetCategoryId" class="control-label"></label>
+                                            <select asp-for="AssetCategoryId" class="form-control select2bs4" asp-items="ViewBag.AssetCategoryId" style="width: 100%;"></select>
+                                            <span asp-validation-for="AssetCategoryId" class="text-danger"></span>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <!--description details row-->
+                                <div class="row form-input-section">
+
+                                    <div class="col-md-4">
+
+                                        <h4>
+                                            <strong>
+                                                Description Details
+                                            </strong>
+                                        </h4>
+                                        <p class="text-muted">
+                                            Describe your asset. Try to include as much detail as possible 
+                                            to help persuade users to purchase your product, and to answer 
+                                            any questions they might have.
+                                        </p>
+                                    </div>
+
+                                    <div class="col-md-8 pl-5">
+
+                                        <div class="form-group" id="edit-asset-description-form-group">
+                                            <label asp-for="Description" class="control-label"></label>
+                                            <textarea id="descriptionEditor" asp-for="Description" class="form-control">
+                                                Place <em>some</em> <u>text</u> <strong>here</strong>
+                                            </textarea>
+                                            <span asp-validation-for="Description" class="text-danger"></span>
+                                        </div>
+
+  
+                                    </div>
+                                </div>
+
+                                <!--keywords details-->
+                                <div class="row form-input-section">
+
+                                    <div class="col-md-4">
+
+                                        <h4>
+                                            <strong>
+                                                Tags
+                                            </strong>
+                                        </h4>
+                                        <p class="text-muted">
+                                            Choose several keywords to help users find your asset using different 
+                                            search parameters
+                                        </p>
+                                    </div>
+
+                                    <div class="col-md-8 pl-5">
+
+                                        <div class="form-group" id="edit-asset-keywords-form-group">
+                                            <label asp-for="Keywords" class="control-label"></label>
+                                            <select class="form-control select2bs4"
+                                                    id="edit-asset-keywords-id"
+                                                    data-placeholder="Select keywords"
+                                                    multiple="multiple"
+                                                    asp-for="Keywords"
+                                                    style="width: 100%;">
+                                            </select>
+                                            <span asp-validation-for="Keywords" class="text-danger"></span>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <!--hidden fields-->
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" asp-for="Id" />
+
+                            </form>
+
+                        </div>
+
+                        <!-- release-notes content here -->
+                        <div id="release-details-part" class="content" role="tabpanel" aria-labelledby="release-details-part-trigger">
+                            
+                            <!-- release form start -->
+                            <form class="form-horizontal" id="edit-asset-release-details-form" asp-action="UpdateReleaseDetails" method="post">
+
+                                <div class="row form-input-section">
+
+                                    <div class="col-md-4">
+                                        <h4>
+                                            <strong>
+                                                Compatibility Details
+                                            </strong>
+                                        </h4>
+                                        <p class="text-muted">
+                                            Specify the version of Stride3d this version of the
+                                            asset is designed to work with. 
+                                        </p>
+                                    </div>
+                                    <div class="col-md-8 pl-5">
+
+                                        <div class="form-group" id="edit-asset-engine-compatibility-form-group">
+                                            <label asp-for="EngineCompatibility" class="control-label"></label>
+                                            <select class="form-control select2bs4"
+                                                id="edit-asset-engine-compatibility-id"
+                                                data-placeholder="Select Compatible Engine Versions" 
+                                                multiple="multiple" 
+                                                name="EngineCompatibility"
+                                                style="width: 100%;">
+                                            </select>
+                                            <span asp-validation-for="EngineCompatibility" class="text-danger"></span>
+                                        </div>
+                                    
+                                        <div class="form-group" id="edit-asset-version-form-group">
+                                            <label asp-for="Version" class="control-label"></label>
+                                            <input asp-for="Version" class="form-control" data-inputmask='"mask": "9 . 9 . 9"' data-mask/>
+                                            <span class="text-muted">Use versioning major.minor.patch</span>
+                                            <span asp-validation-for="Version" class="text-danger"></span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="row form-input-section">
+                                    <div class="col-md-4">
+                                        <h4>
+                                            <strong>
+                                                Licensing Details
+                                            </strong>
+                                        </h4>
+                                        <p class="text-muted">
+                                            Specify the license for this asset
+                                        </p>
+                                    </div>
+                                    <div class="col-md-8 pl-5">
+
+                                        <div class="form-group" id="edit-asset-license-form-group">
+                                            <label asp-for="License" class="control-label"></label>
+                                            <input asp-for="License" class="form-control" />
+                                            <span asp-validation-for="License" class="text-danger"></span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                
+                                <div class="row form-input-section">
+
+                                    <div class="col-md-4">
+
+                                        <h4>
+                                            <strong>
+                                                Release Notes
+                                            </strong>
+                                        </h4>
+                                        <p class="text-muted">
+                                            Describe your asset. Try to include as much detail as possible 
+                                            to help persuade users to purchase your product, and to answer 
+                                            any questions they might have.
+                                        </p>
+                                    </div>
+
+                                    <div class="col-md-8 pl-5">
+
+                                        <div class="form-group" id="edit-asset-release-notes-form-group">
+                                            <label asp-for="ReleaseNotes" class="control-label"></label>
+                                            <textarea id="releaseNotesEditor" asp-for="ReleaseNotes" class="form-control">
+                                                Place <em>some</em> <u>text</u> <strong>here</strong>
+                                            </textarea>
+                                            <span asp-validation-for="ReleaseNotes" class="text-danger"></span>
+                                        </div>
+
+  
+                                    </div>
+                                </div>
+
+                                <!--hidden fields-->
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" asp-for="Id" />
+
+                            </form>
+
+                        </div>
+
+                        <!-- download-details content here -->
+                        <div id="download-details-part" class="content" role="tabpanel" aria-labelledby="download-details-part-trigger">
+                            
+                            <div class="row form-input-section">
+                                <div class="col-md-4">
+                                        <h4>
+                                        <strong>
+                                            Download Details
+                                        </strong>
+                                    </h4>
+                                    <p class="text-muted">
+                                        Specify the various locations the user can download this
+                                        asset from
+                                    </p>
+                                </div>
+                                <div class="col-md-8">
+
+                                    <div class="row mb-1 justify-content-end">
+                                        <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#create-download-link-modal" title="Filter" data-bs-toggle="tooltip">
+                                            <i class="fas fa-plus-circle mr-1"></i>
+                                            Create Download Link
+                                        </a>
+                                    </div>
+
+                                    <!--download links data-table-->
+                                    <table class="table" id="download-links-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Download Platform</th>
+                                                <th>Status</th>
+                                                <th>Url</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+
+                            <!-- media content here -->
+                            <div id="media-part" class="content" role="tabpanel" aria-labelledby="media-part-trigger">
+                            
+                                <div class="row form-input-section">
+                                    <div class="col-md-4">
+                                         <h4>
+                                            <strong>
+                                                Icon Image
+                                            </strong>
+                                        </h4>
+                                        <p class="text-muted">
+                                            The icon image gets shown when displaying many assets at once
+                                        </p>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="my-dropzone"></div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-input-section">
+                                    <div class="col-md-4">
+                                         <h4>
+                                            <strong>
+                                                Banner Image
+                                            </strong>
+                                        </h4>
+                                        <p class="text-muted">
+                                            The icon image gets shown at your asset details page
+                                        </p>
+                                    </div>
+                                    <div class="col-md-8">
+
+                                    </div>
+                                </div>
+
+                                <div class="row form-input-section">
+                                    <div class="col-md-4">
+                                         <h4>
+                                            <strong>
+                                                Screenshots
+                                            </strong>
+                                        </h4>
+                                        <p class="text-muted">
+                                            Showcase the ability
+                                        </p>
+                                    </div>
+                                    <div class="col-md-8">
+
+                                    </div>
+                                </div>
+
+                                <div class="row form-input-section">
+                                    <div class="col-md-4">
+                                         <h4>
+                                            <strong>
+                                                Video Demos
+                                            </strong>
+                                        </h4>
+                                        <p class="text-muted">
+                                            Share video demos of your asset
+                                        </p>
+                                    </div>
+                                    <div class="col-md-8">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                    </div>
+                </div>
+                    
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+                <button id="save-asset-btn" class="btn btn-warning mr-2">
+                    Save
+                </button>
+                <button class="btn btn-primary">Publish</button>
+            </div>
+
+        </div>
+        <!-- /.card -->
+
+    </div>
+    <!--/.col -->
+
+</div>
+
+
+<!--create download link modal-->
+<div class="modal fade" id="create-download-link-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <form class="form-horizontal" action="/AssetDownloadLinks/Create" id="create-download-link-form" method="post">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">Create Download Link</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <!--errors-->
+                    <div class="text-danger validation-summary-valid" id="create-download-link-validation-summary" data-valmsg-summary="true">
+                        <ul>
+                            <li style="display:none"></li>
+                        </ul>
+                    </div>
+
+                    <!--download link name-->
+                    <div class="form-group" id="create-download-link-name-form-group">
+                        <label for="Name" class="control-label">Name</label>
+                        <input class="form-control" name="Name" placeholder="Name">
+                    </div>
+
+                    <!--download link url-->
+                    <div class="form-group" id="create-download-link-url-form-group">
+                        <label for="Url" class="control-label">Url</label>
+                        <input class="form-control" name="Url" placeholder="www.example.com">
+                    </div>
+
+                    <!--hidden fields-->
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="AssetId" value="@Model.Id" />
+                    <input type="hidden" name="CreatedById" />
+                    <input type="hidden" name="PublisherId" />
+
+                </div>
+
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="submit-create-download-link-form-btn" class="btn btn-primary">Save</button>
+                </div>
+
+            </form>
+        </div>
+        <!-- /.modal-content -->
+
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <!-- BS-Stepper -->
+    <script src="~/lib/bs-stepper/js/bs-stepper.min.js"></script>
+    
+    <!-- DataTables  & Plugins -->
+    <script src="~/lib/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/lib/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/lib/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/lib/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/lib/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="~/lib/jszip/jszip.min.js"></script>
+    <script src="~/lib/pdfmake/pdfmake.min.js"></script>
+    <script src="~/lib/pdfmake/vfs_fonts.js"></script>
+    <script src="~/lib/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/lib/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="~/lib/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+    <!-- Summernote -->
+    <script src="~/lib/summernote/summernote-bs4.min.js"></script>
+
+    <!-- dropzonejs -->
+    <script src="~/lib/dropzone/min/dropzone.min.js"></script>
+
+    <!-- InputMask -->
+    <script src="~/lib/moment/moment.min.js"></script>
+    <script src="~/lib/inputmask/jquery.inputmask.min.js"></script>
+
+    <!-- Select2 -->
+    <script src="~/lib/select2/js/select2.full.min.js"></script>
+
+    <!--ToastR-->
+    <script src="~/lib/toastr/toastr.min.js"></script>
+
+    <script>
+        $(function() {
+
+            // set some data
+            var downloadLinks = @Html.Raw(Json.Serialize(Model.DownloadLinks));
+            populateDownloadLinksTable(downloadLinks);
+
+
+            // BS-Stepper Init
+            var stepper = new Stepper($('.bs-stepper')[0],{
+                linear: false,
+                animation: true
+            });
+
+           
+            // create download link form
+            $('#create-download-link-form').validate({
+                ignore: [],
+                rules: {
+                    Name: {
+                        required: true
+                    },
+                    Url: {
+                        required: true,
+                        url: true
+                    },
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                },
+            });
+
+            $('#submit-create-download-link-form-btn').on('click', function(){
+
+                if ($('#create-download-link-form').valid()) {
+
+                    // validate form
+                    var form = $('#create-download-link-form');
+
+                    // submit form
+                    $.ajax({
+                        url: form.attr('action'),
+                        type: form.attr('method'),
+                        data: form.serialize(),
+                        beforeSend: function() {
+
+                            toastr.info('saving download link...');
+                        },
+                        success: function (response) {
+                            
+                            // fire succes toast
+                            toastr.success('download link saved');
+
+                            // get table body
+                            var downloadLinksTableBody = $('#download-links-table tbody');
+
+                            console.log(downloadLinksTableBody);
+                            // if we don't have records then reset body
+                            if(downloadLinks.length === 0) {
+                                downloadLinksTableBody.empty();
+                            }
+                            
+                            // create new table row
+                            var newTableRow = `
+                                <tr>  
+                                    <td class="align-middle">
+                                        <div class="package-info-box" >
+                                            <span class="package-info-box-icon" >
+                                                <i class="fas fa-image"></i>
+                                            </span>
+
+                                            <div class="info-box-content" >
+                                                <span class="package-info-box-content-heading" >` +
+                                                     response.name + `
+                                                </span>
+                                            </div>
+                                            <!-- /.info-box-content -->
+                                        </div>
+                                    </td>
+
+                                    <td class="align-middle" >
+                                        <span class="badge bg-info"> Active </span>
+                                    </td>
+
+                                    <td class="align-middle">` +
+                                        response.url + `
+                                    </td>
+
+                                    <td>
+                                    </td>
+                                </tr> 
+                            `;
+
+                            // append row to table
+                            downloadLinksTableBody.append(newTableRow);
+
+                            // append download links array
+                            downloadLinks.push(response);
+
+                            // hide modal
+                            $('#create-download-link-modal').modal('hide');
+
+                        },
+                        error: function (response) {
+
+                            if (response.status == 500) {
+
+                                toastr.error('Error: 500 internal server error');
+
+                            } else {
+
+                                // get list to hold errors
+                                var validationSummaryList = $('#create-download-link-validation-summary > ul');
+
+                                // show input field errors
+                                if (response.responseJSON.Name !== undefined) {
+
+                                    //get elememts
+                                    var createDownLoadLinkNameFormGroup = $('#create-download-link-name-form-group');
+                                    var nameField = $('#create-download-link-name-form-group > input');
+
+                                    // set css
+                                    nameField.addClass('is-invalid');
+
+                                    $.each(response.responseJSON.Name, function (key, value) {
+
+                                        createDownLoadLinkNameFormGroup.append('<span id="Name-error" class="error invalid-feedback">' + value + '</span>');
+                                    });
+                                }
+                                if (response.responseJSON.Url !== undefined) {
+
+                                    //get elememts
+                                    var createDownLoadLinkUrlFormGroup = $('#create-download-link-url-form-group');
+                                    var nameField = $('#create-download-link-url-form-group > input');
+
+                                    // set css
+                                    nameField.addClass('is-invalid');
+
+                                    $.each(response.responseJSON.Url, function (key, value) {
+
+                                        createDownLoadLinkUrlFormGroup.append('<span id="Name-error" class="error invalid-feedback">' + value + '</span>');
+                                    });
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+
+            // download links
+            $('#enable-download-link-hyperlink').on('click', function() {
+
+                var id = $('#enable-download-link-hyperlink').data('id');
+
+                // make ajax call
+                $.ajax({
+                    url: '/assetdownloadlinks/enable',
+                    type: 'post',
+                    data: id,
+                    beforeSend: function () {
+
+                        toastr.info('Enabling download link...');
+                    },
+                    success: function (response) {
+
+                        // fire succes toast
+                        toastr.success('Download link enabled');
+
+                        // update array
+                        var downloadLink = downloadLinks.filter(dL => dL.id == id);
+                        downloadLink.isActive = true;
+
+                        // init table
+                        populateDownloadLinksTable(downloadLinks);
+                    },
+                    error: function(response) {
+
+                        toastr.error('Error: ' + response.status + ' failed to update download link');
+                    }
+                });
+            });
+
+            $('#delete-download-link-hyperlink').on('click', function() {
+
+                var id = $('#delete-download-link-hyperlink').data('id');
+
+                // make ajax call
+                $.ajax({
+                    url: '/assetdownloadlinks/delete',
+                    type: 'post',
+                    data: id,
+                    beforeSend: function () {
+
+                        toastr.info('Deleting download link...');
+                    },
+                    success: function (response) {
+
+                        // fire succes toast
+                        toastr.success('Download link deleted');
+
+                        // update array
+                        var downloadLink = downloadLinks.filter(dL => dL.id == id);
+                        
+                        // delete item
+
+                        // init table
+                        populateDownloadLinksTable(downloadLinks);
+                    },
+                    error: function(response) {
+
+                        toastr.error('Error: ' + response.status + ' failed to update download link');
+                    }
+                });
+            });
+
+            $('#disable-download-link-hyperlink').on('click', function () {
+
+                var id = $('#disable-download-link-hyperlink').data('id');
+
+                // make ajax call
+                $.ajax({
+                    url: '/assetdownloadlinks/disable',
+                    type: 'post',
+                    data: id,
+                    beforeSend: function () {
+
+                        toastr.info('Disabling download link...');
+                    },
+                    success: function (response) {
+
+                        // fire succes toast
+                        toastr.success('Download link disabled');
+
+                        // update array
+                        var downloadLink = downloadLinks.filter(dL => dL.id == id);
+                        downloadLink.isActive = false;
+
+                        // init table
+                        populateDownloadLinksTable(downloadLinks);
+                    },
+                    error: function (response) {
+
+                        toastr.error('Error: ' + response.status + ' failed to update download link');
+                    }
+                });
+            });
+
+
+            // Editor
+            $('#descriptionEditor').summernote({
+                height: 500,
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']],
+                    ['insert', ['link']],
+                ]
+            });
+
+            $('#releaseNotesEditor').summernote({
+                height: 500,
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']],
+                    ['insert', ['link']],
+                ]
+            });
+
+
+            // Dropzone has been added as a global variable.
+            const dropzone = new Dropzone("div.my-dropzone", { url: "/file/post" });
+
+
+            // Input Mask
+            $('[data-mask]').inputmask();
+
+
+            //Initialize Select2 Elements
+            $('.select2').select2();
+
+
+            //Initialize Select2 Elements
+            $('.select2bs4').select2({
+                theme: 'bootstrap4'
+            });
+
+
+            //Initialize Select2 Elements
+            $('#edit-asset-engine-compatibility-id').select2({
+                allowClear: true,
+                placeholder: 'Select a engine compatibility',
+                theme: 'bootstrap4'
+            });
+            $('#edit-asset-keywords-id').select2({
+                allowClear: true,
+                placeholder: 'Select keywords',
+                theme: 'bootstrap4'
+            });
+
+            // add  engine compatibility options
+            var engines = @Html.Raw(Json.Serialize(ViewBag.EngineVersionId));
+            var engineCompatibilitySelect = $('#edit-asset-engine-compatibility-id');
+            $.each(engines, function (index, item) {
+
+                var newOption = new Option(item.text, item.value, false, item.selected);
+                engineCompatibilitySelect.append(newOption).trigger('change');
+            });
+
+            // add keywords options
+            var tags = @Html.Raw(Json.Serialize(ViewBag.TagId));
+            var tagsSelect = $('#edit-asset-keywords-id');
+            $.each(tags, function (index, item) {
+
+                var newOption = new Option(item.text, item.value, false, item.selected);
+                tagsSelect.append(newOption).trigger('change');
+            });
+
+            // Edit Asset Form
+            $('#edit-asset-description-form').validate({
+                ignore: [],
+                rules: {
+                    Name: {
+                        required: true
+                    },
+                    AssetCategoryId: {
+                        number: true,
+                        required: true,
+                    },
+                    Description: {
+                        minlength: 1000,
+                    },
+                },
+                messages: {
+                    Description: {
+                        minlength: "Description too short",
+                    },
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                },
+            });
+
+            $('#edit-asset-release-details-form').validate({
+                ignore: [],
+                rules: {
+                    EngineCompatibility: {
+                        required: true
+                    },
+                    Version: {
+                        required: true
+                    },
+                    License: {
+                        required: true,
+                    },
+                    ReleaseNotes: {
+                        minlength: 1000,
+                    },
+                },
+                messages: {
+                    ReleaseNotes: {
+                        minlength: "Release notes too short",
+                    },
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                },
+            });
+
+            $('#save-asset-btn').on('click', function(){
+
+                // get the enabled stepper
+                var enabledStep = stepper._currentIndex;
+
+                // create rules and submit based on current index
+                if(enabledStep == 0){
+                   
+                    // check if form is valid
+                    if($('#edit-asset-description-form').valid()){
+
+                        // get form
+                        var form = $('#edit-asset-description-form');
+
+                        // make ajax call
+                        $.ajax({
+                            url: form.attr('action'),
+                            type: form.attr('method'),
+                            data: form.serialize(),
+                            beforeSend: function () {
+
+                                toastr.info('saving...');
+                            },
+                            success: function (response) {
+
+                                // fire succes toast
+                                toastr.success('Asset details saved');
+                            },
+                            error: function (response) {
+
+                                if (response.status == 500) {
+
+                                    toastr.error('Error: 500 internal server error');
+
+                                } else {
+
+                                    // get list to hold errors
+                                    var validationSummaryList = $('#edit-asset-description-validation-summary > ul');
+
+                                    // show input field errors
+                                    if (response.responseJSON.Name !== undefined) {
+
+                                        //get elememts
+                                        var assetCategoryFormGroup = $('#edit-asset-name-form-group');
+                                        var nameField = $('#edit-asset-name-form-group > input');
+
+                                        // set css
+                                        nameField.addClass('is-invalid');
+
+                                        $.each(response.responseJSON.Name, function (key, value) {
+
+                                            assetCategoryFormGroup.append('<span id="Name-error" class="error invalid-feedback">' + value + '</span>');
+                                        });
+                                    }
+                                    if (response.responseJSON.AssetCategoryId !== undefined) {
+
+                                        var assetCategoryFormGroup = $('#edit-asset-category-form-group');
+                                        var nameField = $('#edit-asset-category-form-group > select');
+
+                                        // set css
+                                        nameField.addClass('is-invalid');
+
+                                        $.each(response.responseJSON.AssetCategoryId, function (key, value) {
+
+                                            assetCategoryFormGroup.append('<span id="AssetCategoryId-error" class="error invalid-feedback">' + value + '</span>');
+                                        });
+                                    }
+                                    if (response.responseJSON.Description !== undefined) {
+
+                                        var assetCategoryFormGroup = $('#edit-asset-description-form-group');
+                                        var nameField = $('#edit-asset-description-form-group > select');
+
+                                        // set css
+                                        nameField.addClass('is-invalid');
+
+                                        $.each(response.responseJSON.Description, function (key, value) {
+
+                                            assetCategoryFormGroup.append('<span id="Description-error" class="error invalid-feedback">' + value + '</span>');
+                                        });
+                                    }
+                                    if (response.responseJSON.Keywords !== undefined) {
+
+                                        var assetCategoryFormGroup = $('#edit-asset-keywords-form-group');
+                                        var nameField = $('#edit-asset-keywords-form-group > select');
+
+                                        // set css
+                                        nameField.addClass('is-invalid');
+
+                                        $.each(response.responseJSON.Keywords, function (key, value) {
+
+                                            assetCategoryFormGroup.append('<span id="Keywords-error" class="error invalid-feedback">' + value + '</span>');
+                                        });
+                                    }
+                                }
+                            }
+                        });
+                    }
+
+                } else if (enabledStep == 1) {
+
+                    // check if form is valid
+                    if ($('#edit-asset-release-details-form').valid()) {
+
+                        // get form
+                        var form = $('#edit-asset-release-details-form');
+
+                        // submit form
+                        $.ajax({
+                            url: form.attr('action'),
+                            type: form.attr('method'),
+                            data: form.serialize(),
+                            beforeSend: function() {
+
+                                toastr.info('saving...');
+                            },
+                            success: function (response) {
+
+                                // fire succes toast
+                                toastr.success('asset details saved');
+                            },
+                            error: function (response) {
+
+                                if (response.status == 500) {
+
+                                    toastr.error('Error: 500 internal server error');
+
+                                } else {
+
+                                    // get list to hold errors
+                                    var validationSummaryList = $('#edit-asset-release-details-validation-summary > ul');
+
+                                    // show input field errors
+                                    if (response.responseJSON.EngineCompatibility !== undefined) {
+
+                                        //get elememts
+                                        var assetEngineCompatibilityFormGroup = $('#edit-asset-engine-compatibility-form-group');
+                                        var nameField = $('#edit-asset-engine-compatibility-form-group > select');
+
+                                        // set css
+                                        nameField.addClass('is-invalid');
+
+                                        $.each(response.responseJSON.EngineCompatibility, function (key, value) {
+
+                                            assetEngineCompatibilityFormGroup.append('<span id="EngineCompatibility-error" class="error invalid-feedback">' + value + '</span>');
+                                        });
+                                    }
+                                    if (response.responseJSON.Version !== undefined) {
+
+                                        var assetVersionFormGroup = $('#edit-asset-version-form-group');
+                                        var nameField = $('#edit-asset-version-form-group > input');
+
+                                        // set css
+                                        nameField.addClass('is-invalid');
+
+                                        $.each(response.responseJSON.Version, function (key, value) {
+
+                                            assetVersionFormGroup.append('<span id="Version-error" class="error invalid-feedback">' + value + '</span>');
+                                        });
+                                    }
+                                    if (response.responseJSON.License !== undefined) {
+
+                                        var assetLicenseFormGroup = $('#edit-asset-license-form-group');
+                                        var nameField = $('#edit-asset-license-form-group > input');
+
+                                        // set css
+                                        nameField.addClass('is-invalid');
+
+                                        $.each(response.responseJSON.License, function (key, value) {
+
+                                            assetLicenseFormGroup.append('<span id="License-error" class="error invalid-feedback">' + value + '</span>');
+                                        });
+                                    }
+                                    if (response.responseJSON.ReleaseNotes !== undefined) {
+
+                                        var assetReleaseNotesFormGroup = $('#edit-asset-release-notes-form-group');
+                                        var nameField = $('#edit-asset-release-notes-form-group > textarea');
+
+                                        // set css
+                                        nameField.addClass('is-invalid');
+
+                                        $.each(response.responseJSON.ReleaseNotes, function (key, value) {
+
+                                            assetReleaseNotesFormGroup.append('<span id="ReleaseNotes-error" class="error invalid-feedback">' + value + '</span>');
+                                        });
+                                    }
+                                }
+                            }
+                        });
+                    }
+                }
+
+
+            });
+
+
+
+            // custom functions
+            function populateDownloadLinksTable(downloadLinks) {
+
+                // get table body
+                var downloadLinksTableBody = $('#download-links-table tbody');
+
+                // empty table
+                downloadLinksTableBody.empty();
+
+                if(downloadLinks.length == 0) {
+
+                    // create row
+                    var newRow = `<tr>
+                                    <td colspan="4">
+                                        No downlink links added yet
+                                    </td>
+                                  </tr>`;
+                    
+                    // append to table body
+                    downloadLinksTableBody.append(newRow);
+
+                } else {
+
+                    // loop array and create row
+                    $.each(downloadLinks, function(index, item) {
+
+                        // create new table row
+                        var statusTableData = `<span class="badge bg-info"> Enabled </span>`;
+                        if(item.isActive == false) {
+                            statusTableData = `<span class="badge bg-warning"> Disabled </span>`;
+                        }
+
+                        var statusBtn = `<a class="btn btn-sm btn-warning" data-id="`+ item.id +`" data-toggle="tooltip" data-placement="bottom" title="Disable">
+                                            <i class="fas fa-lightbulb"></i>
+                                        </a>`;
+                        if(item.isActive == false) {
+                            statusBtn = `<a class="btn btn-sm btn-info" data-id="` + item.Id + `" data-toggle="tooltip" data-placement="bottom" title= "Enable" >
+                                            <i class="far fa-lightbulb" > </i>
+                                        </a>`;
+                        }
+
+
+                        var newTableRow = `
+                            <tr>
+                                <td class="align-middle">
+                                    <div class="package-info-box" >
+                                        <span class="package-info-box-icon" >
+                                            <i class="fas fa-image"></i>
+                                        </span>
+
+                                        <div class="info-box-content" >
+                                            <span class="package-info-box-content-heading" >` +
+                                                item.name + `
+                                            </span>
+                                        </div>
+                                        <!-- /.info-box-content -->
+                                    </div>
+                                </td>
+
+                                <td class="align-middle" >`
+                                    + statusTableData +
+                                `</td>
+
+                                <td class="align-middle">` +
+                                    item.url + `
+                                </td>
+
+                                <td>`
+                                    + statusBtn +
+
+                                    `<a class="btn btn-sm btn-info" data-id="` + item.id + `" data-toggle="tooltip" data-placement="bottom" title="Edit">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                    <a class="btn btn-sm btn-danger" data-id="` + item.id + `" data-toggle="tooltip" data-placement="bottom" title="Delete">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        `;
+
+                         // append download links array
+                        downloadLinksTableBody.append(newTableRow);
+                    });
+                }
+            }
+
+        });
+    </script>
+}

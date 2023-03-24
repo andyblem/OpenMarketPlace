@@ -1,0 +1,9 @@
+C:\Users\andyb\Projects\Personal\Web\Stride3DMarketplace\Stride3DMarketplace.Store\obj\Debug\net6.0\Stride3DMarketplace.Store.csproj.AssemblyReference.cache
+C:\Users\andyb\Projects\Personal\Web\Stride3DMarketplace\Stride3DMarketplace.Store\obj\Debug\net6.0\Stride3DMarketplace.Store.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\andyb\Projects\Personal\Web\Stride3DMarketplace\Stride3DMarketplace.Store\obj\Debug\net6.0\Stride3DMarketplace.Store.AssemblyInfoInputs.cache
+C:\Users\andyb\Projects\Personal\Web\Stride3DMarketplace\Stride3DMarketplace.Store\obj\Debug\net6.0\Stride3DMarketplace.Store.AssemblyInfo.cs
+C:\Users\andyb\Projects\Personal\Web\Stride3DMarketplace\Stride3DMarketplace.Store\obj\Debug\net6.0\Stride3DMarketplace.Store.csproj.CoreCompileInputs.cache
+C:\Users\andyb\Projects\Personal\Web\Stride3DMarketplace\Stride3DMarketplace.Store\obj\Debug\net6.0\Stride3DMarketplace.Store.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\andyb\Projects\Personal\Web\Stride3DMarketplace\Stride3DMarketplace.Store\obj\Debug\net6.0\Stride3DMarketplace.Store.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\andyb\Projects\Personal\Web\Stride3DMarketplace\Stride3DMarketplace.Store\obj\Debug\net6.0\Stride3DMarketplace.Store.RazorAssemblyInfo.cache
+C:\Users\andyb\Projects\Personal\Web\Stride3DMarketplace\Stride3DMarketplace.Store\obj\Debug\net6.0\Stride3DMarketplace.Store.RazorAssemblyInfo.cs

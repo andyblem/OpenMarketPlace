@@ -48,3 +48,22 @@ Thumbs.db
 *.mov
 *.wmv
 
+Stride3DMarketPlace.Admin/appsettings.Development.json
+Stride3DMarketPlace.Admin/appsettings.json
+Stride3DMarketPlace.Admin/Data/Migrations/
+Stride3DMarketPlace.Admin/bin/
+Stride3DMarketPlace.Admin/obj/
+Stride3DMarketPlace.Customer/appsettings.json
+Stride3DMarketPlace.Customer/appsettings.Development.json
+Stride3DMarketPlace.Customer/obj/
+Stride3DMarketPlace.Customer/bin/
+Stride3DMarketPlace.Data/obj/
+Stride3DMarketPlace.Publisher/bin/
+Stride3DMarketPlace.Publisher/obj/
+Stride3DMarketPlace.Publisher/appsettings.Development.json
+Stride3DMarketPlace.Publisher/appsettings.json
+Stride3DMarketplace.Store/bin/
+Stride3DMarketplace.Store/obj/
+Stride3DMarketplace.Store/appsettings.Development.json
+Stride3DMarketplace.Store/appsettings.json
+Scaffolding/
