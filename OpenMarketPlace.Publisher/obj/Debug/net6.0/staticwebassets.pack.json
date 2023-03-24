@@ -269,6 +269,42 @@
       "PackagePath": "staticwebassets\\js\\demo.js"
     },
     {
+      "Id": "C:\\Users\\andyb\\Projects\\Personal\\Web\\OpenMarketPlace\\OpenMarketPlace.Publisher\\wwwroot\\js\\jquery.tagsinput\\.bower.json",
+      "PackagePath": "staticwebassets\\js\\jquery.tagsinput\\.bower.json"
+    },
+    {
+      "Id": "C:\\Users\\andyb\\Projects\\Personal\\Web\\OpenMarketPlace\\OpenMarketPlace.Publisher\\wwwroot\\js\\jquery.tagsinput\\Gruntfile.js",
+      "PackagePath": "staticwebassets\\js\\jquery.tagsinput\\Gruntfile.js"
+    },
+    {
+      "Id": "C:\\Users\\andyb\\Projects\\Personal\\Web\\OpenMarketPlace\\OpenMarketPlace.Publisher\\wwwroot\\js\\jquery.tagsinput\\bower.json",
+      "PackagePath": "staticwebassets\\js\\jquery.tagsinput\\bower.json"
+    },
+    {
+      "Id": "C:\\Users\\andyb\\Projects\\Personal\\Web\\OpenMarketPlace\\OpenMarketPlace.Publisher\\wwwroot\\js\\jquery.tagsinput\\dist\\jquery.tagsinput.min.css",
+      "PackagePath": "staticwebassets\\js\\jquery.tagsinput\\dist\\jquery.tagsinput.min.css"
+    },
+    {
+      "Id": "C:\\Users\\andyb\\Projects\\Personal\\Web\\OpenMarketPlace\\OpenMarketPlace.Publisher\\wwwroot\\js\\jquery.tagsinput\\grunt-tasks\\assets_production.js",
+      "PackagePath": "staticwebassets\\js\\jquery.tagsinput\\grunt-tasks\\assets_production.js"
+    },
+    {
+      "Id": "C:\\Users\\andyb\\Projects\\Personal\\Web\\OpenMarketPlace\\OpenMarketPlace.Publisher\\wwwroot\\js\\jquery.tagsinput\\grunt-tasks\\options\\cssmin.js",
+      "PackagePath": "staticwebassets\\js\\jquery.tagsinput\\grunt-tasks\\options\\cssmin.js"
+    },
+    {
+      "Id": "C:\\Users\\andyb\\Projects\\Personal\\Web\\OpenMarketPlace\\OpenMarketPlace.Publisher\\wwwroot\\js\\jquery.tagsinput\\grunt-tasks\\options\\uglify.js",
+      "PackagePath": "staticwebassets\\js\\jquery.tagsinput\\grunt-tasks\\options\\uglify.js"
+    },
+    {
+      "Id": "C:\\Users\\andyb\\Projects\\Personal\\Web\\OpenMarketPlace\\OpenMarketPlace.Publisher\\wwwroot\\js\\jquery.tagsinput\\src\\jquery.tagsinput.css",
+      "PackagePath": "staticwebassets\\js\\jquery.tagsinput\\src\\jquery.tagsinput.css"
+    },
+    {
+      "Id": "C:\\Users\\andyb\\Projects\\Personal\\Web\\OpenMarketPlace\\OpenMarketPlace.Publisher\\wwwroot\\js\\jquery.tagsinput\\src\\jquery.tagsinput.js",
+      "PackagePath": "staticwebassets\\js\\jquery.tagsinput\\src\\jquery.tagsinput.js"
+    },
+    {
       "Id": "C:\\Users\\andyb\\Projects\\Personal\\Web\\OpenMarketPlace\\OpenMarketPlace.Publisher\\wwwroot\\js\\pages\\dashboard.js",
       "PackagePath": "staticwebassets\\js\\pages\\dashboard.js"
     },

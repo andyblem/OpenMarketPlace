@@ -25,7 +25,7 @@ namespace OpenMarketPlace.Publisher.Controllers
             var assetCategories = await _mediator.Send(new GetAssetCategoriesSelectItemsQuery());
 
             // init view data
-            ViewData["AssetCategories"] = new SelectList(assetCategories, "Id", "Name");
+            ViewData["AssetCategoryId"] = new SelectList(assetCategories, "Id", "Name");
 
             // return view
             return View();

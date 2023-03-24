@@ -45,7 +45,7 @@ namespace OpenMarketPlace.Publisher.CQRS.AssetCQRS.Queries
                     AssetCategory = a.AssetCategory.Name,
                     AssetStatus = a.AssetStatusId,
                     IconImagePath = a.IconImage,
-                    Version = a.Version != null ? a.Version : "0.0.0",
+                    Version = a.Version != null ? a.Version : "1.0.0",
                     Name = a.Name,
 
                     CreatedAt = a.CreatedAt,

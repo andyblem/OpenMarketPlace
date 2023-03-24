@@ -8,7 +8,9 @@ using OpenMarketPlace.Persistance.Models;
 using OpenMarketPlace.Publisher.CQRS.AssetCategoryCQRS.Queries;
 using OpenMarketPlace.Publisher.CQRS.AssetCQRS.Commands;
 using OpenMarketPlace.Publisher.CQRS.AssetCQRS.Queries;
+using OpenMarketPlace.Publisher.CQRS.EngineVersionCQRS.Queries;
 using OpenMarketPlace.Publisher.CQRS.PublisherCQRS.Queries;
+using OpenMarketPlace.Publisher.CQRS.TagsCQRS.Queries;
 using OpenMarketPlace.Publisher.Dtos.AssetDtos;
 using System.Security.Claims;
 
@@ -51,7 +53,7 @@ namespace OpenMarketPlace.Publisher.Controllers
                 var assetCategories = await _mediator.Send(new GetAssetCategoriesSelectItemsQuery());
 
                 // init view data
-                ViewData["AssetCategories"] = new SelectList(assetCategories, "Id", "Name");
+                ViewData["AssetCategoryId"] = new SelectList(assetCategories, "Id", "Name");
 
 
                 // return results
@@ -137,6 +139,7 @@ namespace OpenMarketPlace.Publisher.Controllers
             // update dto with data
             createAssetDto.CreatedById = userId;
             createAssetDto.PublisherId = publisherId;
+            createAssetDto.Version = "1.0.0";
 
             if (ModelState.IsValid)
             {
@@ -180,7 +183,15 @@ namespace OpenMarketPlace.Publisher.Controllers
             // set view data
             //ViewData["AssetReleaseStateId"] = new SelectList(_context.Set<AssetReleaseState>(), "Id", "Name", asset.AssetReleaseStateId);
             //ViewData["AssetResourceId"] = new SelectList(_context.Set<AssetResource>(), "Id", "BannerImage", asset.AssetResourceId);
-            //ViewData["AssetTypeId"] = new SelectList(_context.Set<AssetType>(), "Id", "Name", asset.AssetTypeId);
+
+            var assetCategories = await _mediator.Send(new GetAssetCategoriesSelectItemsQuery());
+            var engineVersions = await _mediator.Send(new GetEngineVersionSelectItemsQuery());
+            var tags = await _mediator.Send(new GetTagsSelectItemsQuery());
+
+            ViewData["AssetCategoryId"] = new SelectList(assetCategories, "Id", "Name", asset.AssetCategoryId);
+            ViewData["EngineVersionId"] = new MultiSelectList(engineVersions, "Id", "Name", asset.EngineCompatibility);
+            ViewData["TagId"] = new MultiSelectList(tags, "Id", "Name", asset.Keywords);
+
             //ViewData["CreatedById"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "Id", asset.CreatedById);
             //ViewData["PublisherId"] = new SelectList(_context.Set<Publisher>(), "Id", "Name", asset.PublisherId);
 
@@ -276,10 +287,46 @@ namespace OpenMarketPlace.Publisher.Controllers
             //return RedirectToAction(nameof(Index));
         }
 
-        private bool AssetExists(int id)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateDescriptionDetails(UpdateAssetDescriptionDetailsDto updateAssetDescriptionDetailsDto)
         {
-            return false;
-          //return (_context.Assets?.Any(e => e.Id == id)).GetValueOrDefault();
+            if (ModelState.IsValid)
+            {
+                // update asset
+                var asset = await _mediator.Send(new UpdateAssetDescriptionDetailsCommand()
+                {
+                    AssetDescriptionDetails = updateAssetDescriptionDetailsDto
+                });
+
+                // return result
+                return Ok(asset);
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateReleaseDetails(UpdateAssetReleaseDetailsDto UpdateReleaseDetailsDto)
+        {
+            if (ModelState.IsValid)
+            {
+                // update asset
+                var asset = await _mediator.Send(new UpdateAssetReleaseDetailsCommand()
+                {
+                    AssetReleaseDetails = UpdateReleaseDetailsDto
+                });
+
+                // return result
+                return Ok(asset);
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
         }
     }
 }

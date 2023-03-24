@@ -11,6 +11,7 @@ namespace OpenMarketPlace.Publisher.Validators.AssetValidators
             RuleFor(x => x.Asset.PublisherId).GreaterThan(0);
             RuleFor(x => x.Asset.CreatedById).NotEmpty().NotNull();
             RuleFor(x => x.Asset.PublisherId).GreaterThan(0);
+            RuleFor(x => x.Asset.Version).NotEmpty().NotNull(); 
         }
     }
 }

@@ -18,6 +18,7 @@ namespace OpenMarketPlace.Persistance.BaseModels
 
         public string? Description { get; set; }
         public string? EngineCompatibility { get; set; }
+        public string? Keywords { get; set; }
         public string? License { get; set; }
         public string? ReleaseNotes { get; set; }
         public string? Version { get; set; }

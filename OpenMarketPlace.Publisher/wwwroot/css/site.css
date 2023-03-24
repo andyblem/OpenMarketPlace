@@ -36,3 +36,24 @@
     border: .1rem solid #666 !important;
     color: #fff !important;
 }
+
+
+.tagsinput {
+    border-radius: 3px;
+}
+
+div.tagsinput span.tag {
+    border: 1px solid #a5d24a;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    display: block;
+    float: left;
+    padding: 5px;
+    text-decoration: none;
+    background: #cde69c;
+    color: #638421;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-family: helvetica;
+    font-size: 13px;
+}

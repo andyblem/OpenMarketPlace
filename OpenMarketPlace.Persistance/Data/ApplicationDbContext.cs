@@ -12,8 +12,8 @@ namespace OpenMarketPlace.Persistance.Data
         public DbSet<AssetCategory>? AssetsCategories { get; set; }
         public DbSet<AssetDraft>? AssetDrafts { get; set; }
         public DbSet<AssetDraftStatus>? AssetDraftStatuses { get; set; }
+        public DbSet<AssetDownloadLink>? AssetDownloadLinks { get; set; }
         public DbSet<AssetRating>? AssetRatings { get; set; }
-        public DbSet<AssetDownloadLink>? AssetResources { get; set; }
         public DbSet<AssetStatus>? AssetReleaseStates { get; set; }
         public DbSet<AssetReview>? AssetReviews { get; set; }
         public DbSet<AssetTag>? AssetTags { get; set; }

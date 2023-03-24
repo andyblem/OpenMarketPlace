@@ -1,4 +1,5 @@
 ﻿using OpenMarketPlace.Persistance.Enums;
+using OpenMarketPlace.Persistance.Models;
 using System.ComponentModel;
 
 namespace OpenMarketPlace.Publisher.Dtos.AssetDtos
@@ -7,27 +8,21 @@ namespace OpenMarketPlace.Publisher.Dtos.AssetDtos
     {
         // basic details
 
+        [DisplayName("Category")]
+        public int? AssetCategoryId { get; set; }
         public int Id { get; set; }
 
         public string? Description { get; set; }
-
-        [DisplayName("Git Repository")]
-        public string? GitRepository { get; set; }
-
-        [DisplayName("Keywords")]
-        public string? Keywords { get; set; }
-
-        public string? License { get; set; }
         public string? Name { get; set; }
 
-        [DisplayName("Nuget Repository")]
-        public string? NugetPackage { get; set; }
+        public List<string?> Keywords { get; set; }
 
 
         // release details
 
         [DisplayName("Engine Compatibility")]
-        public string? EngineCompatibility { get; set; }
+        public List<string?> EngineCompatibility { get; set; }
+        public string? License { get; set; }
 
         [DisplayName("Version")]
         public string? Version { get; set; }
@@ -42,11 +37,13 @@ namespace OpenMarketPlace.Publisher.Dtos.AssetDtos
         public string? IconImage { get; set; }
 
 
-        // special details
-        public AssetStatusEnums? AssetReleaseStateId { get; set; }
+        // download details
+        public ICollection<AssetDownloadLink> DownloadLinks { get; set; }
 
-        [DisplayName("Asset Type")]
-        public AssetTypeEnum? AssetTypeId { get; set; }
+
+        // special details
+        public AssetStatusEnums? AssetStatusId { get; set; }
+
 
         public string? CreatedById { get; set; }
         public int? PublisherId { get; set; }

@@ -16,7 +16,7 @@ var serverVersion = ServerVersion.AutoDetect(connectionString);
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySql(connectionString,
         serverVersion,
-        x => x.MigrationsAssembly("Stride3dMarketplace.Persistance"))
+        x => x.MigrationsAssembly("OpenMarketPlace.Persistance"))
     // The following three options help with debugging, but should
     // be changed or removed for production.
     .LogTo(Console.WriteLine, LogLevel.Information)

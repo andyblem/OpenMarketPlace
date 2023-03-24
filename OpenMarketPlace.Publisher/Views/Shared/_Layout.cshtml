@@ -6,7 +6,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-        <title>@ViewData["Title"] - Stride3D Publisher Portal</title>
+        <title>@ViewData["Title"] - OM Publisher Portal</title>
     
         <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
@@ -28,7 +28,7 @@
     
     </head>
 
-    <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 
         <div class="wrapper">
 
@@ -255,7 +255,7 @@
 
                 <!-- Main content -->
                 <section class="content">
-                  <div class="container-fluid">
+                    <div class="container-fluid">
                         @RenderBody()
                     </div>
 
@@ -284,13 +284,13 @@
 
                                     <!--asset name-->
                                     <div class="form-group" id="create-asset-name-form-group">
-                                        <label for="Name" class="control-label"></label>
+                                        <label for="Name" class="control-label">Name</label>
                                         <input class="form-control" name="Name" placeholder="Name">
                                     </div>
 
                                     <!--asset type-->
                                     <div class="form-group" id="create-asset-category-form-group">
-                                        <label for="AssetCategoryId" class="control-label"></label>
+                                        <label for="AssetCategoryId" class="control-label">Category</label>
                                         <select class="form-control select2bs4" id="create-asset-category-id" name="AssetCategoryId" style="width: 100%;"></select>
                                     </div>
 
@@ -326,9 +326,14 @@
 
             <!-- Main Footer -->
             <footer class="main-footer">
-                <div class="container">
-                    &copy; 2022 - Stride3dMarketplace.Publisher - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                <div class="float-right d-none d-sm-block">
+                    <b>Version</b> 1.0.0
                 </div>
+                <strong>
+                    &copy; 2022
+                    <a asp-area="" asp-controller="Home" asp-action="Index">OM Publisher</a>.
+                </strong>
+                <a asp-area="" asp-controller="Home" asp-action="Privacy">All rights reserved.</a>
             </footer>
 
         </div>
@@ -365,7 +370,7 @@
                 });
 
                 // add options
-                var data = @Html.Raw(Json.Serialize(ViewBag.AssetCategories));
+                var data = @Html.Raw(Json.Serialize(ViewBag.AssetCategoryId));
                 var select = $('#create-asset-category-id');
                 $.each(data, function(index, item) {
 

@@ -16,5 +16,6 @@ namespace OpenMarketPlace.Publisher.Dtos.AssetDtos
 
         public int? PublisherId { get; set; }
         public string? CreatedById { get; set; }
+        public string? Version { get; set; }
     }
 }

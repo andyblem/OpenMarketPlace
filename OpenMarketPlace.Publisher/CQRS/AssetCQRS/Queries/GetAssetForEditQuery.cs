@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using OpenMarketPlace.Persistance.Data;
 using OpenMarketPlace.Publisher.Dtos.AssetDtos;
 
@@ -19,7 +20,7 @@ namespace OpenMarketPlace.Publisher.CQRS.AssetCQRS.Queries
             _dbContext = dbContext;
         }
 
-        public Task<EditAssetDto> Handle(GetAssetForEditQuery request, CancellationToken cancellationToken)
+        public Task<EditAssetDto?> Handle(GetAssetForEditQuery request, CancellationToken cancellationToken)
         {
             // get asset
             var asset = _dbContext.Assets
@@ -29,8 +30,9 @@ namespace OpenMarketPlace.Publisher.CQRS.AssetCQRS.Queries
                     Id = a.Id,
                     Name = a.Name,
 
+                    AssetCategoryId = a.AssetCategoryId,
                     Description = a.Description,
-                    EngineCompatibility = a.EngineCompatibility,
+                    EngineCompatibility = JsonConvert.DeserializeObject<List<string?>>(a.EngineCompatibility),
                     License = a.License,
                     ReleaseNotes = a.ReleaseNotes,
                     Version = a.Version,
@@ -38,12 +40,16 @@ namespace OpenMarketPlace.Publisher.CQRS.AssetCQRS.Queries
                     BannerImage = a.BannerImage,
                     IconImage = a.IconImage,
 
-                    AssetReleaseStateId = a.AssetStatusId,
+                    AssetStatusId = a.AssetStatusId,
 
                     CreatedById = a.CreatedById,
                     PublisherId = a.PublisherId,
+
+                    Keywords = JsonConvert.DeserializeObject<List<string?>>(a.Keywords),
+
+                    DownloadLinks = a.AssetDownloadLinks
                 })
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync(cancellationToken);
 
             // return result
             return asset;

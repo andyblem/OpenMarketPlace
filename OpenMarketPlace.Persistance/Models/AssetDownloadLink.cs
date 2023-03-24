@@ -10,6 +10,9 @@ namespace OpenMarketPlace.Persistance.Models
 {
     public class AssetDownloadLink : BEntity<int, ApplicationUser>
     {
+        public bool? IsActive { get; set; }
+
+        public string? Icon { get; set; }
         public string? Name { get; set; }
         public string? Url { get; set; }
 

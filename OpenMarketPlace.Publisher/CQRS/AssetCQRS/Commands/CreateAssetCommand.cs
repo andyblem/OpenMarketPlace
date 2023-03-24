@@ -31,11 +31,11 @@ namespace OpenMarketPlace.Publisher.CQRS.AssetCQRS.Commands
 
             // add extra data
             asset.AssetStatusId = AssetStatusEnums.Draft;
-            asset.AssetDraft = new AssetDraft()
-            {
-                AssetDraftStatusId = AssetDraftStatusEnums.Draft,
-                Version = "1.0.0"
-            };
+            //asset.AssetDraft = new AssetDraft()
+            //{
+            //    AssetDraftStatusId = AssetDraftStatusEnums.Draft,
+            //    Version = "1.0.0"
+            //};
 
             // add to db
             _dbContext.Add(asset);

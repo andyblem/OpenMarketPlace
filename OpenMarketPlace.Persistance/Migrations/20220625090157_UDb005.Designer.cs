@@ -153,7 +153,7 @@ namespace OpenMarketPlace.Persistance.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Stride3dMarketplace.Persistance.Models.ApplicationUser", b =>
+            modelBuilder.Entity("OpenMarketPlace.Persistance.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
@@ -228,7 +228,7 @@ namespace OpenMarketPlace.Persistance.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("Stride3dMarketplace.Persistance.Models.Asset", b =>
+            modelBuilder.Entity("OpenMarketPlace.Persistance.Models.Asset", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -336,7 +336,7 @@ namespace OpenMarketPlace.Persistance.Migrations
                     b.ToTable("Assets");
                 });
 
-            modelBuilder.Entity("Stride3dMarketplace.Persistance.Models.AssetMediaLink", b =>
+            modelBuilder.Entity("OpenMarketPlace.Persistance.Models.AssetMediaLink", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -383,7 +383,7 @@ namespace OpenMarketPlace.Persistance.Migrations
                     b.ToTable("AssetMediaLink");
                 });
 
-            modelBuilder.Entity("Stride3dMarketplace.Persistance.Models.AssetRating", b =>
+            modelBuilder.Entity("OpenMarketPlace.Persistance.Models.AssetRating", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -433,7 +433,7 @@ namespace OpenMarketPlace.Persistance.Migrations
                     b.ToTable("AssetRatings");
                 });
 
-            modelBuilder.Entity("Stride3dMarketplace.Persistance.Models.AssetReleaseState", b =>
+            modelBuilder.Entity("OpenMarketPlace.Persistance.Models.AssetReleaseState", b =>
                 {
                     b.Property<int>("Id")
                         .HasColumnType("int");
@@ -488,7 +488,7 @@ namespace OpenMarketPlace.Persistance.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Stride3dMarketplace.Persistance.Models.AssetResource", b =>
+            modelBuilder.Entity("OpenMarketPlace.Persistance.Models.AssetResource", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -531,7 +531,7 @@ namespace OpenMarketPlace.Persistance.Migrations
                     b.ToTable("AssetResources");
                 });
 
-            modelBuilder.Entity("Stride3dMarketplace.Persistance.Models.AssetReview", b =>
+            modelBuilder.Entity("OpenMarketPlace.Persistance.Models.AssetReview", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -584,7 +584,7 @@ namespace OpenMarketPlace.Persistance.Migrations
                     b.ToTable("AssetReviews");
                 });
 
-            modelBuilder.Entity("Stride3dMarketplace.Persistance.Models.AssetTag", b =>
+            modelBuilder.Entity("OpenMarketPlace.Persistance.Models.AssetTag", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -633,7 +633,7 @@ namespace OpenMarketPlace.Persistance.Migrations
                     b.ToTable("AssetTags");
                 });
 
-            modelBuilder.Entity("Stride3dMarketplace.Persistance.Models.AssetType", b =>
+            modelBuilder.Entity("OpenMarketPlace.Persistance.Models.AssetType", b =>
                 {
                     b.Property<int>("Id")
                         .HasColumnType("int");
@@ -698,7 +698,7 @@ namespace OpenMarketPlace.Persistance.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Stride3dMarketplace.Persistance.Models.EngineVersion", b =>
+            modelBuilder.Entity("OpenMarketPlace.Persistance.Models.EngineVersion", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -737,7 +737,7 @@ namespace OpenMarketPlace.Persistance.Migrations
                     b.ToTable("EngineVersions");
                 });
 
-            modelBuilder.Entity("Stride3dMarketplace.Persistance.Models.Keyword", b =>
+            modelBuilder.Entity("OpenMarketPlace.Persistance.Models.Keyword", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -776,7 +776,7 @@ namespace OpenMarketPlace.Persistance.Migrations
                     b.ToTable("Keywords");
                 });
 
-            modelBuilder.Entity("Stride3dMarketplace.Persistance.Models.Publisher", b =>
+            modelBuilder.Entity("OpenMarketPlace.Persistance.Models.Publisher", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -829,7 +829,7 @@ namespace OpenMarketPlace.Persistance.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Stride3dMarketplace.Persistance.Models.ApplicationUser", null)
+                    b.HasOne("OpenMarketPlace.Persistance.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -838,7 +838,7 @@ namespace OpenMarketPlace.Persistance.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Stride3dMarketplace.Persistance.Models.ApplicationUser", null)
+                    b.HasOne("OpenMarketPlace.Persistance.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -853,7 +853,7 @@ namespace OpenMarketPlace.Persistance.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Stride3dMarketplace.Persistance.Models.ApplicationUser", null)
+                    b.HasOne("OpenMarketPlace.Persistance.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -862,45 +862,45 @@ namespace OpenMarketPlace.Persistance.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Stride3dMarketplace.Persistance.Models.ApplicationUser", null)
+                    b.HasOne("OpenMarketPlace.Persistance.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Stride3dMarketplace.Persistance.Models.ApplicationUser", b =>
+            modelBuilder.Entity("OpenMarketPlace.Persistance.Models.ApplicationUser", b =>
                 {
-                    b.HasOne("Stride3dMarketplace.Persistance.Models.Publisher", "Publisher")
+                    b.HasOne("OpenMarketPlace.Persistance.Models.Publisher", "Publisher")
                         .WithMany()
                         .HasForeignKey("PublisherId");
 
                     b.Navigation("Publisher");
                 });
 
-            modelBuilder.Entity("Stride3dMarketplace.Persistance.Models.Asset", b =>
+            modelBuilder.Entity("OpenMarketPlace.Persistance.Models.Asset", b =>
                 {
-                    b.HasOne("Stride3dMarketplace.Persistance.Models.AssetReleaseState", "AssetReleaseState")
+                    b.HasOne("OpenMarketPlace.Persistance.Models.AssetReleaseState", "AssetReleaseState")
                         .WithMany("Assets")
                         .HasForeignKey("AssetReleaseStateId");
 
-                    b.HasOne("Stride3dMarketplace.Persistance.Models.AssetResource", "AssetResource")
+                    b.HasOne("OpenMarketPlace.Persistance.Models.AssetResource", "AssetResource")
                         .WithMany()
                         .HasForeignKey("AssetResourceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Stride3dMarketplace.Persistance.Models.AssetType", "AssetType")
+                    b.HasOne("OpenMarketPlace.Persistance.Models.AssetType", "AssetType")
                         .WithMany("Assets")
                         .HasForeignKey("AssetTypeId");
 
-                    b.HasOne("Stride3dMarketplace.Persistance.Models.ApplicationUser", "CreatedBy")
+                    b.HasOne("OpenMarketPlace.Persistance.Models.ApplicationUser", "CreatedBy")
                         .WithMany()
                         .HasForeignKey("CreatedById")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Stride3dMarketplace.Persistance.Models.Publisher", "Publisher")
+                    b.HasOne("OpenMarketPlace.Persistance.Models.Publisher", "Publisher")
                         .WithMany()
                         .HasForeignKey("PublisherId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -917,24 +917,24 @@ namespace OpenMarketPlace.Persistance.Migrations
                     b.Navigation("Publisher");
                 });
 
-            modelBuilder.Entity("Stride3dMarketplace.Persistance.Models.AssetMediaLink", b =>
+            modelBuilder.Entity("OpenMarketPlace.Persistance.Models.AssetMediaLink", b =>
                 {
-                    b.HasOne("Stride3dMarketplace.Persistance.Models.Asset", null)
+                    b.HasOne("OpenMarketPlace.Persistance.Models.Asset", null)
                         .WithMany("AssetMediaLinks")
                         .HasForeignKey("AssetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Stride3dMarketplace.Persistance.Models.AssetRating", b =>
+            modelBuilder.Entity("OpenMarketPlace.Persistance.Models.AssetRating", b =>
                 {
-                    b.HasOne("Stride3dMarketplace.Persistance.Models.Asset", "Asset")
+                    b.HasOne("OpenMarketPlace.Persistance.Models.Asset", "Asset")
                         .WithMany("AssetRatings")
                         .HasForeignKey("AssetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Stride3dMarketplace.Persistance.Models.ApplicationUser", "RatedBy")
+                    b.HasOne("OpenMarketPlace.Persistance.Models.ApplicationUser", "RatedBy")
                         .WithMany()
                         .HasForeignKey("RatedById")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -945,13 +945,13 @@ namespace OpenMarketPlace.Persistance.Migrations
                     b.Navigation("RatedBy");
                 });
 
-            modelBuilder.Entity("Stride3dMarketplace.Persistance.Models.AssetReview", b =>
+            modelBuilder.Entity("OpenMarketPlace.Persistance.Models.AssetReview", b =>
                 {
-                    b.HasOne("Stride3dMarketplace.Persistance.Models.Asset", "Asset")
+                    b.HasOne("OpenMarketPlace.Persistance.Models.Asset", "Asset")
                         .WithMany("AssetReviews")
                         .HasForeignKey("AssetId");
 
-                    b.HasOne("Stride3dMarketplace.Persistance.Models.ApplicationUser", "Author")
+                    b.HasOne("OpenMarketPlace.Persistance.Models.ApplicationUser", "Author")
                         .WithMany()
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -962,15 +962,15 @@ namespace OpenMarketPlace.Persistance.Migrations
                     b.Navigation("Author");
                 });
 
-            modelBuilder.Entity("Stride3dMarketplace.Persistance.Models.AssetTag", b =>
+            modelBuilder.Entity("OpenMarketPlace.Persistance.Models.AssetTag", b =>
                 {
-                    b.HasOne("Stride3dMarketplace.Persistance.Models.Asset", "Asset")
+                    b.HasOne("OpenMarketPlace.Persistance.Models.Asset", "Asset")
                         .WithMany("AssetTags")
                         .HasForeignKey("AssetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Stride3dMarketplace.Persistance.Models.Keyword", "Tag")
+                    b.HasOne("OpenMarketPlace.Persistance.Models.Keyword", "Tag")
                         .WithMany()
                         .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -981,7 +981,7 @@ namespace OpenMarketPlace.Persistance.Migrations
                     b.Navigation("Tag");
                 });
 
-            modelBuilder.Entity("Stride3dMarketplace.Persistance.Models.Asset", b =>
+            modelBuilder.Entity("OpenMarketPlace.Persistance.Models.Asset", b =>
                 {
                     b.Navigation("AssetMediaLinks");
 
@@ -992,12 +992,12 @@ namespace OpenMarketPlace.Persistance.Migrations
                     b.Navigation("AssetTags");
                 });
 
-            modelBuilder.Entity("Stride3dMarketplace.Persistance.Models.AssetReleaseState", b =>
+            modelBuilder.Entity("OpenMarketPlace.Persistance.Models.AssetReleaseState", b =>
                 {
                     b.Navigation("Assets");
                 });
 
-            modelBuilder.Entity("Stride3dMarketplace.Persistance.Models.AssetType", b =>
+            modelBuilder.Entity("OpenMarketPlace.Persistance.Models.AssetType", b =>
                 {
                     b.Navigation("Assets");
                 });
