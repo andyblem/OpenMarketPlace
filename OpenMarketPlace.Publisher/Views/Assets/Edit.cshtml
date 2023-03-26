@@ -355,7 +355,7 @@
 
                                             @if(Model.DownloadLinks.Count == 0)
                                             {
-                                                <tr>
+                                                <tr data-id="0">
                                                     <td rowspan="4">
                                                         Download links empty
                                                     </td>
@@ -756,7 +756,7 @@
                                 if (rowCount == 0) {
 
                                     // create new table row
-                                    var newTableRow = `<tr><td rowspan="4">Download links empty</td></tr>`;
+                                    var newTableRow = `<tr data-id="0"><td rowspan="4">Download links empty</td></tr>`;
 
                                     // append row to table
                                     downloadLinksTableBody.append(newTableRow);
@@ -987,9 +987,9 @@
                             var downloadLinksTableBody = $('#download-links-table tbody');
 
                             // if we don't have records then reset body
-                            var downloadLinksTableBodyRows = $('#download-links-table > tbody > tr');
-                            var rowCount = downloadLinksTableBodyRows.length;
-                            if (rowCount === 0) {
+                            var downloadLinksTableBodyRows = $('#download-links-table tbody tr');
+                            var firstRow = downloadLinksTableBodyRows[0];
+                            if ($(firstRow).attr('data-id') == 0) {
                                 downloadLinksTableBody.empty();
                             }
                             
@@ -997,22 +997,13 @@
                             var newTableRow = `
                                 <tr>  
                                     <td class="align-middle">
-                                        <div class="package-info-box" >
-                                            <span class="package-info-box-icon" >
-                                                <i class="fas fa-image"></i>
-                                            </span>
-
-                                            <div class="info-box-content" >
-                                                <span class="package-info-box-content-heading" >` +
-                                                     response.name + `
-                                                </span>
-                                            </div>
-                                            <!-- /.info-box-content -->
-                                        </div>
+                                        <div class="package-info-box">` 
+                                        + response.name + 
+                                        `</div>
                                     </td>
 
                                     <td class="align-middle" >
-                                        <span class="badge bg-info"> Active </span>
+                                        <span class="badge bg-info">Enabled</span>
                                     </td>
 
                                     <td class="align-middle">` +
@@ -1020,6 +1011,18 @@
                                     </td>
 
                                     <td>
+                                        <button class="btn btn-sm btn-info edit-download-link" 
+                                            data-id="` + response.id + `" 
+                                            data-name="` + response.name + `"
+                                            data-url="` + response.url + `"
+                                            data-is-active="` + response.isActive + `"
+                                            id="edit-download-link-btn-` + response.id + `"
+                                            title="Edit">
+                                            <i class="far fa-edit"></i>
+                                        </button>
+                                            <button class="btn btn-sm btn-danger delete-download-link" data-id="` + response.id + `" title="Delete">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
                                     </td>
                                 </tr> 
                             `;
