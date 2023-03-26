@@ -12,7 +12,6 @@ namespace OpenMarketPlace.Persistance.Models
     {
         public bool? IsActive { get; set; }
 
-        public string? Icon { get; set; }
         public string? Name { get; set; }
         public string? Url { get; set; }
 

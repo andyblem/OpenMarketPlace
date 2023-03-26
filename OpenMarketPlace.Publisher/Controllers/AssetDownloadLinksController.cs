@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using OpenMarketPlace.Persistance.Models;
 using OpenMarketPlace.Publisher.CQRS.AssetCQRS.Commands;
 using OpenMarketPlace.Publisher.CQRS.AssetDownloadLinkCQRS;
+using OpenMarketPlace.Publisher.CQRS.AssetDownloadLinkCQRS.Commands;
+using OpenMarketPlace.Publisher.CQRS.AssetDownloadLinkCQRS.Queries;
 using OpenMarketPlace.Publisher.CQRS.PublisherCQRS.Queries;
 using OpenMarketPlace.Publisher.Dtos.AssetDownLoadLinkDtos;
 using OpenMarketPlace.Publisher.Dtos.AssetDtos;
@@ -61,22 +63,43 @@ namespace OpenMarketPlace.Publisher.Controllers
             }
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Disable(int id)
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int? id)
         {
-            return Ok();
+            // check id validity
+            if (id == null || id <= 0)
+            {
+                // add error
+                ModelState.AddModelError("id", "Invalid Id passed to the server");
+
+                // return result
+                return BadRequest(ModelState);
+            }
+
+            // get record
+            var assetDownloadLink = await _mediator.Send(new GetAssetDownloadLinkQuery() 
+            { 
+                Id = id 
+            });
+
+            // check if it exists
+            if(assetDownloadLink == null)
+                return NotFound();
+
+            // delete link
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            assetDownloadLink.DeletedById = userId; 
+            var result = await _mediator.Send(new DeleteAssetDownloadLinkCommand()
+            {
+                AssetDownloadLink = assetDownloadLink
+            });
+
+            //return result
+            if(result == true)
+                return Ok();
+            else
+                return Problem("Entity set 'ApplicationDbContext.AssetDownloadLinks'  is null.");
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Delete(int id)
-        {
-            return Ok();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Enable(int id)
-        {
-            return Ok();
-        }
     }
 }

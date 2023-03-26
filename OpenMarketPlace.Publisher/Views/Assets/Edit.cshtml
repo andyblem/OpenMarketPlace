@@ -25,6 +25,9 @@
     <link rel="stylesheet" href="~/lib/select2/css/select2.min.css">
     <link rel="stylesheet" href="~/lib/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="~/lib/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+
     <!--ToastR-->
     <link rel="stylesheet" href="~/lib/toastr/toastr.min.css" />
 }
@@ -349,6 +352,50 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+
+                                            @if(Model.DownloadLinks.Count == 0)
+                                            {
+                                                <tr>
+                                                    <td rowspan="4">
+                                                        Download links empty
+                                                    </td>
+                                                </tr>
+                                            }
+                                            else
+                                            {
+                                                @foreach(var item in Model.DownloadLinks)
+                                                {
+                                                    <tr data-id="@item.Id">
+                                                        <td class="align-middle">
+                                                            @Html.DisplayFor(modelItem => item.Name)
+                                                        </td>
+
+                                                        <td class="align-middle">
+                                                            @if (item.IsActive == true)
+                                                            {
+                                                                <span class="badge bg-info"> Enabled </span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <span class="badge bg-warning"> Disabled </span>
+                                                            }
+                                                        </td>
+
+                                                        <td class="align-middle">
+                                                            @Html.DisplayFor(modelItem => item.Url)
+                                                        </td>
+
+                                                        <td>
+                                                            <button class="btn btn-sm btn-info" data-id="@item.Id" data-toggle="modal" data-target="#edit-download-link-modal" title="Edit">
+                                                                <i class="far fa-edit"></i>
+                                                            </button>
+                                                            <button class="btn btn-sm btn-danger delete-download-link" data-id="@item.Id">
+                                                                <i class="fas fa-trash"></i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
                                         </tbody>
                                     </table>
 
@@ -356,72 +403,72 @@
                             </div>
                         </div>
 
-                            <!-- media content here -->
-                            <div id="media-part" class="content" role="tabpanel" aria-labelledby="media-part-trigger">
+                        <!-- media content here -->
+                        <div id="media-part" class="content" role="tabpanel" aria-labelledby="media-part-trigger">
                             
-                                <div class="row form-input-section">
-                                    <div class="col-md-4">
-                                         <h4>
-                                            <strong>
-                                                Icon Image
-                                            </strong>
-                                        </h4>
-                                        <p class="text-muted">
-                                            The icon image gets shown when displaying many assets at once
-                                        </p>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="my-dropzone"></div>
-                                    </div>
+                            <div class="row form-input-section">
+                                <div class="col-md-4">
+                                        <h4>
+                                        <strong>
+                                            Icon Image
+                                        </strong>
+                                    </h4>
+                                    <p class="text-muted">
+                                        The icon image gets shown when displaying many assets at once
+                                    </p>
                                 </div>
-
-                                <div class="row form-input-section">
-                                    <div class="col-md-4">
-                                         <h4>
-                                            <strong>
-                                                Banner Image
-                                            </strong>
-                                        </h4>
-                                        <p class="text-muted">
-                                            The icon image gets shown at your asset details page
-                                        </p>
-                                    </div>
-                                    <div class="col-md-8">
-
-                                    </div>
-                                </div>
-
-                                <div class="row form-input-section">
-                                    <div class="col-md-4">
-                                         <h4>
-                                            <strong>
-                                                Screenshots
-                                            </strong>
-                                        </h4>
-                                        <p class="text-muted">
-                                            Showcase the ability
-                                        </p>
-                                    </div>
-                                    <div class="col-md-8">
-
-                                    </div>
-                                </div>
-
-                                <div class="row form-input-section">
-                                    <div class="col-md-4">
-                                         <h4>
-                                            <strong>
-                                                Video Demos
-                                            </strong>
-                                        </h4>
-                                        <p class="text-muted">
-                                            Share video demos of your asset
-                                        </p>
-                                    </div>
-                                    <div class="col-md-8">
-                                    </div>
+                                <div class="col-md-8">
+                                    <div class="my-dropzone"></div>
                                 </div>
                             </div>
+
+                            <div class="row form-input-section">
+                                <div class="col-md-4">
+                                        <h4>
+                                        <strong>
+                                            Banner Image
+                                        </strong>
+                                    </h4>
+                                    <p class="text-muted">
+                                        The icon image gets shown at your asset details page
+                                    </p>
+                                </div>
+                                <div class="col-md-8">
+
+                                </div>
+                            </div>
+
+                            <div class="row form-input-section">
+                                <div class="col-md-4">
+                                        <h4>
+                                        <strong>
+                                            Screenshots
+                                        </strong>
+                                    </h4>
+                                    <p class="text-muted">
+                                        Showcase the ability
+                                    </p>
+                                </div>
+                                <div class="col-md-8">
+
+                                </div>
+                            </div>
+
+                            <div class="row form-input-section">
+                                <div class="col-md-4">
+                                        <h4>
+                                        <strong>
+                                            Video Demos
+                                        </strong>
+                                    </h4>
+                                    <p class="text-muted">
+                                        Share video demos of your asset
+                                    </p>
+                                </div>
+                                <div class="col-md-8">
+                                </div>
+                            </div>
+                        </div>
                             
                     </div>
                 </div>
@@ -501,6 +548,68 @@
     <!-- /.modal-dialog -->
 </div>
 
+<!--edit download link modal-->
+<div class="modal fade" id="edit-download-link-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <form class="form-horizontal" action="/AssetDownloadLinks/Edit" id="edit-download-link-form" method="post">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Download Link</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <!--errors-->
+                    <div class="text-danger validation-summary-valid" id="edit-download-link-validation-summary" data-valmsg-summary="true">
+                        <ul>
+                            <li style="display:none"></li>
+                        </ul>
+                    </div>
+
+                    <!--download link name-->
+                    <div class="form-group" id="edit-download-link-name-form-group">
+                        <label for="Name" class="control-label">Name</label>
+                        <input class="form-control" name="Name" placeholder="Name">
+                    </div>
+
+                    <!--download link url-->
+                    <div class="form-group" id="edit-download-link-url-form-group">
+                        <label for="Url" class="control-label">Url</label>
+                        <input class="form-control" name="Url" placeholder="www.example.com">
+                    </div>
+
+                    <!--isactive name-->
+                    <div class="form-group" id="edit-is-active-form-group">
+                        <label>Status</label>
+                        <br />
+                        <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success">
+                    </div>
+
+                    <!--hidden fields-->
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="AssetId" value="@Model.Id" />
+                    <input type="hidden" name="CreatedById" />
+                    <input type="hidden" name="PublisherId" />
+
+                </div>
+
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="submit-edit-download-link-form-btn" class="btn btn-primary">Update</button>
+                </div>
+
+            </form>
+        </div>
+        <!-- /.modal-content -->
+
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
@@ -535,21 +644,120 @@
     <!-- Select2 -->
     <script src="~/lib/select2/js/select2.full.min.js"></script>
 
+    <!-- SweetAlert2 -->
+    <script src="~/lib/sweetalert2/sweetalert2.min.js"></script>
+
     <!--ToastR-->
     <script src="~/lib/toastr/toastr.min.js"></script>
 
+    <!--Bootstrap Switch -->
+    <script src="~/lib/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+
     <script>
         $(function() {
-
-            // set some data
-            var downloadLinks = @Html.Raw(Json.Serialize(Model.DownloadLinks));
-            populateDownloadLinksTable(downloadLinks);
-
 
             // BS-Stepper Init
             var stepper = new Stepper($('.bs-stepper')[0],{
                 linear: false,
                 animation: true
+            });
+
+            // bootstrap switch
+            $("input[data-bootstrap-switch]").each(function () {
+                $(this).bootstrapSwitch('state', $(this).prop('checked'));
+            });
+
+            $('.delete-download-link').on('click', function () {
+     
+                // get current clicked button data-id
+                var clickedBtnId = $(this).attr('data-id');
+                var data = {
+                    id: clickedBtnId
+                };
+
+                // show notification
+                Swal.fire({
+                    title: 'Warning!',
+                    text: 'Do you want to delete this link?',
+                    icon: 'warning',
+                    confirmButtonText: 'Proceed',
+                    showCancelButton: true
+
+                })
+                .then((result) => {
+
+                    // check if user pressed proceed
+                    if (result.isConfirmed) {
+                       
+                        // make delete request to server
+                        $.ajax({
+                            url: '/AssetDownloadLinks/Delete',
+                            type: 'delete',
+                            data: data,
+                            beforeSend: function () {
+
+                                toastr.info('deleting download link...');
+                            },
+                            success: function (response) {
+
+                                // fire succes toast
+                                toastr.success('download link deleted');
+
+                                // get table body
+                                var downloadLinksTableBodyRows = $('#download-links-table > tbody > tr');
+
+                                // loop through and delete row with matching id
+                                downloadLinksTableBodyRows.each(function (index, tr) {
+
+                                    // get id of table row
+                                    var tableRowId = $(this).attr('data-id');
+
+                                    // if we reached row delete it
+                                    if (tableRowId == clickedBtnId) {
+
+                                        // remove row
+                                        $(this).remove();
+                                        return true;
+                                    }
+                                });
+
+                                // get the rows again
+                                downloadLinksTableBody = $('#download-links-table tbody');
+                                downloadLinksTableBodyRows = $('#download-links-table > tbody > tr');
+
+                                // if we have no roles then add empty message
+                                var rowCount = downloadLinksTableBodyRows.length;
+                                if (rowCount == 0) {
+
+                                    // create new table row
+                                    var newTableRow = `<tr><td rowspan="4">Download links empty</td></tr>`;
+
+                                    // append row to table
+                                    downloadLinksTableBody.append(newTableRow);
+                                }
+
+                            },
+                            error: function (response) {
+
+                                if (response.status == 500) {
+
+                                    toastr.error('Error: 500 internal server error');
+
+                                } 
+                                else if (response.status == 404) {
+
+                                    toastr.error('Error: 404 download link could not be found on server');
+
+                                } 
+                                else if (response.status == 400) {
+
+                                    toastr.error('Error: 400 invalid data send to server');
+
+                                }
+                            }
+                        });
+                    }
+                });
             });
 
            
@@ -602,9 +810,10 @@
                             // get table body
                             var downloadLinksTableBody = $('#download-links-table tbody');
 
-                            console.log(downloadLinksTableBody);
                             // if we don't have records then reset body
-                            if(downloadLinks.length === 0) {
+                            var downloadLinksTableBodyRows = $('#download-links-table > tbody > tr');
+                            var rowCount = downloadLinksTableBodyRows.length;
+                            if (rowCount === 0) {
                                 downloadLinksTableBody.empty();
                             }
                             
@@ -641,9 +850,6 @@
 
                             // append row to table
                             downloadLinksTableBody.append(newTableRow);
-
-                            // append download links array
-                            downloadLinks.push(response);
 
                             // hide modal
                             $('#create-download-link-modal').modal('hide');
@@ -1124,94 +1330,6 @@
 
 
             });
-
-
-
-            // custom functions
-            function populateDownloadLinksTable(downloadLinks) {
-
-                // get table body
-                var downloadLinksTableBody = $('#download-links-table tbody');
-
-                // empty table
-                downloadLinksTableBody.empty();
-
-                if(downloadLinks.length == 0) {
-
-                    // create row
-                    var newRow = `<tr>
-                                    <td colspan="4">
-                                        No downlink links added yet
-                                    </td>
-                                  </tr>`;
-                    
-                    // append to table body
-                    downloadLinksTableBody.append(newRow);
-
-                } else {
-
-                    // loop array and create row
-                    $.each(downloadLinks, function(index, item) {
-
-                        // create new table row
-                        var statusTableData = `<span class="badge bg-info"> Enabled </span>`;
-                        if(item.isActive == false) {
-                            statusTableData = `<span class="badge bg-warning"> Disabled </span>`;
-                        }
-
-                        var statusBtn = `<a class="btn btn-sm btn-warning" data-id="`+ item.id +`" data-toggle="tooltip" data-placement="bottom" title="Disable">
-                                            <i class="fas fa-lightbulb"></i>
-                                        </a>`;
-                        if(item.isActive == false) {
-                            statusBtn = `<a class="btn btn-sm btn-info" data-id="` + item.Id + `" data-toggle="tooltip" data-placement="bottom" title= "Enable" >
-                                            <i class="far fa-lightbulb" > </i>
-                                        </a>`;
-                        }
-
-
-                        var newTableRow = `
-                            <tr>
-                                <td class="align-middle">
-                                    <div class="package-info-box" >
-                                        <span class="package-info-box-icon" >
-                                            <i class="fas fa-image"></i>
-                                        </span>
-
-                                        <div class="info-box-content" >
-                                            <span class="package-info-box-content-heading" >` +
-                                                item.name + `
-                                            </span>
-                                        </div>
-                                        <!-- /.info-box-content -->
-                                    </div>
-                                </td>
-
-                                <td class="align-middle" >`
-                                    + statusTableData +
-                                `</td>
-
-                                <td class="align-middle">` +
-                                    item.url + `
-                                </td>
-
-                                <td>`
-                                    + statusBtn +
-
-                                    `<a class="btn btn-sm btn-info" data-id="` + item.id + `" data-toggle="tooltip" data-placement="bottom" title="Edit">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                    <a class="btn btn-sm btn-danger" data-id="` + item.id + `" data-toggle="tooltip" data-placement="bottom" title="Delete">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        `;
-
-                         // append download links array
-                        downloadLinksTableBody.append(newTableRow);
-                    });
-                }
-            }
 
         });
     </script>
