@@ -10,6 +10,7 @@ namespace OpenMarketPlace.Publisher.Profiles
         public AssetDownloadLinkProfiles()
         {
             CreateMap<CreateAssetDownloadLinkDto, AssetDownloadLink>();
+            CreateMap<UpdateAssetDownloadLinkDto, AssetDownloadLink>();
         }
     }
 }

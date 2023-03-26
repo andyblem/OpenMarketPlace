@@ -373,11 +373,11 @@
                                                         <td class="align-middle">
                                                             @if (item.IsActive == true)
                                                             {
-                                                                <span class="badge bg-info"> Enabled </span>
+                                                                <span class="badge bg-info">Enabled</span>
                                                             }
                                                             else
                                                             {
-                                                                <span class="badge bg-warning"> Disabled </span>
+                                                                <span class="badge bg-warning">Disabled</span>
                                                             }
                                                         </td>
 
@@ -386,10 +386,16 @@
                                                         </td>
 
                                                         <td>
-                                                            <button class="btn btn-sm btn-info" data-id="@item.Id" data-toggle="modal" data-target="#edit-download-link-modal" title="Edit">
+                                                            <button class="btn btn-sm btn-info edit-download-link" 
+                                                                data-id="@item.Id" 
+                                                                data-name="@item.Name"
+                                                                data-url="@item.Url"
+                                                                data-is-active="@item.IsActive" 
+                                                                id="edit-download-link-btn-@item.Id"
+                                                                title="Edit">
                                                                 <i class="far fa-edit"></i>
                                                             </button>
-                                                            <button class="btn btn-sm btn-danger delete-download-link" data-id="@item.Id">
+                                                            <button class="btn btn-sm btn-danger delete-download-link" data-id="@item.Id" title="Delete">
                                                                 <i class="fas fa-trash"></i>
                                                             </button>
                                                         </td>
@@ -553,7 +559,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
 
-            <form class="form-horizontal" action="/AssetDownloadLinks/Edit" id="edit-download-link-form" method="post">
+            <form class="form-horizontal" action="/AssetDownloadLinks/Update" id="edit-download-link-form" method="post">
 
                 <div class="modal-header">
                     <h4 class="modal-title">Edit Download Link</h4>
@@ -587,14 +593,16 @@
                     <div class="form-group" id="edit-is-active-form-group">
                         <label>Status</label>
                         <br />
-                        <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success">
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="is-active-input" name="IsActive" value="true">
+                            <label class="custom-control-label" for="is-active-input">enable or disable link</label>
+                        </div>
                     </div>
 
                     <!--hidden fields-->
                     @Html.AntiForgeryToken()
-                    <input type="hidden" name="AssetId" value="@Model.Id" />
-                    <input type="hidden" name="CreatedById" />
-                    <input type="hidden" name="PublisherId" />
+                    <input type="hidden" name="Id" />
+                    <input type="hidden" name="ModifiedById" />
 
                 </div>
 
@@ -656,17 +664,35 @@
     <script>
         $(function() {
 
+
             // BS-Stepper Init
             var stepper = new Stepper($('.bs-stepper')[0],{
                 linear: false,
                 animation: true
             });
 
-            // bootstrap switch
-            $("input[data-bootstrap-switch]").each(function () {
-                $(this).bootstrapSwitch('state', $(this).prop('checked'));
+
+
+            // handle user clicking edit asset download link event
+            $('.edit-download-link').on('click', function(){
+             
+                // set edit download link form
+                $("#edit-download-link-form input[name=Id]").val($(this).attr('data-id'));
+                $("#edit-download-link-form input[name=Name]").val($(this).attr('data-name'));
+                $("#edit-download-link-form input[name=Url]").val($(this).attr('data-url'));
+
+                // set status checkbox
+;                if($(this).attr('data-is-active') == 'True') {
+                    $("#edit-download-link-form input[name=IsActive]").attr('checked', true);
+                } else {
+                    $("#edit-download-link-form input[name=IsActive]").attr('checked', false);
+                }
+
+                // show modal
+                $('#edit-download-link-modal').modal('show');
             });
 
+            // handle user clicking delete asset download link event
             $('.delete-download-link').on('click', function () {
      
                 // get current clicked button data-id
@@ -758,6 +784,156 @@
                         });
                     }
                 });
+            });
+
+            // set validation rules for edit download link form
+            $('#edit-download-link-form').validate({
+                ignore: [],
+                rules: {
+                    Name: {
+                        required: true
+                    },
+                    Url: {
+                        required: true,
+                        url: true
+                    },
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                },
+            });
+
+            // handle user clicking submit edit asset download link form
+            $('#submit-edit-download-link-form-btn').on('click', function(){
+
+                if ($('#edit-download-link-form').valid()) {
+
+                    // validate form
+                    var form = $('#edit-download-link-form');
+
+                    // submit form
+                    $.ajax({
+                        url: form.attr('action'),
+                        type: form.attr('method'),
+                        data: form.serialize(),
+                        beforeSend: function() {
+
+                            toastr.info('updating download link...');
+                        },
+                        success: function (response) {
+                            
+                            // fire succes toast
+                            toastr.success('download link updated');
+
+                            // todo::add logic to update record
+                            var submittedLinkId = response.id;
+
+                            // get table body
+                            var downloadLinksTableBodyRows = $('#download-links-table > tbody > tr');
+
+                            // loop through and delete row with matching id
+                            downloadLinksTableBodyRows.each(function (index, tr) {
+
+                                // get id of table row
+                                var tableRowId = $(this).attr('data-id');
+
+                                // if we reached row delete it
+                                if (tableRowId == submittedLinkId) {
+
+                                    // update table row
+                                    $(this).find('td').eq(0).text(response.name);
+                                    $(this).find('td').eq(2).text(response.url);
+
+                                    if(response.isActive == true){
+                                         $(this).find('td').eq(1).html(`<span class="badge bg-info" > Enabled </span>`);
+                                    } else {
+                                        $(this).find('td').eq(1).html(`<span class="badge bg-warning">Disabled</span>`);
+                                    }
+
+                                    // get button
+                                    var btnId = '#edit-download-link-btn-' + tableRowId;
+                                    var trBtn = $(btnId);
+
+                                    // set some data variables
+                                    trBtn.attr('data-is-active', response.isActive);
+                                    trBtn.attr('data-name', response.name);
+                                    trBtn.attr('data-url', response.url);
+
+                                    // break out of loop
+                                    return true;
+                                }
+                            });
+
+                            // hide modal
+                            $('#edit-download-link-modal').modal('hide');
+
+                        },
+                        error: function (response) {
+
+                            if (response.status == 500) {
+
+                                toastr.error('Error: 500 internal server error');
+
+                            } else {
+
+                                // get list to hold errors
+                                var validationSummaryList = $('#edit-download-link-validation-summary > ul');
+
+                                // show input field errors
+                                if (response.responseJSON.IsActive !== undefined) {
+
+                                    //get elememts
+                                    var editDownLoadLinkNameFormGroup = $('#edit-download-link-is-active-form-group');
+                                    var nameField = $('#edit-download-link-is-active-form-group > input');
+
+                                    // set css
+                                    nameField.addClass('is-invalid');
+
+                                    $.each(response.responseJSON.IsActive, function (key, value) {
+
+                                        editDownLoadLinkNameFormGroup.append('<span id="Name-error" class="error invalid-feedback">' + value + '</span>');
+                                    });
+                                }
+                                if (response.responseJSON.Name !== undefined) {
+
+                                    //get elememts
+                                    var editDownLoadLinkNameFormGroup = $('#edit-download-link-name-form-group');
+                                    var nameField = $('#edit-download-link-name-form-group > input');
+
+                                    // set css
+                                    nameField.addClass('is-invalid');
+
+                                    $.each(response.responseJSON.Name, function (key, value) {
+
+                                        editDownLoadLinkNameFormGroup.append('<span id="Name-error" class="error invalid-feedback">' + value + '</span>');
+                                    });
+                                }
+                                if (response.responseJSON.Url !== undefined) {
+
+                                    //get elememts
+                                    var editDownLoadLinkNameFormGroup = $('#edit-download-link-url-form-group');
+                                    var nameField = $('#edit-download-link-url-form-group > input');
+
+                                    // set css
+                                    nameField.addClass('is-invalid');
+
+                                    $.each(response.responseJSON.Url, function (key, value) {
+
+                                        editDownLoadLinkNameFormGroup.append('<span id="Name-error" class="error invalid-feedback">' + value + '</span>');
+                                    });
+                                }
+                            }
+                        }
+                    });
+                }
             });
 
            

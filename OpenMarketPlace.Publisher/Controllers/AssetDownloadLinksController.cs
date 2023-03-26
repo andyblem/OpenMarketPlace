@@ -101,5 +101,22 @@ namespace OpenMarketPlace.Publisher.Controllers
                 return Problem("Entity set 'ApplicationDbContext.AssetDownloadLinks'  is null.");
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(UpdateAssetDownloadLinkDto updateAssetDownloadLinkDto)
+        {
+
+            // update asset download link
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            updateAssetDownloadLinkDto.ModifiedById = userId;
+            var assetDownloadLink = await _mediator.Send(new UpdateAssetDownloadLinkCommand()
+            {
+                UpdateAssetDownloadLinkDto = updateAssetDownloadLinkDto
+            });
+
+            // return result
+            return Ok(assetDownloadLink);
+        }
+
     }
 }
